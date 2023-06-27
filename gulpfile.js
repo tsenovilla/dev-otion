@@ -6,8 +6,8 @@ const sourcemaps = require('gulp-sourcemaps')
 const cssnano = require('cssnano');
 const concat = require('gulp-concat');
 const terser = require('gulp-terser-js');
-const imagemin = require('gulp-imagemin');
-const notify = require('gulp-notify');
+const rename = require('gulp-rename');
+// const imagemin = require('gulp-imagemin');
 const cache = require('gulp-cache');
 const webp = require('gulp-webp');
 const avif = require('gulp-avif');
@@ -19,13 +19,20 @@ const paths = {
     imagenes_svg: 'src/img/**/*.svg'
 };
 
+
 function compile_css() {
     return src(paths.scss)
+        .pipe(rename(path=>
+            {
+                const match = /\/scss\/[a-z_]+\//.exec(path.dirname);
+                this.appName = match[0];
+            }    
+        ))
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(postcss([autoprefixer(), cssnano()]))
         .pipe(sourcemaps.write('.'))
-        .pipe(dest('./public/build/css'));
+        .pipe(dest(`./${this.appName}/static/${this.appName}/css`));
 }
 
 function export_js() {
@@ -40,12 +47,10 @@ function export_js() {
 function imagenes(done) {
     src(paths.imagenes_jpg)
         .pipe(cache(imagemin({ optimizationLevel: 3 })))
-        .pipe(dest('./public/build/img'))
-        .pipe(notify({ message: "Imagen JPG optimizada" }));
+        .pipe(dest('./public/build/img'));
     src(paths.imagenes_svg)
         .pipe(cache(imagemin({optimizationLevel:3})))
-        .pipe(dest("./public/build/img"))
-        .pipe(notify({ message: "Imagen SVG optimizada" }));
+        .pipe(dest("./public/build/img"));
     done();
 }
 
@@ -56,8 +61,7 @@ function versionWebp(done) {
     }
     src(paths.imagenes_jpg)
         .pipe(webp(options))
-        .pipe(dest('./public/build/img'))
-        .pipe(notify({ message:"Imagen convertida a WEBP" }));
+        .pipe(dest('./public/build/img'));
     done();
 }
 
@@ -68,8 +72,7 @@ function versionAvif (done)
     }
     src(paths.imagenes_jpg)
         .pipe(avif(options))
-        .pipe(dest("./public/build/img")) 
-        .pipe(notify({ message:"Imagen convertidas a AVIF" }));
+        .pipe(dest("./public/build/img"));
     done();
 }
 

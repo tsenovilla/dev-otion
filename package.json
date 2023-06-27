@@ -1,6 +1,7 @@
 {
   "name": "dev-otion",
   "version": "1.0.0",
+  "main": "gulpfile.js",
   "scripts": {
     "compile_css": "gulp compile_css",
     "dev": "gulp dev",
