@@ -1,4 +1,3 @@
-from typing import Any
 from django.db import models
 from django.shortcuts import render
 from django.utils.translation import gettext as _

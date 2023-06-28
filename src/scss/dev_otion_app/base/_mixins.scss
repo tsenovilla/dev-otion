@@ -1,0 +1,78 @@
+@use "sizes" as s;
+@use "typography" as t;
+
+@mixin phone
+{
+    @media (min-width: s.$phone)
+    {
+        @content; 
+    }
+}
+
+@mixin tablet
+{
+    @media (min-width: s.$tablet)
+    {
+        @content; 
+    }
+}
+
+@mixin desktop
+{
+    @media (min-width: s.$desktop)
+    {
+        @content; 
+    }
+}
+
+@mixin desktopXL
+{
+    @media (min-width: s.$desktopXL)
+    {
+        @content; 
+    }
+}
+
+@mixin grid ($columns:false, $rows: false, $areas: false, $gap: false){
+    display: grid;
+    @if $columns{grid-template-columns: $columns;}
+    @if $rows{grid-template-rows: $rows;}
+    @if $areas{grid-template-areas: $areas;}
+    @if $gap{gap: $gap;}
+}
+
+@mixin flex ($direction: false, $justify: false, $align: false, $gap: false)
+{
+    display: flex;
+    @if $direction {flex-direction: $direction;}
+    @if $justify {justify-content: $justify;}
+    @if $align {align-items: $align;}
+    @if $gap {gap: $gap;}
+}
+
+@mixin reset-list ($style: none)
+{
+    list-style: $style;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin button($bkg-color, $color, $display, $darken-transition:false)
+{
+    background-color:$bkg-color;
+    color:$color;
+    border: none;
+    font-weight: t.$bold;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    text-align: center;
+    margin-top: calc(t.$spaicing/2);
+    display: $display;
+    &:hover{
+        cursor: pointer;
+        @if($darken-transition){
+            background-color: darken($bkg-color,5%);
+            transition: background-color .3s ease;
+        }
+    }
+}
