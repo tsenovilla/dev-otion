@@ -15,8 +15,8 @@ const avif = require('gulp-avif');
 const paths = {
     scss: 'src/scss/**/*.scss',
     js: 'src/js/**/*.js',
-    imagenes_jpg: 'src/img/**/*.jpg',
-    imagenes_svg: 'src/img/**/*.svg'
+    images: 'src/img/**/*.{jpg,png}',
+    images_svg: 'src/img/**/*.svg'
 };
 
 
@@ -50,8 +50,8 @@ function export_js() {
         .pipe(dest('./'))
 }
 
-function imagenes(done) {
-    src(paths.imagenes_jpg)
+function images(done) {
+    src(paths.images)
         .pipe(cache(imagemin({ optimizationLevel: 3 })))
         .pipe(rename(path=>
             {
@@ -60,7 +60,7 @@ function imagenes(done) {
             }
         ))
         .pipe(dest('./'));
-    src(paths.imagenes_svg)
+    src(paths.images_svg)
         .pipe(cache(imagemin({optimizationLevel:3})))
         .pipe(rename(path=>
             {
@@ -72,12 +72,12 @@ function imagenes(done) {
     done();
 }
 
-function versionWebp(done) {
+function webpversion(done) {
     const options = 
     {
         quality:80
     }
-    src(paths.imagenes_jpg)
+    src(paths.images)
         .pipe(webp(options))
         .pipe(rename(path=>
             {
@@ -89,12 +89,12 @@ function versionWebp(done) {
     done();
 }
 
-function versionAvif (done)
+function avifversion (done)
 {
     const options = {
         quality:80
     }
-    src(paths.imagenes_jpg)
+    src(paths.images)
         .pipe(avif(options))
         .pipe(rename(path=>
             {
@@ -115,4 +115,4 @@ function dev() {
 exports.compile_css = compile_css;
 exports.export_js = export_js;
 exports.dev = dev;
-exports.improve_images = parallel(imagenes,versionWebp,versionAvif); 
+exports.improve_images = parallel(images,webpversion,avifversion); 
