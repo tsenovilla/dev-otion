@@ -1,0 +1,51 @@
+@use '../base/colors' as c;
+@use '../base/typography' as t;
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    font-family: t.$main_font;
+    font-size: 1.6rem;
+    line-height: 1.8;
+}
+p {
+    color: c.$black;
+    font-size: 2rem;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+img,
+picture {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+}
+
+h1, h2, h3 {
+    font-family: t.$main_font;
+    margin: calc(t.$spaicing / 2) 0;
+    font-weight: t.$regular;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3.8rem;
+}
+h2 {
+    font-size: 3.4rem;
+}
+h3 {
+    font-size: 3rem;
+}
+h4 {
+    font-size: 2.6rem;
+}
