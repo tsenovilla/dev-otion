@@ -11,6 +11,8 @@ const imagemin = require('gulp-imagemin');
 const cache = require('gulp-cache');
 const webp = require('gulp-webp');
 const avif = require('gulp-avif');
+const webpack = require('webpack-stream');
+const tap = require('gulp-tap');
 
 const paths = {
     scss: 'src/scss/**/*.scss',
@@ -29,7 +31,7 @@ function compile_css() {
         .pipe(rename(path=>
             {
                 const appName = path.dirname; // path.dirname returns the relative path to the first glob (**) specified in the src path. As scss folder childs are Django app names, we keep them in order to build the correct route. Example: If the path is ./src/scss/foo, path.dirname value is foo
-                path.dirname += "/static/"+appName+"/css"
+                path.dirname += "/static/"+appName+"/css" // Follow Django's phylosophy of namespacing the static files through the app name
             }    
         ))
         .pipe(dest("./"));
@@ -37,17 +39,28 @@ function compile_css() {
 
 function export_js() {
     return src(paths.js)
-        .pipe(sourcemaps.init())
-        .pipe(concat('app.js'))
-        .pipe(terser())
-        .pipe(sourcemaps.write('.'))
-        .pipe(rename(path=>
+        .pipe(tap(file=> // As we are using webpack, the dirname is lost. And we also need to specify the app.js of each Django app, so we use gulp-tap to access individually each file passed through the pipeline
             {
-                const appName = path.dirname;
-                path.dirname += "/static/"+appName+"/js"
+                const match = /\/src\/js\/[a-z_]+/.exec(file.dirname);
+                const appName = match[0].substring(7);
+                const entry_route = './src/js/'+appName+'/app.js';
+                webpack(
+                {
+                    mode:'production',
+                    entry:entry_route
+                })
+                .pipe(sourcemaps.init())
+                .pipe(concat('bundle.js'))
+                .pipe(terser())
+                .pipe(sourcemaps.write('.'))
+                .pipe(rename(path=>
+                    {
+                        path.dirname += appName+"/static/"+appName+"/js"
+                    }
+                ))
+                .pipe(dest('./'))
             }
-        ))
-        .pipe(dest('./'))
+        ));
 }
 
 function images(done) {
