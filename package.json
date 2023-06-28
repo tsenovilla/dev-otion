@@ -24,6 +24,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-terser-js": "^5.2.2",
     "gulp-webp": "^4.0.1",
-    "sass": "^1.63.6"
+    "sass": "^1.63.6",
+    "webpack-stream": "^7.0.0"
   }
 }

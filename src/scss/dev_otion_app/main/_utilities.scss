@@ -1,0 +1,72 @@
+@use '../base/colors' as c;
+@use '../base/typography' as t;
+
+.section
+{
+    margin-top: calc(t.$spaicing / 2);
+    margin-bottom: calc(t.$spaicing / 2);
+}
+
+.text-center
+{
+    text-align: center;
+}
+
+.container {
+    max-width: min(90%, 120rem);
+    margin: 0 auto;
+}
+
+.narrow
+{
+    width: 80rem;
+}
+
+.no-margin
+{
+    margin:0;
+}
+
+.right-align
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.left-align
+{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.center-align
+{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.display-none
+{
+    display: none;
+}
+
+.front-element
+{
+    z-index:0;
+}
+
+.small-font-size
+{
+    font-size: 1.4rem;
+}
+
+.width_100
+{
+    width: 100%;
+}
+
+.fixed-page
+{
+    overflow: hidden;
+}

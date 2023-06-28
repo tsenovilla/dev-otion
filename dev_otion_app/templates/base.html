@@ -18,7 +18,25 @@
     <body>
         <header class="header">
             <div class="header_bar">
-                
+                <img src="{% static 'dev_otion_app/img/Dev-otion_logo.svg'%}" alt="Dev-otion logo" class="logo">
+                <div class="settings">
+                    <img src="{% static 'dev_otion_app/img/dark_mode.svg'%}" alt="dark_mode icon" class="icon">
+                    <div class="languages">
+                        <p class="languages--selected">EN<span>&#9660;</span></p>
+                        <a href="#" class="languages--option display-none">&#x1f1ec;&#x1f1e7; EN</a>
+                        <a href="#" class="languages--option display-none">&#x1f1ea;&#x1f1f8; ES</a>
+                        <a href="#" class="languages--option display-none">&#x1f1eb;&#x1f1f7; FR</a>
+                    </div>
+                </div>
+                <img src="{% static 'dev_otion_app/img/menu.svg'%}" alt="menu icon" class="icon menu">
+                <div class="search_bar">
+                    <img src="{% static 'dev_otion_app/img/search.svg'%}" alt="Search icon" class="icon">
+                    <input type="text" placeholder="Search by keywords">
+                </div>
+                <nav class="nav_bar">
+                    <a href="#">Languages</a>
+                    <a href="#">About us</a>
+                </nav>
             </div>
         </header>
 

@@ -1,0 +1,64 @@
+@use '../base/colors' as c;
+@use '../base/typography' as f;
+@use '../base/mixins' as m;
+
+.header
+{
+    background-color: c.$darkBlue;
+    padding: 2rem;
+}
+.header_bar
+{
+    @include m.flex($direction: column, $align: center, $gap:.5rem);
+    @include m.tablet
+    {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .logo
+    {
+        width: 10rem;
+        height: 9rem;
+    }
+
+    .settings
+    {
+        @include m.flex($align: center, $gap: 2rem);
+        p
+        {
+            color: c.$white;
+            &:hover
+            {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .search_bar, .nav_bar
+    {
+        display: none;
+        @include m.tablet
+        {
+            display: block;
+        }
+    }
+
+    .icon
+    {
+        width: 2rem;
+        filter:invert(100%);
+        &.menu
+        {
+            width: 6rem;
+            @include m.tablet
+            {
+                display:none;
+            }
+        }
+        &:hover
+        {
+            cursor: pointer;
+        }
+    }
+}
