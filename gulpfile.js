@@ -7,7 +7,7 @@ const cssnano = require('cssnano');
 const concat = require('gulp-concat');
 const terser = require('gulp-terser-js');
 const rename = require('gulp-rename');
-// const imagemin = require('gulp-imagemin');
+const imagemin = require('gulp-imagemin');
 const cache = require('gulp-cache');
 const webp = require('gulp-webp');
 const avif = require('gulp-avif');
@@ -22,35 +22,53 @@ const paths = {
 
 function compile_css() {
     return src(paths.scss)
-        .pipe(rename(path=>
-            {
-                const match = /\/scss\/[a-z_]+\//.exec(path.dirname);
-                this.appName = match[0];
-            }    
-        ))
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(postcss([autoprefixer(), cssnano()]))
         .pipe(sourcemaps.write('.'))
-        .pipe(dest(`./${this.appName}/static/${this.appName}/css`));
+        .pipe(rename(path=>
+            {
+                const appName = path.dirname; // path.dirname returns the relative path to the first glob (**) specified in the src path. As scss folder childs are Django app names, we keep them in order to build the correct route. Example: If the path is ./src/scss/foo, path.dirname value is foo
+                path.dirname += "/static/"+appName+"/css"
+            }    
+        ))
+        .pipe(dest("./"));
 }
 
 function export_js() {
     return src(paths.js)
-      .pipe(sourcemaps.init())
-      .pipe(concat('app.js'))
-      .pipe(terser())
-      .pipe(sourcemaps.write('.'))
-      .pipe(dest('./public/build/js'))
+        .pipe(sourcemaps.init())
+        .pipe(concat('app.js'))
+        .pipe(terser())
+        .pipe(sourcemaps.write('.'))
+        .pipe(rename(path=>
+            {
+                const appName = path.dirname;
+                path.dirname += "/static/"+appName+"/js"
+            }
+        ))
+        .pipe(dest('./'))
 }
 
 function imagenes(done) {
     src(paths.imagenes_jpg)
         .pipe(cache(imagemin({ optimizationLevel: 3 })))
-        .pipe(dest('./public/build/img'));
+        .pipe(rename(path=>
+            {
+                const appName = path.dirname;
+                path.dirname += "/static/"+appName+"/img"
+            }
+        ))
+        .pipe(dest('./'));
     src(paths.imagenes_svg)
         .pipe(cache(imagemin({optimizationLevel:3})))
-        .pipe(dest("./public/build/img"));
+        .pipe(rename(path=>
+            {
+                const appName = path.dirname;
+                path.dirname += "/static/"+appName+"/img"
+            }
+        ))
+        .pipe(dest("./"));
     done();
 }
 
@@ -61,7 +79,13 @@ function versionWebp(done) {
     }
     src(paths.imagenes_jpg)
         .pipe(webp(options))
-        .pipe(dest('./public/build/img'));
+        .pipe(rename(path=>
+            {
+                const appName = path.dirname;
+                path.dirname += "/static/"+appName+"/img"
+            }
+        ))
+        .pipe(dest('./'));
     done();
 }
 
@@ -72,7 +96,13 @@ function versionAvif (done)
     }
     src(paths.imagenes_jpg)
         .pipe(avif(options))
-        .pipe(dest("./public/build/img"));
+        .pipe(rename(path=>
+            {
+                const appName = path.dirname;
+                path.dirname += "/static/"+appName+"/img"
+            }
+        ))
+        .pipe(dest("./"));
     done();
 }
 
