@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Meta tags-->
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Font import -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Ysabeau+Office:wght@300;400;700;900&display=swap" rel="stylesheet">
-        <!-- Stylesheets -->
-        {% load static %}
-        <link rel="preload" href="{% static 'dev_otion_app/css/styles.css' %}" as="style">
-        <link rel="stylesheet" href="{% static 'dev_otion_app/css/styles.css' %}">
-        <title>{% block title %}{% endblock %}</title>
-    </head>
-    <body>
-        <header class="header">
-            <div class="header_bar">
-                <img src="{% static 'dev_otion_app/img/Dev-otion_logo.svg'%}" alt="Dev-otion logo" class="logo">
-                <div class="settings">
+<head>
+    <!-- Meta tags-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ysabeau+Office:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
+    {% load static %}
+    <link rel="preload" href="{% static 'dev_otion_app/css/styles.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'dev_otion_app/css/styles.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header_bar">
+            <img src="{% static 'dev_otion_app/img/Dev-otion_logo.svg'%}" alt="Dev-otion logo" class="logo">
+            <ul class="settings">
+                <li>
                     <img src="{% static 'dev_otion_app/img/dark_mode.svg'%}" alt="dark_mode icon" class="icon">
-                    <div class="languages">
-                        <p class="languages--selected">EN<span>&#9660;</span></p>
-                        <a href="#" class="languages--option display-none">&#x1f1ec;&#x1f1e7; EN</a>
-                        <a href="#" class="languages--option display-none">&#x1f1ea;&#x1f1f8; ES</a>
-                        <a href="#" class="languages--option display-none">&#x1f1eb;&#x1f1f7; FR</a>
-                    </div>
-                </div>
-                <img src="{% static 'dev_otion_app/img/menu.svg'%}" alt="menu icon" class="icon menu">
-                <div class="search_bar">
-                    <img src="{% static 'dev_otion_app/img/search.svg'%}" alt="Search icon" class="icon">
-                    <input type="text" placeholder="Search by keywords">
-                </div>
-                <nav class="nav_bar">
-                    <a href="#">Languages</a>
-                    <a href="#">About us</a>
-                </nav>
+                </li>
+                <li>
+                    <details class="languages">
+                        <summary>EN</summary>
+                        <a href="#" class="languages--option">&#x1f1ec;&#x1f1e7; EN</a>
+                        <a href="#" class="languages--option">&#x1f1ea;&#x1f1f8; ES</a>
+                        <a href="#" class="languages--option">&#x1f1eb;&#x1f1f7; FR</a>
+                    </details>
+                </li>
+            </ul>
+            <img src="{% static 'dev_otion_app/img/menu.svg'%}" alt="menu icon" class="icon menu">
+            <div class="search_bar">
+                <img src="{% static 'dev_otion_app/img/search.svg'%}" alt="Search icon" class="icon">
+                <input type="text" placeholder="Search by keywords">
             </div>
-        </header>
+            <nav class="nav_bar">
+                <a href="#">Languages</a>
+                <a href="#">About us</a>
+            </nav>
+        </div>
+    </header>
 
-        <main>
-            {% block content %}
-            {% endblock %}
-        </main>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 
-        <footer>
-            <p>&copy; {{ year }}  Dev-otion</p>
-        </footer>
-        <script src="{% static 'dev_otion_app/js/bundle.js' %}"></script>
-    </body>
+    <footer>
+        <p>&copy; {{ year }}  Dev-otion</p>
+    </footer>
+    <script src="{% static 'dev_otion_app/js/bundle.js' %}"></script>
+</body>
 </html>

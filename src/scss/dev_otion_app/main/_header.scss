@@ -1,5 +1,5 @@
 @use '../base/colors' as c;
-@use '../base/typography' as f;
+@use '../base/typography' as t;
 @use '../base/mixins' as m;
 
 .header
@@ -18,19 +18,52 @@
 
     .logo
     {
-        width: 10rem;
+        width: 12rem;
         height: 9rem;
     }
 
     .settings
     {
-        @include m.flex($align: center, $gap: 2rem);
-        p
+        @include m.reset-list();
+        .languages
         {
+            @include m.flex($direction: column);
             color: c.$white;
-            &:hover
+            font-size: 2rem;
+            @include m.tablet
+            {
+                max-height: 2rem;
+            }
+            summary
+            {
+                list-style: none;
+                &::after
+                {
+                    content: '\25BE';
+                    padding: .7rem;
+                    font-size: 1.8rem;
+                }
+            }
+            &[open]
+            {
+                summary::after
+                {
+                    content:'\25B4';
+                    font-size: 2.4rem;
+                }
+            }
+            &--option
+            {
+                color: c.$white;
+                background-color: c.$blue;
+                padding: 1rem;
+                border-radius: 2rem;
+                margin-bottom: 0.2rem;
+            }
+            summary:hover, &--option:hover
             {
                 cursor: pointer;
+                color: c.$orange;
             }
         }
     }
