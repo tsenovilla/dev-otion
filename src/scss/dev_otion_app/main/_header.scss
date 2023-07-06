@@ -4,76 +4,29 @@
 
 .header
 {
-    background-color: c.$darkBlue;
-    padding: 2rem;
-}
-.header_bar
-{
-    @include m.flex($direction: column, $align: center, $gap:.5rem);
-    @include m.tablet
-    {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
+    background-color: darken(c.$darkGrey,10%);
+    padding: 1rem;
+    @include m.flex($direction: column, $align: center, $gap: .5rem);
     .logo
     {
         width: 12rem;
         height: 9rem;
     }
-
-    .settings
+    @include m.tablet
     {
-        @include m.reset-list();
-        .languages
-        {
-            @include m.flex($direction: column);
-            color: c.$white;
-            font-size: 2rem;
-            @include m.tablet
-            {
-                max-height: 2rem;
-            }
-            summary
-            {
-                list-style: none;
-                &::after
-                {
-                    content: '\25BE';
-                    padding: .7rem;
-                    font-size: 1.8rem;
-                }
-            }
-            &[open]
-            {
-                summary::after
-                {
-                    content:'\25B4';
-                    font-size: 2.4rem;
-                }
-            }
-            &--option
-            {
-                color: c.$white;
-                background-color: c.$blue;
-                padding: 1rem;
-                border-radius: 2rem;
-                margin-bottom: 0.2rem;
-            }
-            summary:hover, &--option:hover
-            {
-                cursor: pointer;
-                color: c.$orange;
-            }
-        }
+        @include m.grid($columns: repeat(2,1fr), $gap: 2rem);
+        place-items: center right;
     }
+}
 
-    .search_bar, .nav_bar
+.menu
+{
+    summary
     {
-        display: none;
-        @include m.tablet
+        list-style: none;
+        .icon
         {
-            display: block;
+            width: 4.2rem;
         }
     }
 
@@ -81,17 +34,133 @@
     {
         width: 2rem;
         filter:invert(100%);
-        &.menu
-        {
-            width: 6rem;
-            @include m.tablet
-            {
-                display:none;
-            }
-        }
         &:hover
         {
             cursor: pointer;
+        }
+    }
+}
+
+.menu[open]
+{
+    @include m.tablet
+    {
+        height: 2rem;
+        width: 4rem;
+        position: relative;
+        &>summary, .menu_list
+        {
+            position: absolute;
+        }
+        &>summary
+        {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .menu_list
+        {
+            top: 50%;
+            transform: translateY(20%);
+            right: -1rem;
+        }
+    }
+    .menu_list
+    {
+        @include m.flex($direction: column, $align: center, $gap: 1rem);
+        background-color: lighten(c.$darkBlue,25%);
+        padding: 2rem;
+        border-radius: 2rem;
+    }
+}
+
+.search_bar
+{
+    @include m.flex($gap:.5rem);
+    background-color: c.$white;
+    padding: 1rem;
+    border: 1px solid c.$lightGrey;
+    border-radius: 1.2rem;
+    width: 100%;
+
+    &:focus-within
+    {
+        outline: 5px auto Highlight;
+        outline: 5px auto -webkit-focus-ring-color;
+    }
+
+    input[type="text"]
+    {
+        border:none;
+        &:focus
+        {
+            outline: none;
+        }
+    }
+}
+
+.nav_bar
+{
+    @include m.flex($direction: column, $align: center, $gap:.5rem);
+    width: 100%;
+    a
+    {
+        background-color: c.$white;
+        color: lighten(c.$darkBlue,25%);
+        border: 1px solid c.$lightGrey;
+        padding: 1rem;
+        border-radius: 1.2rem;
+        width: 100%;
+        text-align: center;
+
+        &:hover
+        {
+            background-color: lighten(c.$darkBlue,25%);
+            color: c.$white;
+        }
+    }
+}
+
+.settings
+{
+    width: 100%;
+    @include m.reset-list();
+    @include m.flex($justify: space-evenly, $align: center, $gap:1rem);
+    .languages
+    {
+        @include m.flex($direction: column);
+        color: c.$white;
+        font-size: 2rem;
+        summary
+        {
+            list-style: none;
+            &::after
+            {
+                content: '\25BE';
+                padding: .7rem;
+                font-size: 1.8rem;
+            }
+        }
+        &[open]
+        {
+            summary::after
+            {
+                content:'\25B4';
+                font-size: 2.4rem;
+            }
+        }
+        &--option
+        {
+            color: c.$white;
+            background-color: c.$blue;
+            padding: 1rem;
+            border-radius: 2rem;
+            margin-bottom: 0.2rem;
+        }
+        summary:hover, &--option:hover
+        {
+            cursor: pointer;
+            color: c.$orange;
         }
     }
 }
