@@ -4,7 +4,15 @@
 
 .header
 {
-    background-color: darken(c.$darkGrey,10%);
+    background-color:rgb(74, 137, 6);
+    background-image:
+    radial-gradient(at 59% 18%, hsla(101,95%,38%,1) 0px, transparent 50%),
+    radial-gradient(at 68% 48%, hsla(53,100%,56%,1) 0px, transparent 50%),
+    radial-gradient(at 9% 50%, rgb(171, 240, 162) 0px, transparent 50%),
+    radial-gradient(at 86% 20%, hsla(114,100%,76%,1) 0px, transparent 50%),
+    radial-gradient(at 4% 85%, hsla(109,100%,77%,1) 0px, transparent 50%),
+    radial-gradient(at 80% 85%, hsla(128,100%,70%,1) 0px, transparent 50%),
+    radial-gradient(at 20% 0%, hsla(114,100%,76%,1) 0px, transparent 50%);
     padding: 1rem;
     @include m.flex($direction: column, $align: center, $gap: .5rem);
     .logo
@@ -14,7 +22,8 @@
     }
     @include m.tablet
     {
-        @include m.grid($columns: repeat(2,1fr), $gap: 2rem);
+        @include m.grid($columns: repeat(2,1fr));
+        gap:0;
         place-items: center right;
     }
 }
@@ -46,7 +55,7 @@
     @include m.tablet
     {
         height: 2rem;
-        width: 4rem;
+        width:60%;
         position: relative;
         &>summary, .menu_list
         {
@@ -60,18 +69,29 @@
         }
         .menu_list
         {
-            top: 50%;
-            transform: translateY(20%);
+            top: 100%;
+            transform: translateY(18.2%);
+            left:0;
             right: -1rem;
         }
     }
     .menu_list
     {
         @include m.flex($direction: column, $align: center, $gap: 1rem);
-        background-color: lighten(c.$darkBlue,25%);
+        background-color: c.$green;
         padding: 2rem;
-        border-radius: 2rem;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     }
+
+    summary~*
+    {
+        animation: menu_animation .3s ease-out;
+    }
+}
+
+.menu_animation_close 
+{
+    animation: menu_animation .3s ease-in reverse;
 }
 
 .search_bar
@@ -106,7 +126,7 @@
     a
     {
         background-color: c.$white;
-        color: lighten(c.$darkBlue,25%);
+        color: c.$green;
         border: 1px solid c.$lightGrey;
         padding: 1rem;
         border-radius: 1.2rem;
@@ -115,7 +135,7 @@
 
         &:hover
         {
-            background-color: lighten(c.$darkBlue,25%);
+            background-color: c.$green;
             color: c.$white;
         }
     }
@@ -152,7 +172,6 @@
         &--option
         {
             color: c.$white;
-            background-color: c.$blue;
             padding: 1rem;
             border-radius: 2rem;
             margin-bottom: 0.2rem;
@@ -162,5 +181,17 @@
             cursor: pointer;
             color: c.$orange;
         }
+    }
+}
+
+@keyframes menu_animation
+{
+    0% 
+    {
+        opacity: 0;
+    }
+    100% 
+    {
+        opacity: 1;
     }
 }
