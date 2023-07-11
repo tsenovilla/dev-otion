@@ -4,27 +4,40 @@
 
 .header
 {
-    background-color:rgb(74, 137, 6);
-    background-image:
-    radial-gradient(at 59% 18%, hsla(101,95%,38%,1) 0px, transparent 50%),
-    radial-gradient(at 68% 48%, hsla(53,100%,56%,1) 0px, transparent 50%),
-    radial-gradient(at 9% 50%, rgb(171, 240, 162) 0px, transparent 50%),
-    radial-gradient(at 86% 20%, hsla(114,100%,76%,1) 0px, transparent 50%),
-    radial-gradient(at 4% 85%, hsla(109,100%,77%,1) 0px, transparent 50%),
-    radial-gradient(at 80% 85%, hsla(128,100%,70%,1) 0px, transparent 50%),
-    radial-gradient(at 20% 0%, hsla(114,100%,76%,1) 0px, transparent 50%);
-    padding: 1rem;
+    // Background image: We provide with Avif, Webp and png versions, so the browser will choose the best one. There are 2 backgrounds, corresponding to mobile or desktop screen sizes
+    background-image: linear-gradient(to right, rgba(c.$black, .65),rgba(c.$black,.1)), image-set(url(../img/header_background_mobile.avif) 1x, url(../img/header_background_mobile.webp) 1x, url(../img/header_background_mobile.png) 1x);
+    background-position: center center;
+    background-size: cover;
+
+    padding: 2rem;
+
     @include m.flex($direction: column, $align: center, $gap: .5rem);
     .logo
     {
         width: 12rem;
         height: 9rem;
     }
+
+    // We set the position of menu_list regarding the header position. It will appear just below the header 
+    position: relative;
+    .menu_list
+    {
+        position: absolute;
+        top:100%;
+        left: 0;
+        right: 0;
+    }
+
     @include m.tablet
     {
         @include m.grid($columns: repeat(2,1fr));
         gap:0;
         place-items: center right;
+        background-image: linear-gradient(to right, rgba(c.$black, .65),rgba(c.$black,.1)),image-set(url(../img/header_background_desktop.avif) 1x, url(../img/header_background_desktop.webp) 1x, url(../img/header_background_desktop.png) 1x);
+        .menu_list // When the content is displayed in a big screen, it is better to have a smaller menu, so it starts in the middle of the screen.
+        {
+            left:50%;
+        }
     }
 }
 
@@ -54,25 +67,12 @@
 {
     @include m.tablet
     {
-        height: 2rem;
-        width:60%;
-        position: relative;
-        &>summary, .menu_list
+        &>summary // In screen sizes higher than a mobile phone, the content is displayed using two horizontal grid cells. When the content is displayed, the summary logo is moved to the left in order to be aligned with the content. So we fix its position: right 2 rem is due to the header has a 2rem padding defined, so we keep that.
         {
             position: absolute;
-        }
-        &>summary
-        {
-            right: 0;
+            right: 2rem;
             top: 50%;
             transform: translateY(-50%);
-        }
-        .menu_list
-        {
-            top: 100%;
-            transform: translateY(18.2%);
-            left:0;
-            right: -1rem;
         }
     }
     .menu_list
