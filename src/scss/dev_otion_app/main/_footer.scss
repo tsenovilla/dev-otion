@@ -1,0 +1,20 @@
+@use '../base/colors' as c;
+@use '../base/typography' as t;
+@use '../base/mixins' as m;
+
+
+.footer
+{
+    background-color: lighten(c.$black,20%);
+    margin-top: calc(t.$spaicing/2);
+}
+
+.footer-content
+{
+    padding: 2rem;
+    text-align: center;
+    p
+    {
+        color: c.$white;
+    }
+}
