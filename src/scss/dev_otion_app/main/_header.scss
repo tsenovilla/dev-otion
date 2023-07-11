@@ -18,15 +18,8 @@
         height: 9rem;
     }
 
-    // We set the position of menu_list regarding the header position. It will appear just below the header 
+    // We set a relative position here in order to place correctly the menu accordingly to the header
     position: relative;
-    .menu_list
-    {
-        position: absolute;
-        top:100%;
-        left: 0;
-        right: 0;
-    }
 
     @include m.tablet
     {
@@ -34,10 +27,6 @@
         gap:0;
         place-items: center right;
         background-image: linear-gradient(to right, rgba(c.$black, .65),rgba(c.$black,.1)),image-set(url(../img/header_background_desktop.avif) 1x, url(../img/header_background_desktop.webp) 1x, url(../img/header_background_desktop.png) 1x);
-        .menu_list // When the content is displayed in a big screen, it is better to have a smaller menu, so it starts in the middle of the screen.
-        {
-            left:50%;
-        }
     }
 }
 
@@ -50,6 +39,43 @@
         {
             width: 4.2rem;
         }
+        &:hover
+        {
+            cursor: pointer;
+        }
+    }
+
+    &>summary // In screen sizes higher than a mobile phone, the content is displayed using two horizontal grid cells. When the content is displayed, the summary logo is moved to the left in order to be aligned with the content. So we fix its position: right 2 rem is due to the header has a 2rem padding defined, so we keep that.
+    {
+        @include m.tablet
+        {
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    .menu_list
+    {
+        position: absolute;
+        top:100%;
+        left: 0;
+        right: 0;
+        @include m.flex($direction: column, $align: center, $gap: 1rem);
+        background-color: c.$green;
+        padding: 2rem;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        animation: menu_animation_open .3s ease-out;
+        &.menu_animation_close 
+        {
+            animation: menu_animation_close .3s ease-in;
+        }
+        // When the content is displayed in a big screen, it is better to have a smaller menu, so it starts in the middle of the screen.
+        @include m.tablet
+        {
+            left: 50%;
+        }
     }
 
     .icon
@@ -59,39 +85,10 @@
         &:hover
         {
             cursor: pointer;
+            filter: invert(65%);
+            transition: filter .4s ease;
         }
     }
-}
-
-.menu[open]
-{
-    @include m.tablet
-    {
-        &>summary // In screen sizes higher than a mobile phone, the content is displayed using two horizontal grid cells. When the content is displayed, the summary logo is moved to the left in order to be aligned with the content. So we fix its position: right 2 rem is due to the header has a 2rem padding defined, so we keep that.
-        {
-            position: absolute;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-    }
-    .menu_list
-    {
-        @include m.flex($direction: column, $align: center, $gap: 1rem);
-        background-color: c.$green;
-        padding: 2rem;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    }
-
-    summary~*
-    {
-        animation: menu_animation .3s ease-out;
-    }
-}
-
-.menu_animation_close 
-{
-    animation: menu_animation .3s ease-in reverse;
 }
 
 .search_bar
@@ -125,21 +122,10 @@
     width: 100%;
     a
     {
-        background-color: c.$white;
-        color: c.$green;
-        border: 1px solid c.$lightGrey;
-        padding: 1rem;
-        border-radius: 1.2rem;
-        width: 100%;
-        text-align: center;
-
-        &:hover
-        {
-            background-color: c.$green;
-            color: c.$white;
-        }
+        @include m.button(c.$green, c.$white, c.$lightGrey);
     }
 }
+
 
 .settings
 {
@@ -148,11 +134,11 @@
     @include m.flex($justify: space-evenly, $align: center, $gap:1rem);
     .languages
     {
-        @include m.flex($direction: column);
-        color: c.$white;
-        font-size: 2rem;
+        position: relative;
         summary
         {
+            color: c.$white;
+            font-size: 2rem;
             list-style: none;
             &::after
             {
@@ -169,29 +155,45 @@
                 font-size: 2.4rem;
             }
         }
+        &__list
+        {
+            @include m.flex($direction:column,$gap:.5rem);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            transform: translateX(-37%);
+        }
         &--option
         {
-            color: c.$white;
-            padding: 1rem;
-            border-radius: 2rem;
-            margin-bottom: 0.2rem;
-        }
-        summary:hover, &--option:hover
-        {
-            cursor: pointer;
-            color: c.$orange;
+            @include m.button(c.$green, c.$white, darken(c.$lightGrey,30%));
         }
     }
 }
 
-@keyframes menu_animation
+
+// We define the menu list animations
+@keyframes menu_animation_open
 {
     0% 
     {
         opacity: 0;
+        transform: translateY(-30%);
     }
     100% 
     {
         opacity: 1;
+    }
+}
+
+@keyframes menu_animation_close
+{
+    0% 
+    {
+        opacity: 1;
+    }
+    100% 
+    {
+        opacity: 0;
+        transform: translateY(-30%);
     }
 }

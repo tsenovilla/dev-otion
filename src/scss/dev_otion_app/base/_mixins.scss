@@ -1,5 +1,5 @@
-@use "sizes" as s;
-@use "typography" as t;
+@use 'sizes' as s;
+@use 'typography' as t;
 
 @mixin phone
 {
@@ -57,22 +57,40 @@
     padding: 0;
 }
 
-@mixin button($bkg-color, $color, $display, $darken-transition:false)
+// Design inspired by https://ianlunn.github.io/Hover/#effects Rectangle Out
+@mixin button($hover-bkg-color, $no-hover-bkg-color, $border-color)
 {
-    background-color:$bkg-color;
-    color:$color;
-    border: none;
-    font-weight: t.$bold;
-    text-decoration: none;
-    padding: 1rem 3rem;
+    background-color: $no-hover-bkg-color;
+    color: $hover-bkg-color;
+    border: 1px solid $border-color;
+    padding: 1rem;
+    border-radius: 1.2rem;
+    width: 100%;
     text-align: center;
-    margin-top: calc(t.$spaicing/2);
-    display: $display;
-    &:hover{
-        cursor: pointer;
-        @if($darken-transition){
-            background-color: darken($bkg-color,5%);
-            transition: background-color .3s ease;
+    vertical-align: middle;
+    z-index:0;
+    position: relative;
+    transition: color .4s;
+    &::before
+    {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $hover-bkg-color;
+        border-radius: 1.2rem;
+        transform: scale(0);
+        transition: transform .4s ease-out;
+    }
+    &:hover, &:focus, &:active
+    {
+        color: $no-hover-bkg-color;
+        &::before
+        {
+            transform: scale(1);
         }
     }
 }
