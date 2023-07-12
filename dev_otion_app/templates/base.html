@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Django loads -->
+    {% load static %}
+    {% load i18n %}
     <!-- Meta tags-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +13,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ysabeau+Office:wght@300;400;700;900&display=swap" rel="stylesheet">
     <!-- Stylesheets -->
-    {% load static %}
     <link rel="preload" href="{% static 'dev_otion_app/css/styles.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'dev_otion_app/css/styles.css' %}">
     <title>{% block title %}{% endblock %}</title>
@@ -25,11 +27,11 @@
             <div class="menu_list">
                 <div class="search_bar">
                     <img src="{% static 'dev_otion_app/img/search.svg'%}" alt="Search icon" class="icon">
-                    <input type="text" placeholder="Search by keywords">
+                    <input type="text" placeholder="{% translate 'Search for an article' %}">
                 </div>
                 <nav class="nav_bar">
-                    <a href="#">Languages</a>
-                    <a href="#">About us</a>
+                    <a href="#">{% translate "Topics" %}</a>
+                    <a href="#">{% translate "About" %}</a>
                 </nav>
                 <ul class="settings">
                     <li>
@@ -39,9 +41,9 @@
                         <details class="languages">
                             <summary>EN</summary>
                             <div class="languages__list">
-                                <a href="#" class="languages--option">&#x1f1ec;&#x1f1e7; EN</a>
-                                <a href="#" class="languages--option">&#x1f1ea;&#x1f1f8; ES</a>
-                                <a href="#" class="languages--option">&#x1f1eb;&#x1f1f7; FR</a>
+                                <a href="/en/{{ current_url }}" class="languages--option">&#x1f1ec;&#x1f1e7; EN</a>
+                                <a href="/es/{{ current_url }}" class="languages--option">&#x1f1ea;&#x1f1f8; ES</a>
+                                <a href="/fr/{{ current_url }}" class="languages--option">&#x1f1eb;&#x1f1f7; FR</a>
                             </div>
                         </details>
                     </li>
@@ -57,7 +59,7 @@
 
     <footer class="footer">
         <div class="container footer-content">
-            <p>&copy; {{ year }}  Dev-otion. All rights reserved</p>
+            <p>&copy; {{ year }}  Dev-otion. {% translate "All rights reserved" %}</p>
         </div>
     </footer>
     <script src="{% static 'dev_otion_app/js/bundle.js' %}"></script>

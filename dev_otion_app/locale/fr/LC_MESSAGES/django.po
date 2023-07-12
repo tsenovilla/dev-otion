@@ -1,0 +1,31 @@
+# FRENCH TRANSLATION
+# Copyright (C) 2023
+# This file is distributed under the same license as the PACKAGE package.
+# Tomás Senovilla Polo <tspscgs@gmail.com>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-12 13:22+0200\n"
+"Last-Translator: Tomás Senovilla Polo <tspscgs@gmail.com>\n"
+"Language: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: dev_otion_app/templates/base.html:30
+msgid "Search for an article"
+msgstr "Rechercher un article"
+
+#: dev_otion_app/templates/base.html:33
+msgid "Topics"
+msgstr "Sujets"
+
+#: dev_otion_app/templates/base.html:34
+msgid "About"
+msgstr "À propos de ce project"
+
+#: dev_otion_app/templates/base.html:62
+msgid "All rights reserved"
+msgstr "Tous droits réservés"
