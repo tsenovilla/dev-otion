@@ -15,6 +15,10 @@
     <!-- Stylesheets -->
     <link rel="preload" href="{% static 'dev_otion_app/css/styles.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'dev_otion_app/css/styles.css' %}">
+    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-dark.min.css" as="style">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-dark.min.css">
+    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-light.min.css" as="style">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-light.min.css">
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -62,6 +66,7 @@
             <p>&copy; {{ year }}  Dev-otion. {% translate "All rights reserved" %}</p>
         </div>
     </footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="{% static 'dev_otion_app/js/bundle.js' %}"></script>
 </body>
 </html>
