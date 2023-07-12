@@ -32,7 +32,7 @@
 
 .menu
 {
-    summary
+    &>summary 
     {
         list-style: none;
         .icon
@@ -43,10 +43,7 @@
         {
             cursor: pointer;
         }
-    }
-
-    &>summary // In screen sizes higher than a mobile phone, the content is displayed using two horizontal grid cells. When the content is displayed, the summary logo is moved to the left in order to be aligned with the content. So we fix its position: right 2 rem is due to the header has a 2rem padding defined, so we keep that.
-    {
+        // In screen sizes higher than a mobile phone, the content is displayed using two horizontal grid cells. When the content is displayed, the summary logo is moved to the left in order to be aligned with the content. So we fix its position: right 2 rem is due to the header has a 2rem padding defined, so we keep that.
         @include m.tablet
         {
             position: absolute;
@@ -137,14 +134,17 @@
         position: relative;
         summary
         {
-            color: c.$white;
-            font-size: 2rem;
             list-style: none;
+            color: c.$white;
+            img
+            {
+                display:inline;
+            }
             &::after
             {
                 content: '\25BE';
-                padding: .7rem;
-                font-size: 1.8rem;
+                padding: .3rem;
+                font-size: 2.4rem;
             }
         }
         &[open]

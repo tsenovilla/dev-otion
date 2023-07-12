@@ -1,0 +1,14 @@
+@use '../base/colors' as c;
+@use '../base/typography' as t;
+@use '../base/mixins' as m;
+
+.dark_mode
+{
+    background-image: unset;
+    background-color: c.$darkGrey;
+
+    h1,h2,h3,p
+    {
+        color: c.$white;
+    }
+}

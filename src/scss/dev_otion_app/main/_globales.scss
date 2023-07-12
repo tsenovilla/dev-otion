@@ -12,6 +12,7 @@ body {
     font-family: t.$main_font;
     font-size: 1.6rem;
     line-height: 1.8;
+    background-image: linear-gradient(to bottom, darken(c.$lightGrey,20%) 0%, lighten(c.$lightGrey,10%) 30%, c.$white 100%);
 }
 p {
     color: c.$black;
@@ -35,6 +36,7 @@ h1, h2, h3 {
     margin: calc(t.$spaicing / 2) 0;
     font-weight: t.$regular;
     text-align: center;
+    color: c.$black;
 }
 
 h1 {

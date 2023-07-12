@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Django loads -->
     {% load static %}
     {% load i18n %}
     <!-- Meta tags-->
@@ -15,10 +14,10 @@
     <!-- Stylesheets -->
     <link rel="preload" href="{% static 'dev_otion_app/css/styles.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'dev_otion_app/css/styles.css' %}">
-    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-dark.min.css" as="style">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-dark.min.css">
     <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-light.min.css" as="style">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-light.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-light.min.css" class="light_code_highlight">
+    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-dark.min.css" as="style">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-dark.min.css" class="dark_code_highlight">
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -39,11 +38,13 @@
                 </nav>
                 <ul class="settings">
                     <li>
-                        <img src="{% static 'dev_otion_app/img/dark_mode.svg' %}" alt="dark_mode icon" class="icon">
+                        <img src="{% static 'dev_otion_app/img/dark_mode.svg' %}" alt="dark mode button" class="dark_mode_button icon">
                     </li>
                     <li>
                         <details class="languages">
-                            <summary>EN</summary>
+                            <summary>
+                                <img src="{% static 'dev_otion_app/img/language_translation.svg' %}" alt="language translation button" class="icon">
+                            </summary>
                             <div class="languages__list">
                                 <a href="/en/{{ current_url }}" class="languages--option">&#x1f1ec;&#x1f1e7; EN</a>
                                 <a href="/es/{{ current_url }}" class="languages--option">&#x1f1ea;&#x1f1f8; ES</a>
