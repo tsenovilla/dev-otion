@@ -6,7 +6,7 @@ class Entry(models.Model):
     title_english = models.CharField(max_length=250)
     title_spanish = models.CharField(max_length=250)
     title_french = models.CharField(max_length=250)
-    pub_date = models.DateTimeField(default=timezone.now)
+    pub_date = models.DateField(default=timezone.now)
     content_english = models.TextField(default="")
     content_spanish = models.TextField(default="")
     content_french = models.TextField(default="")

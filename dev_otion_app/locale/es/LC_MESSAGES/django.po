@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-12 13:22+0200\n"
+"POT-Creation-Date: 2023-07-19 11:50+0200\n"
 "Last-Translator: Tomás Senovilla Polo <tspscgs@gmail.com>\n"
 "Language: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -14,18 +14,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: dev_otion_app/templates/base.html:30
+#: dev_otion_app/templates/base.html:33
 msgid "Search for an article"
 msgstr "Buscar un artículo"
 
-#: dev_otion_app/templates/base.html:33
+#: dev_otion_app/templates/base.html:36
 msgid "Topics"
 msgstr "Temas"
 
-#: dev_otion_app/templates/base.html:34
-msgid "About"
-msgstr "Acerca de este proyecto"
+#: dev_otion_app/templates/base.html:37
+msgid "Contact"
+msgstr "Contacto"
 
-#: dev_otion_app/templates/base.html:62
+#: dev_otion_app/templates/base.html:67
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"

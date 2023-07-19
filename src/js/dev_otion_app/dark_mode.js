@@ -1,62 +1,64 @@
-import code_highlighting from "./code_highlighting";
+import entry_highlighting from "./entry_highlighting";
+
+const body = document.querySelector('body');
+const light_code_highlight = document.querySelector('.light_code_highlight');
+const dark_code_highlight = document.querySelector('.dark_code_highlight');
+function enable_light_theme()
+{
+    body.classList.remove('dark_mode');
+    light_code_highlight.removeAttribute('disabled');
+    dark_code_highlight.setAttribute('disabled','');
+}
+
+function enable_dark_theme()
+{
+    body.classList.add('dark_mode');
+    light_code_highlight.setAttribute('disabled','');
+    dark_code_highlight.removeAttribute('disabled');
+}
 export default function()
 {
-    const body = document.querySelector('body');
     const button = document.querySelector('.dark_mode_button');
-    const article = document.querySelector('.article_detail');
+    const article = document.querySelector('.blog_entry');
     const default_light_theme = window.matchMedia('(prefers-color-scheme:light)');
-    const light_code_highlight = document.querySelector('.light_code_highlight');
-    const dark_code_highlight = document.querySelector('.dark_code_highlight');
     if(default_light_theme.matches || sessionStorage.getItem('dark_mode')==='deactivated')
     {
-        body.classList.remove('dark_mode');
-        dark_code_highlight.setAttribute('disabled','');
+        enable_light_theme();
     }
     if(!default_light_theme.matches || sessionStorage.getItem('dark_mode')==='activated')
     {
-        body.classList.add('dark_mode');
-        light_code_highlight.setAttribute('disabled','');
+        enable_dark_theme();
     }
 
     default_light_theme.addEventListener('change',()=>
         {
             if(default_light_theme.matches)
             {
-                light_code_highlight.removeAttribute('disabled');
-                dark_code_highlight.setAttribute('disabled','');
+                enable_light_theme();
             }
             else
             {
-                light_code_highlight.setAttribute('disabled','');
-                dark_code_highlight.removeAttribute('disabled');
+                enable_dark_theme();
             }
-            if(article)
-            {
-                code_highlighting(article);
-            }
-            body.classList.toggle('dark_mode');
         }
     )
     
     button.addEventListener('click',()=>
         {
-            body.classList.toggle('dark_mode');
-            if(body.classList.contains("dark_mode"))
+            if(body.classList.contains('dark_mode'))
             {
-                sessionStorage.setItem("dark:mode","activated");
-                light_code_highlight.setAttribute('disabled','');
-                dark_code_highlight.removeAttribute('disabled');
+                sessionStorage.setItem('dark_mode','deactivated');
+                enable_light_theme();
             }
             else
             {
-                sessionStorage.setItem("dark_mode","deactivated");
-                light_code_highlight.removeAttribute('disabled');
-                dark_code_highlight.setAttribute('disabled','');
-            }
-            if(article)
-            {
-                code_highlighting(article);
+                sessionStorage.setItem('dark_mode','activated');
+                enable_dark_theme();
             }
         }
     )
+    if(article)
+    {
+        entry_highlighting(article);
+    }
 }
