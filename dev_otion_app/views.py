@@ -1,9 +1,8 @@
 import re
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, ListView, TemplateView
-from .models import Entry
+from .models import Topics,Entry
 from django.utils import timezone
-
 
 class Dev_otion_TemplateView(TemplateView):
     """
@@ -38,6 +37,12 @@ class Dev_otion_DetailView(DetailView):
 class IndexView(Dev_otion_TemplateView):
     template_name = 'dev_otion_app/index.html'
 
+class TopicsView(Dev_otion_ListView):
+    model = Topics
+
+    def get_context_object_name(self, object_list):
+        return 'topics'
+    
 class EntryView(Dev_otion_DetailView):
     model = Entry
 
@@ -55,4 +60,3 @@ class EntryView(Dev_otion_DetailView):
                 context['title'] = object.title_french
                 context['content'] = object.content_french
         return context
-    

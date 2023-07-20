@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load filters %}
+
+{% block title %}
+    Dev-otion
+{% endblock title %}
+
+{% block content %}
+<section class="section container">
+    <h1>List of topics</h1>
+    {% for item in topics %}
+        <img src="{% static 'dev_otion_app/img/' %}{{item.image|image_name}}" alt="">
+        <h3>{{ item.name }}</h3>
+    {% endfor %}
+</section>
+{% endblock content %}
