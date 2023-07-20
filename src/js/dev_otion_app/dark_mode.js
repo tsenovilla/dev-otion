@@ -1,5 +1,3 @@
-import entry_highlighting from "./entry_highlighting";
-
 const body = document.querySelector('body');
 const light_code_highlight = document.querySelector('.light_code_highlight');
 const dark_code_highlight = document.querySelector('.dark_code_highlight');
@@ -57,8 +55,4 @@ export default function()
             }
         }
     )
-    if(article)
-    {
-        entry_highlighting(article);
-    }
 }
