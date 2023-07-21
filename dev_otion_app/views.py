@@ -23,9 +23,11 @@ class IndexView(Dev_otion_View, TemplateView):
 
 class TopicsView(Dev_otion_View, ListView):
     model = Topics
-
-    def get_context_object_name(self):
-        return 'topics'
+    
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['topics'] = self.object_list ## As ListView is the second parent class, we need to explicitly assign the object_list to the data
+        return context
     
 class EntryView(Dev_otion_View, DetailView):
     model = Entry

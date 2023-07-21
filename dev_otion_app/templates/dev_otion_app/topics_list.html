@@ -9,9 +9,13 @@
 {% block content %}
 <section class="section container">
     <h1>List of topics</h1>
-    {% for item in topics %}
-        <img src="{% static 'dev_otion_app/img/' %}{{item.image|image_name}}" alt="">
-        <h3>{{ item.name }}</h3>
+    {% for topic in topics %}
+        <picture>
+            <source srcset="{% static 'dev_otion_app/img/' %}{{ topic.image_avif|image_name}}" alt="{{ topic.name }} image" type="image/avif">
+            <source srcset="{% static 'dev_otion_app/img/' %}{{ topic.image_webp|image_name}}" alt="{{ topic.name }} image" type="image/webp">
+            <img src="{% static 'dev_otion_app/img/' %}{{topic.image|image_name}}" alt="{{ topic.name }} image" loading="lazy">
+        </picture>
+        <h3>{{ topic.name }}</h3>
     {% endfor %}
 </section>
 {% endblock content %}

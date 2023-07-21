@@ -28,13 +28,13 @@
                 <img src="{% static 'dev_otion_app/img/menu.svg' %}" alt="Menu icon" class="icon">
             </summary>
             <div class="menu_list">
-                <a href="/"><img src="{% static 'dev_otion_app/img/homepage.svg' %}" alt="homepage icon" class="icon"></a>
+                <a href="/{{ lang }}"><img src="{% static 'dev_otion_app/img/homepage.svg' %}" alt="homepage icon" class="icon"></a>
                 <div class="search_bar">
                     <img src="{% static 'dev_otion_app/img/search.svg'%}" alt="Search icon" class="icon">
                     <input type="text" placeholder="{% translate 'Search for an article' %}">
                 </div>
                 <nav class="nav_bar">
-                    <a href="{{ lang }}/topics">{% translate "Topics" %}</a>
+                    <a href="topics">{% translate "Topics" %}</a>
                     <a href="#">{% translate "Contact" %}</a>
                 </nav>
                 <ul class="settings">
