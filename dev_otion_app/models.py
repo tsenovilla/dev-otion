@@ -1,11 +1,10 @@
-from django.db import models, transaction
+from django.db import models
 from django.utils import timezone
 from uuid import uuid4
 from PIL import Image
 import pillow_avif
 import os
-from io import BytesIO
-
+import inspect
 
 def unique_image_name (instance, filename):
     """
@@ -21,14 +20,6 @@ class Topics(models.Model):
         upload_to = unique_image_name, 
         default = None
     )
-    image_webp = models.ImageField(
-        default = None,
-        blank = True
-    )
-    image_avif = models.ImageField(
-        default = None,
-        blank = True
-    )
     
     def save(self):
         """
@@ -37,85 +28,55 @@ class Topics(models.Model):
         try:
             try: ## If we are updating, we get the paths to the former images, in order to delete them
                 before_update = Topics.objects.get(id = self.id)
-                name = before_update.image.name
                 former_image = before_update.image.path
-                former_image_webp = before_update.image_webp.path
-                former_image_avif = before_update.image_avif.path
             except Topics.DoesNotExist:
                 pass
-
-            with transaction.atomic(): ## We start an atomic transaction before saving. This allows us to manage if the webp/avif images has been correctly loaded. If there's an error, we do not delete the previous images and we do not update the database
-                super().save()
-                self.__image_webp_converter()
-                self.__image_avif_converter()
-            
-            ## If there's not rollback, we delete the former images, if they exist. 
-            try:
-                self.__delete_former_image(name=name, former_image=former_image, former_image_webp=former_image_webp, former_image_avif=former_image_avif)
-            except NameError:
-                pass
-
-        except:
+            super().save()
+        except: 
             pass
+        else:  ## If there's not error when saving, we try to create avif/webp versions for the images. We also try to delete the former images if they exists
+            try:
+                self.__delete_former_images(former_image=former_image)
+                self.__image_improver(former_image=former_image)
+            except NameError:
+                self.__image_improver(former_image="") ## No former image means new object, so we have to create the improved images, as the path will never be empty, this creates the avif/webp versions
+
+
     
     def delete(self):
         """
         Override of delete method in order to delete the images from the server.
         """
         to_delete = Topics.objects.get(id=self.id)
-        try:
-            os.remove(to_delete.image.path)
-        except:
-            pass
-        try:
-            os.remove(to_delete.image_webp.path)
-        except:
-            pass
-        try:
-            os.remove(to_delete.image_avif.path)
-        except:
-            pass
+        former_image = to_delete.image.path
+        self.__delete_former_images(former_image=former_image)
         super().delete()
 
-    ## This guards are used in order to avoid reentrancy in the methods 'image_webp_converter' and 'image_avif_converter', as we save Webp and AVIF versions, the save method is called several times, and so those methods
-    __reentrancy_guards = [False]*2
-
-    def __delete_former_image(self, *, name, former_image, former_image_webp, former_image_avif):
+    def __delete_former_images(self, *, former_image):
         """
-        This function will delete the former images for each object if a new one has been uploaded.
+        This function will delete the former images for each object if a new one has been uploaded or the topic is being deleted
         """
-        ## If self.image.name is not equal to the one stored in the db, then a new image have been uploaded
-        if self.image.name != name: 
+        if self.image.path != former_image or inspect.getframeinfo(inspect.currentframe().f_back).function == 'delete': 
             ## If the images are not found on the server (no matters why), or any other exception is raised, we do nothing
             try:
                 os.remove(former_image)
             except:
                 pass
             try:
-                os.remove(former_image_webp)
+                os.remove(former_image.split('.')[0]+'.webp')
             except:
                 pass
             try:
-                os.remove(former_image_avif)
+                os.remove(former_image.split('.')[0]+'.avif')
             except:
                 pass
+        
 
-    def __image_webp_converter(self):
-        ## The order in the if statement below is ESSENTIAL. When we create a new Topic, due to the logic in the save method, the first save is done with image_webp empty. Then image_webp.name is None, so if we try to split it, an exception is raised and we pass automatically to the except block. Therefore, it is mandatory to check if we are in the creation of the topic first (by checking that the webp image's name is not defined), in order to avoid trying a split in a None object
-        if self.image_webp.name == None or self.image.name.split('.')[0] != self.image_webp.name.split('.')[0] and not self.__reentrancy_guards[0]:
+    def __image_improver(self, *, former_image):
+        if self.image.path != former_image: ## If we are not updating the image, we do not re-generate avif/webp versions
             img = Image.open(self.image)
-            webp_io = BytesIO()
-            img.save(webp_io, format='WEBP')
-            self.image_webp.save(f'{self.image.name.split(".")[0]}.webp', webp_io)
-            self.__reentrancy_guards[0] = True
-
-    def __image_avif_converter(self):
-        if self.image_avif.name == None or self.image.name.split('.')[0] != self.image_avif.name.split('.')[0] and not self.__reentrancy_guards[1]:
-            img = Image.open(self.image)
-            avif_io = BytesIO()
-            img.save(avif_io, format='AVIF', codec = 'rav1e', quality = 70) ## Following the recommendations from pillow_avif's creator, we set codec and quality
-            self.image_avif.save(f'{self.image.name.split(".")[0]}.avif', avif_io)
-            self.__reentrancy_guards[1] = True
+            img.save(f'{self.image.name.split(".")[0]}.webp', format='WEBP')
+            img.save(f'{self.image.name.split(".")[0]}.avif', format='AVIF', codec = 'rav1e', quality = 70) ## Following the recommendations from pillow_avif's creator, we set codec and quality
 
     def __str__(self):
         return self.name

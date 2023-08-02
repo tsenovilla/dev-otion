@@ -11,9 +11,9 @@
     <h1>List of topics</h1>
     {% for topic in topics %}
         <picture>
-            <source srcset="{% static 'dev_otion_app/img/' %}{{ topic.image_avif|image_name}}" alt="{{ topic.name }} image" type="image/avif">
-            <source srcset="{% static 'dev_otion_app/img/' %}{{ topic.image_webp|image_name}}" alt="{{ topic.name }} image" type="image/webp">
-            <img src="{% static 'dev_otion_app/img/' %}{{topic.image|image_name}}" alt="{{ topic.name }} image" loading="lazy">
+            <source srcset="{% static 'dev_otion_app/img/' %}{{ topic.image|avif_image }}" type="image/avif">
+            <source srcset="{% static 'dev_otion_app/img/' %}{{ topic.image|webp_image }}" type="image/webp">
+            <img src="{% static 'dev_otion_app/img/' %}{{ topic.image|original_image }}" alt="{{ topic.name }} image" loading="lazy">
         </picture>
         <h3>{{ topic.name }}</h3>
     {% endfor %}
