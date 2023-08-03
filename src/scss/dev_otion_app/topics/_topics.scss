@@ -1,0 +1,53 @@
+@use '../base/colors' as c;
+@use '../base/typography' as t;
+@use '../base/mixins' as m;
+
+.topic-list
+{
+    @include m.flex($direction: column, $justify: center, $align: center, $gap: 1rem);
+    @include m.tablet
+    {
+        @include m.grid($columns: repeat(2,1fr), $gap: 1rem);
+    }
+
+    @include m.desktop
+    {
+        @include m.grid($columns: repeat(3,1fr), $gap: 2rem);
+    }
+}
+
+.topic
+{
+    @include m.flex($align: center, $gap:.5rem);
+    background-color: c.$white;
+    border: 1px solid c.$lightGrey;
+    padding: 1rem;
+    position: relative;
+    // width: 100%;
+
+    &__image
+    {
+        height: 10rem;
+        width: auto;
+    }
+
+    h3
+    {
+        font-size: 2rem;
+        &:hover
+        {
+            cursor: pointer;
+            color: c.$green;
+            transition: color .3s ease;
+        }
+
+        &::after
+        {
+            content:'';
+            height: .2rem;
+            width: 2rem;
+            background-color: darken(c.$green,5%);
+            display: block;
+        }
+    }
+}

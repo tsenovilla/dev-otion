@@ -20,7 +20,6 @@ class Topics(models.Model):
         upload_to = unique_image_name, 
         default = None
     )
-    
     def save(self):
         """
         Override of save method in order to delete the former images. We also upload an Avif and a WebP version for those images
@@ -32,6 +31,9 @@ class Topics(models.Model):
             except Topics.DoesNotExist:
                 pass
             super().save()
+            img = Image.open(self.image.path)
+            img2 = img.resize((200,200))
+            img2.save(self.image.path)
         except: 
             pass
         else:  ## If there's not error when saving, we try to create avif/webp versions for the images. We also try to delete the former images if they exists
