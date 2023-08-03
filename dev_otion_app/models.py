@@ -20,6 +20,7 @@ class Topics(models.Model):
         upload_to = unique_image_name, 
         default = None
     )
+    url = models.CharField(default=uuid4, max_length=50, editable=False)
     def save(self):
         """
         Override of save method in order to delete the former images. We also upload an Avif and a WebP version for those images
@@ -30,6 +31,7 @@ class Topics(models.Model):
                 former_image = before_update.image.path
             except Topics.DoesNotExist:
                 pass
+            self.url = self.url.hex ## Before saving, we convert the unique url id into an hex number
             super().save()
             img = Image.open(self.image.path)
             img2 = img.resize((200,200))
@@ -93,6 +95,11 @@ class Entry(models.Model):
     content_spanish = models.TextField(default="")
     content_french = models.TextField(default="")
     topic = models.ForeignKey(Topics, on_delete=models.CASCADE, default=None)
+    url = models.CharField(default=uuid4, max_length=50, editable=False)
+
+    def save(self):
+        self.url = self.url.hex
+        super().save()
 
     def __str__(self):
         return self.title_english
