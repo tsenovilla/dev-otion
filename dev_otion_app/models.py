@@ -2,8 +2,8 @@ from django.db import models
 from django.utils import timezone
 from PIL import Image
 import pillow_avif
+from autoslug import AutoSlugField
 import os
-from uuid import uuid4
 from .functions import unique_image_name
 
 class Topics(models.Model):
@@ -13,7 +13,7 @@ class Topics(models.Model):
         upload_to = unique_image_name, 
         default = None
     )
-    url = models.CharField(default=uuid4, max_length=32, editable=False, unique=True)
+    url = AutoSlugField(populate_from='name', max_length=250)
 
     def save(self, *args, **kwargs):
         """
@@ -24,7 +24,7 @@ class Topics(models.Model):
                 before_update = Topics.objects.get(id = self.id)
                 former_image = before_update.image.path
             except Topics.DoesNotExist:
-                self.url = self.url.hex ## Before creating, we convert the unique url id into an hex number
+                pass
             super().save(*args, **kwargs)
             img = Image.open(self.image.path)
             img2 = img.resize((200,200))
@@ -69,22 +69,16 @@ class Topics(models.Model):
 
 class Entry(models.Model):
     ## For each language supported by the app, and each entry field containing text, we include a field supporting that field in each language. As this is dinamic content, we save it in such a way in order to make the app more scallable. If we store the translations in the message files, we would need to update them each time an entry is loaded
-    title_english = models.CharField(max_length=250)
-    title_spanish = models.CharField(max_length=250)
-    title_french = models.CharField(max_length=250)
+    title_english = models.CharField(max_length = 250)
+    title_spanish = models.CharField(max_length = 250)
+    title_french = models.CharField(max_length = 250)
+    author = models.CharField(max_length = 100)
     pub_date = models.DateField(default=timezone.now)
-    content_english = models.TextField(default="")
-    content_spanish = models.TextField(default="")
-    content_french = models.TextField(default="")
-    topic = models.ForeignKey(Topics, on_delete=models.CASCADE, default=None)
-    url = models.CharField(default=uuid4, max_length=32, editable=False, unique=True)
-
-    def save(self, *args, **kwargs):
-        try: 
-            self.url = self.url.hex
-        except AttributeError: ## self.url has only attribute hex during the creation as it is an UUID object, then it is just a string
-            pass
-        super().save(*args, **kwargs)
+    content_english = models.TextField(default = '')
+    content_spanish = models.TextField(default = '')
+    content_french = models.TextField(default = '')
+    url = AutoSlugField(populate_from='title_english', max_length = 250)
+    topic = models.ForeignKey(Topics, on_delete = models.CASCADE, default = None)
 
     def __str__(self):
         return self.title_english
