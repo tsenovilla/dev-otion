@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Dev-otion
+{% endblock title %}
+
+{% block content %}
+<h1>List of entries</h1>
+<section class="container">
+    {% for entry in entries %}
+        <article>
+            <a href="{% url 'entry' url=entry.url %}">{{ entry.title }}</a>
+            <p>{{ entry.pub_date|date:"d/m/Y" }}</p>
+        </article>
+    {% endfor %}
+</section>
+{% endblock content %}

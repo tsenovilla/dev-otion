@@ -31,12 +31,12 @@
         width: auto;
     }
 
-    h3
+    a
     {
         font-size: 2rem;
+        color: c.$black;
         &:hover
         {
-            cursor: pointer;
             color: c.$green;
             transition: color .3s ease;
         }

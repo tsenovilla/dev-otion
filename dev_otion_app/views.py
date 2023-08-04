@@ -1,4 +1,7 @@
 import re
+from typing import Any, Optional
+from django.db import models
+from django.db.models.query import QuerySet
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import View
 from django.views.generic import DetailView, ListView, TemplateView
@@ -23,14 +26,41 @@ class IndexView(Dev_otion_View, TemplateView):
 
 class TopicsView(Dev_otion_View, ListView):
     model = Topics
+    template_name = 'dev_otion_app/topics.html'
     
     def get_context_data(self):
         context = super().get_context_data()
         context['topics'] = self.object_list ## As ListView is the second parent class, we need to explicitly assign the object_list to the data
         return context
+
+class EntrybyTopicView(Dev_otion_View, ListView):
+    model = Entry
+    template_name = 'dev_otion_app/entrybytopic.html'
+
+    def get_queryset(self):
+        selected_topic = Topics.objects.get(url = self.kwargs['url'])
+        return Entry.objects.filter(topic = selected_topic).order_by('-pub_date')
+    
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['entries'] = []
+        for entry in self.object_list:
+            match context['lang']:
+                case 'en':
+                    title = entry.title_english
+                case 'es':
+                    title = entry.title_spanish
+                case 'fr':
+                    title = entry.title_french
+            context['entries'].append({'title':title, 'pub_date':entry.pub_date,'url':entry.url})
+        return context
     
 class EntryView(Dev_otion_View, DetailView):
     model = Entry
+    template_name = 'dev_otion_app/entry.html'
+
+    def get_object(self):
+        return Entry.objects.get(url = self.kwargs['url'])
 
     def get_context_data(self,object):
         context = super().get_context_data()
