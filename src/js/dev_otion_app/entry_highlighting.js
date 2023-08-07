@@ -4,7 +4,7 @@
  */
 export default function(article)
 {
-    article.innerHTML = article.innerHTML.replace(/\[p\](.*?)\[\/p\]/gs,'<p class="text-justify">$1</p>');
+    article.innerHTML = article.innerHTML.replace(/\[p\](.*?)\[\/p\]/gs,'<p>$1</p>');
     article.innerHTML = article.innerHTML.replace(/\[code\](.*?)\[\/code\]/gs,'<pre><code>$1</code></pre>');
     hljs.highlightAll();
 }

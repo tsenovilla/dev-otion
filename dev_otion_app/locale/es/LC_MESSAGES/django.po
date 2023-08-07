@@ -1,12 +1,12 @@
 # SPANISH TRANSLATION
 # Copyright (C) 2023
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the PACKAGE.
 # Tomás Senovilla Polo <tspscgs@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-19 11:50+0200\n"
+"POT-Creation-Date: 2023-08-07 12:12+0200\n"
 "Last-Translator: Tomás Senovilla Polo <tspscgs@gmail.com>\n"
 "Language: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -14,18 +14,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: dev_otion_app/templates/base.html:33
+#: dev_otion_app/templates/base.html:34
 msgid "Search for an article"
 msgstr "Buscar un artículo"
 
-#: dev_otion_app/templates/base.html:36
+#: dev_otion_app/templates/base.html:37
 msgid "Topics"
 msgstr "Temas"
 
-#: dev_otion_app/templates/base.html:37
+#: dev_otion_app/templates/base.html:38
 msgid "Contact"
 msgstr "Contacto"
 
-#: dev_otion_app/templates/base.html:67
+#: dev_otion_app/templates/base.html:68
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
+
+#: dev_otion_app/urls.py:9
+msgid "topics"
+msgstr "temas"
+
+#: dev_otion_app/urls.py:11
+msgid "entry/<slug:url>"
+msgstr "entrada/<slug:url>"

@@ -9,7 +9,7 @@
 <section class="container">
     {% for entry in entries %}
         <article>
-            <a href="{% url 'entry' url=entry.url %}">{{ entry.title }}</a>
+            <a href="{% url 'dev_otion_app:entry' url=entry.url %}">{{ entry.title }}</a>
             <p>{{ entry.pub_date|date:"d/m/Y" }}</p>
         </article>
     {% endfor %}

@@ -16,7 +16,7 @@
                 <source srcset="{% static 'dev_otion_app/img/' %}{{ topic.image|webp_image }}" type="image/webp">
                 <img src="{% static 'dev_otion_app/img/' %}{{ topic.image|original_image }}" alt="{{ topic.name }} image" loading="lazy" class="topic__image">
             </picture>
-            <a href="{% url 'entrybytopic' url=topic.url %}">{{ topic.name }}</a>
+            <a href="{% url 'dev_otion_app:entrybytopic' url=topic.url %}">{{ topic.name }}</a>
         </article>
     {% endfor %}
 </section>

@@ -1,9 +1,9 @@
 import re
-from django.utils.translation import gettext_lazy as _
 from django.views.generic.base import View
 from django.views.generic import DetailView, ListView, TemplateView
-from .models import Topics,Entry
 from django.utils import timezone
+from .models import Topics,Entry
+from .functions import reverse_self_url
 
 class Dev_otion_View(View):
     '''
@@ -12,9 +12,8 @@ class Dev_otion_View(View):
     def get_context_data(self):
         context = {}
         context['year'] = timezone.now().strftime('%Y')
-        url_explorer = re.search('^/(?P<lang>[a-z]+)/(?P<current_url>[a-zA-z0-9_\-/]+)*',self.request.path)
-        context['lang'] = url_explorer.group('lang')
-        context['current_url'] = url_explorer.group('current_url') if url_explorer.group('current_url') else ''
+        context['lang'] =  re.search('^/(?P<lang>[a-z]+)/',self.request.path).group('lang')
+        context['reverted_urls'] = reverse_self_url(self, languages = ['en','es','fr'], current_language = context['lang'])
         return context
 
 
@@ -45,11 +44,14 @@ class EntrybyTopicView(Dev_otion_View, ListView):
             match context['lang']:
                 case 'en':
                     title = entry.title_english
+                    url = entry.url_english
                 case 'es':
                     title = entry.title_spanish
+                    url = entry.url_spanish
                 case 'fr':
                     title = entry.title_french
-            context['entries'].append({'title':title, 'pub_date':entry.pub_date,'url':entry.url})
+                    url = entry.url_french
+            context['entries'].append({'title':title, 'pub_date':entry.pub_date,'url':url})
         return context
     
 class EntryView(Dev_otion_View, DetailView):
@@ -57,10 +59,19 @@ class EntryView(Dev_otion_View, DetailView):
     template_name = 'dev_otion_app/entry.html'
 
     def get_object(self):
-        return Entry.objects.get(url = self.kwargs['url'])
+        context = super().get_context_data()
+        match context['lang']:
+            case 'en':
+                return Entry.objects.get(url_english = self.kwargs['url'])
+            case 'es':
+                return Entry.objects.get(url_spanish = self.kwargs['url'])
+            case 'fr':
+                return Entry.objects.get(url_french = self.kwargs['url'])
 
     def get_context_data(self,object):
         context = super().get_context_data()
+        selected_entry = Entry.objects.get(id = self.object.id)
+        context['reverted_urls'] = reverse_self_url(self, languages = ['en','es','fr'], current_language = context['lang'], languages_slugs = {'en':selected_entry.url_english, 'es':selected_entry.url_spanish, 'fr':selected_entry.url_french})
         match context['lang']:
             case 'en':
                 context['title'] = object.title_english

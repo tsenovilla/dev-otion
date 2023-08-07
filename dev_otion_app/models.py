@@ -77,7 +77,9 @@ class Entry(models.Model):
     content_english = models.TextField(default = '')
     content_spanish = models.TextField(default = '')
     content_french = models.TextField(default = '')
-    url = AutoSlugField(populate_from='title_english', max_length = 250)
+    url_english = AutoSlugField(populate_from='title_english', max_length = 250)
+    url_spanish = AutoSlugField(populate_from='title_spanish', max_length = 250)
+    url_french = AutoSlugField(populate_from='title_french', max_length = 250)
     topic = models.ForeignKey(Topics, on_delete = models.CASCADE, default = None)
 
     def __str__(self):

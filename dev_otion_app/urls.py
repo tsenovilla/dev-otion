@@ -1,11 +1,12 @@
 from django.urls import path
+from django.utils.translation import gettext_lazy as _
 
 from . import views
 
-appname = 'dev_otion_app'
+app_name = 'dev_otion_app'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
-    path('topics', views.TopicsView.as_view(), name='topics'),
-    path('topics/<slug:url>', views.EntrybyTopicView.as_view(), name='entrybytopic'),
-    path('entry/<slug:url>', views.EntryView.as_view(), name='entry')
+    path(_('topics'), views.TopicsView.as_view(), name='topics'),
+    path('<slug:url>', views.EntrybyTopicView.as_view(), name='entrybytopic'),
+    path(_('entry/<slug:url>'), views.EntryView.as_view(), name='entry')
 ]
