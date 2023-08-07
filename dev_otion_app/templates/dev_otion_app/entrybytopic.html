@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}
     Dev-otion
 {% endblock title %}
 
 {% block content %}
-<h1>List of entries</h1>
-<section class="container">
+<nav class="container right-align">
+    <a href="{% url 'dev_otion_app:topics' %}" class="button">{% translate "Back" %}</a>
+</nav>
+<section class="section container list_of_entries">
     {% for entry in entries %}
-        <article>
+        <article class="entry">
             <a href="{% url 'dev_otion_app:entry' url=entry.url %}">{{ entry.title }}</a>
-            <p>{{ entry.pub_date|date:"d/m/Y" }}</p>
+            <p>{% translate "By" %}: <span>{{ entry.author }}</span></p>
+            <p>{% translate "Last update" %}: <span>{{ entry.pub_date|date:"d/m/Y" }}</span></p>
         </article>
     {% endfor %}
 </section>

@@ -1,5 +1,6 @@
 @use '../base/colors' as c;
 @use '../base/typography' as t;
+@use '../base/mixins' as m;
 
 html {
     font-size: 62.5%;
@@ -51,4 +52,10 @@ h3 {
 }
 h4 {
     font-size: 2.6rem;
+}
+
+
+.button
+{
+    @include m.button($bkg-color: c.$green, $color: c.$white, $display:inline-block, $darken-transition:true);
 }

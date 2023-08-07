@@ -2,7 +2,7 @@
 @use '../base/typography' as t;
 @use '../base/mixins' as m;
 
-.topic-list
+.list_of_entries
 {
     @include m.flex($direction: column, $justify: center, $align: center, $gap: 1rem);
     @include m.tablet
@@ -14,21 +14,26 @@
     {
         @include m.grid($columns: repeat(3,1fr), $gap: 2rem);
     }
-}
 
-.topic
-{
-    @include m.flex($align: center, $gap:.5rem);
-    @include m.card;
-
-    &__image
+    .entry
     {
-        height: 10rem;
-        width: auto;
-    }
-
-    a
-    {
-        @include m.link;
+        @include m.card;
+        a
+        {
+            @include m.link;
+        }
+        p
+        {
+            font-size: 1.3rem;
+            margin: 0;
+            span
+            {
+                color: c.$orange;
+            }
+            &:first-of-type
+            {
+                margin-top: calc(t.$spaicing/4);
+            }
+        }
     }
 }

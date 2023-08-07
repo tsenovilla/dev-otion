@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-07 12:12+0200\n"
+"POT-Creation-Date: 2023-08-07 18:16+0200\n"
 "Last-Translator: Tomás Senovilla Polo <tspscgs@gmail.com>\n"
 "Language: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -14,21 +14,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: dev_otion_app/templates/base.html:34
+#: dev_otion_app/templates/base.html:37
 msgid "Search for an article"
 msgstr "Buscar un artículo"
 
-#: dev_otion_app/templates/base.html:37
+#: dev_otion_app/templates/base.html:40
 msgid "Topics"
 msgstr "Temas"
 
-#: dev_otion_app/templates/base.html:38
+#: dev_otion_app/templates/base.html:41
 msgid "Contact"
 msgstr "Contacto"
 
-#: dev_otion_app/templates/base.html:68
+#: dev_otion_app/templates/base.html:71
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
+
+#: dev_otion_app/templates/dev_otion_app/entry.html:11
+#: dev_otion_app/templates/dev_otion_app/entrybytopic.html:10
+msgid "Back"
+msgstr "Volver"
+
+#: dev_otion_app/templates/dev_otion_app/entrybytopic.html:16
+msgid "By"
+msgstr "Escrito por"
+
+#: dev_otion_app/templates/dev_otion_app/entrybytopic.html:17
+msgid "Last update"
+msgstr "Última modificación"
+
+#: dev_otion_app/templates/dev_otion_app/topics.html:11
+msgid "Choose your language"
+msgstr "Elige tu lenguaje"
 
 #: dev_otion_app/urls.py:9
 msgid "topics"

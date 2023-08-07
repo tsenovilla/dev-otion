@@ -28,4 +28,4 @@ def get_dict_item(dictionary, key):
     - OUTPUT:
         - The desired item from the dictionary
     """
-    return dictionary[key]
+    return dictionary.get(key)

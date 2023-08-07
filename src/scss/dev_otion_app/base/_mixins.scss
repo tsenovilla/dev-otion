@@ -1,5 +1,6 @@
 @use 'sizes' as s;
 @use 'typography' as t;
+@use 'colors' as c;
 
 @mixin phone
 {
@@ -57,8 +58,28 @@
     padding: 0;
 }
 
+@mixin button($bkg-color, $color, $display, $darken-transition:false)
+{
+    background-color:$bkg-color;
+    color:$color;
+    border: none;
+    font-weight: t.$bold;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    text-align: center;
+    margin: calc(t.$spaicing/2) 0;
+    display: $display;
+    &:hover{
+        cursor: pointer;
+        @if($darken-transition){
+            background-color: darken($bkg-color,5%);
+            transition: background-color .3s ease;
+        }
+    }
+}
+
 // Design inspired by https://ianlunn.github.io/Hover/#effects Rectangle Out
-@mixin button($hover-bkg-color, $no-hover-bkg-color, $border-color)
+@mixin button_hover_fill($hover-bkg-color, $no-hover-bkg-color, $border-color)
 {
     background-color: $no-hover-bkg-color;
     color: $hover-bkg-color;
@@ -92,5 +113,35 @@
         {
             transform: scale(1);
         }
+    }
+}
+
+@mixin card
+{
+    background-color: c.$white;
+    padding: 1rem;
+    border: 1px solid c.$lightGrey;
+    margin: calc(t.$spaicing/2) 0;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin link
+{
+    font-size: 2rem;
+    color: c.$black;
+    &:hover
+    {
+        color: c.$green;
+        transition: color .3s ease;
+    }
+
+    &::after
+    {
+        content:'';
+        height: .2rem;
+        width: 2rem;
+        background-color: darken(c.$green,5%);
+        display: block;
     }
 }

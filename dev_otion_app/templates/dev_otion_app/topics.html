@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load filters %}
+{% load i18n %}
 
 {% block title %}
     Dev-otion
 {% endblock title %}
 
 {% block content %}
-<h1>List of topics</h1>
+<h1>{% translate "Choose your language" %}</h1>
 <section class="container topic-list">
     {% for topic in topics %}
         <article class="topic">

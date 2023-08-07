@@ -51,7 +51,7 @@ class EntrybyTopicView(Dev_otion_View, ListView):
                 case 'fr':
                     title = entry.title_french
                     url = entry.url_french
-            context['entries'].append({'title':title, 'pub_date':entry.pub_date,'url':url})
+            context['entries'].append({'title':title, 'pub_date':entry.pub_date,'url':url,'author':entry.author})
         return context
     
 class EntryView(Dev_otion_View, DetailView):
@@ -72,6 +72,7 @@ class EntryView(Dev_otion_View, DetailView):
         context = super().get_context_data()
         selected_entry = Entry.objects.get(id = self.object.id)
         context['reverted_urls'] = reverse_self_url(self, languages = ['en','es','fr'], current_language = context['lang'], languages_slugs = {'en':selected_entry.url_english, 'es':selected_entry.url_spanish, 'fr':selected_entry.url_french})
+        context['topic_url'] = Topics.objects.get(id = self.object.topic_id).url
         match context['lang']:
             case 'en':
                 context['title'] = object.title_english

@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}
     Dev-otion
 {% endblock title %}
 
 {% block content %}
+<h1>{{ title }}</h1>
+<nav class="container right-align">
+    <a href="{% url 'dev_otion_app:entrybytopic' url=topic_url %}" class="button">{% translate "Back" %}</a>
+</nav>
 <section class="section container">
-    <h1>{{ title }}</h1>
     <article class="blog_entry">{{ content }}</article>
 </section>
 {% endblock content %}

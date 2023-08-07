@@ -36,9 +36,15 @@
     &>summary 
     {
         list-style: none;
-        .icon
+        .menu_icon
         {
             width: 4.2rem;
+            fill: c.$white;
+            &:hover
+            {
+                fill: c.$green;
+                transition: fill .3s ease;
+            }
         }
         &:hover
         {
@@ -120,7 +126,7 @@
     width: 100%;
     a
     {
-        @include m.button(c.$green, c.$white, c.$lightGrey);
+        @include m.button_hover_fill(c.$green, c.$white, c.$lightGrey);
     }
 }
 
@@ -166,7 +172,7 @@
         }
         &--option
         {
-            @include m.button(c.$green, c.$white, darken(c.$lightGrey,30%));
+            @include m.button_hover_fill(c.$green, c.$white, darken(c.$lightGrey,30%));
         }
     }
 }
