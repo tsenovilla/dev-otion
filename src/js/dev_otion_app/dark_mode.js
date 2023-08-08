@@ -17,7 +17,6 @@ function enable_dark_theme()
 export default function()
 {
     const button = document.querySelector('.dark_mode_button');
-    const article = document.querySelector('.blog_entry');
     const default_light_theme = window.matchMedia('(prefers-color-scheme:light)');
     if(default_light_theme.matches || sessionStorage.getItem('dark_mode')==='deactivated')
     {

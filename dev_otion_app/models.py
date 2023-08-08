@@ -3,6 +3,7 @@ from django.utils import timezone
 from PIL import Image
 import pillow_avif
 from autoslug import AutoSlugField
+from ckeditor_uploader.fields import RichTextUploadingField
 import os
 from .functions import unique_image_name
 
@@ -61,8 +62,8 @@ class Topics(models.Model):
     def __image_improver(self, *, former_image):
         if self.image.path != former_image: ## If we are not updating the image, we do not re-generate avif/webp versions
             img = Image.open(self.image)
-            img.save(f'{self.image.name.split(".")[0]}.webp', format='WEBP')
-            img.save(f'{self.image.name.split(".")[0]}.avif', format='AVIF', codec = 'rav1e', quality = 70) ## Following the recommendations from pillow_avif's creator, we set codec and quality
+            img.save(f'{self.image.path.split(".")[0]}.webp', format='WEBP')
+            img.save(f'{self.image.path.split(".")[0]}.avif', format='AVIF', codec = 'rav1e', quality = 70) ## Following the recommendations from pillow_avif's creator, we set codec and quality
 
     def __str__(self):
         return self.name
@@ -73,13 +74,13 @@ class Entry(models.Model):
     title_spanish = models.CharField(max_length = 250)
     title_french = models.CharField(max_length = 250)
     author = models.CharField(max_length = 100)
-    pub_date = models.DateField(default=timezone.now)
-    content_english = models.TextField(default = '')
+    pub_date = models.DateField(default = timezone.now)
+    content_english = RichTextUploadingField(default = '')
     content_spanish = models.TextField(default = '')
     content_french = models.TextField(default = '')
-    url_english = AutoSlugField(populate_from='title_english', max_length = 250)
-    url_spanish = AutoSlugField(populate_from='title_spanish', max_length = 250)
-    url_french = AutoSlugField(populate_from='title_french', max_length = 250)
+    url_english = AutoSlugField(populate_from = 'title_english', max_length = 250)
+    url_spanish = AutoSlugField(populate_from = 'title_spanish', max_length = 250)
+    url_french = AutoSlugField(populate_from = 'title_french', max_length = 250)
     topic = models.ForeignKey(Topics, on_delete = models.CASCADE, default = None)
 
     def __str__(self):

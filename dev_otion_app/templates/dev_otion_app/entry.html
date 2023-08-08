@@ -11,6 +11,6 @@
     <a href="{% url 'dev_otion_app:entrybytopic' url=topic_url %}" class="button">{% translate "Back" %}</a>
 </nav>
 <section class="section container">
-    <article class="blog_entry">{{ content }}</article>
+    <article class="blog_entry">{{ content|safe }}</article>
 </section>
 {% endblock content %}

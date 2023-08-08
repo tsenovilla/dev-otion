@@ -10,6 +10,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    "ckeditor",
+    "ckeditor_uploader",
     "dev_otion_app.apps.DevOtionAppConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -91,5 +93,12 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
+STATIC_ROOT = str(BASE_DIR) + "/static/"
+MEDIA_URL = "dev_otion_app/static/dev_otion_app/img/"
+MEDIA_ROOT = str(BASE_DIR) + "/dev_otion_app/static/dev_otion_app/img/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CKEDITOR_UPLOAD_PATH = "ckeditor/"
+CKEDITOR_SLUGIFY_FILENAME = False
+CKEDITOR_FILENAME_GENERATOR = 'django_config.utils.unique_filename'
