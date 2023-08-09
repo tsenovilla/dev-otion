@@ -4,6 +4,6 @@
  */
 export default function(article)
 {
-    article.innerHTML = article.innerHTML.replace(/\[code\](.*?)\[\/code\]/gs,'<pre><code>$1</code></pre>');
+    article.innerHTML = article.innerHTML.replace(/<p>\[code\]<\/p>(.*?)<p>\[\/code\]<\/p>/gs,'<pre><code>$1</code></pre>');
     hljs.highlightAll();
 }
