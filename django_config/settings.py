@@ -102,3 +102,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CKEDITOR_UPLOAD_PATH = "ckeditor/"
 CKEDITOR_SLUGIFY_FILENAME = False
 CKEDITOR_FILENAME_GENERATOR = 'django_config.utils.unique_filename'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full'
+    }
+}
