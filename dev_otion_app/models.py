@@ -1,11 +1,9 @@
 from django.db import models
 from django.utils import timezone
-from PIL import Image
-import pillow_avif
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
-import os
-from .functions import unique_image_name
+from PIL import Image
+from .functions import unique_image_name, delete_former_image, image_improver
 
 class Topics(models.Model):
     name = models.CharField(max_length=250)
@@ -17,13 +15,11 @@ class Topics(models.Model):
     url = AutoSlugField(populate_from='name', max_length=250)
 
     def save(self, *args, **kwargs):
-        """
-        Override of save method in order to delete the former images. We also upload an Avif and a WebP version for those images
-        """
+        ## Override of save method in order to delete the former images. We also upload an Avif and a WebP version for those images. As we pass information from the pre_save to the post_save, it is better to override the method instead of using signals
         try:
             try: ## If we are updating, we get the paths to the former images, in order to delete them
                 before_update = Topics.objects.get(id = self.id)
-                former_image = before_update.image.path
+                former_image = before_update.image.url
             except Topics.DoesNotExist:
                 pass
             super().save(*args, **kwargs)
@@ -34,36 +30,11 @@ class Topics(models.Model):
             pass
         else:  ## If there's not error when saving, we try to create avif/webp versions for the images. We also try to delete the former images if they exists
             try:
-                self.__delete_former_images(former_image=former_image)
-                self.__image_improver(former_image=former_image)
+                if self.image.url != former_image: ## There's a new image
+                    delete_former_image(former_image)
+                    image_improver(self.image.url)
             except NameError:
-                self.__image_improver(former_image="") ## No former image means new object, so we have to create the improved images, as the path will never be empty, this creates the avif/webp versions
-
-    def __delete_former_images(self, *, former_image):
-        """
-        This function will delete the former images for each object if a new one has been uploaded.
-        """
-        if self.image.path != former_image:
-            ## If the images are not found on the server (no matters why), or any other exception is raised, we do nothing
-            try:
-                os.remove(former_image)
-            except:
-                pass
-            try:
-                os.remove(former_image.split('.')[0]+'.webp')
-            except:
-                pass
-            try:
-                os.remove(former_image.split('.')[0]+'.avif')
-            except:
-                pass
-        
-
-    def __image_improver(self, *, former_image):
-        if self.image.path != former_image: ## If we are not updating the image, we do not re-generate avif/webp versions
-            img = Image.open(self.image)
-            img.save(f'{self.image.path.split(".")[0]}.webp', format='WEBP')
-            img.save(f'{self.image.path.split(".")[0]}.avif', format='AVIF', codec = 'rav1e', quality = 70) ## Following the recommendations from pillow_avif's creator, we set codec and quality
+                image_improver(self.image.url) ## No former image means new object, so we have to create the improved images, as the path will never be empty, this creates the avif/webp versions   
 
     def __str__(self):
         return self.name
