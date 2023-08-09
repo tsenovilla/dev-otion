@@ -28,7 +28,7 @@ def topic_delete_images_deletion(sender, instance, **kwargs):
 def entry_modified_images_deletion(sender, instance, **kwargs):
     try:
         former_entry = Entry.objects.get(id = instance.id)
-        former_images = re.findall('<img src="(?P<source>[^"]+)".*/>', former_entry.content_english)
+        former_images = re.findall('<img src="(?P<source>[^"]+)".*>', former_entry.content_english)
         new_images = re.findall('<img src="(?P<source>[^"]+)".*/>', instance.content_english)
         for former_image in former_images:
             if former_image not in new_images:
@@ -46,20 +46,37 @@ def entry_modified_images_deletion(sender, instance, **kwargs):
                     pass
     except Entry.DoesNotExist:
         pass
+    finally:
+        instance.content_english = re.sub('<img src="(?P<source>[^"]+)".*/>', 
+                                lambda match: 
+                                f'<picture><source srcset="{match.group("source").split(".")[0]}.avif" type="image/avif"><source srcset="{match.group("source").split(".")[0]}.webp" type="image/webp"><img src="{match.group("source")}" alt="Blog image" loading="lazy"></picture>',
+                                instance.content_english
+                            )
+        instance.content_spanish = re.sub('<img src="(?P<source>[^"]+)".*/>', 
+                                lambda match: 
+                                f'<picture><source srcset="{match.group("source").split(".")[0]}.avif" type="image/avif"><source srcset="{match.group("source").split(".")[0]}.webp" type="image/webp"><img src="{match.group("source")}" alt="Imagen de blog" loading="lazy"></picture>',
+                                instance.content_spanish
+                            )
+        instance.content_french = re.sub('<img src="(?P<source>[^"]+)".*/>', 
+                                lambda match: 
+                                f'<picture><source srcset="{match.group("source").split(".")[0]}.avif" type="image/avif"><source srcset="{match.group("source").split(".")[0]}.webp" type="image/webp"><img src="{match.group("source")}" alt="Image de blog" loading="lazy"></picture>',
+                                instance.content_french
+                            )
 
 @receiver(post_save, sender=Entry)
 def entry_image_improver(sender, instance, **kwargs):
-    images = re.findall('<img src="(?P<source>[^"]+)".*/>', instance.content_english)
+    images = re.findall('<img src="(?P<source>[^"]+)".*>', instance.content_english)
     for image in images:
         image_path = str(Path(__file__).resolve().parent.parent) + image
         img = Image.open(image_path)
         img.save(f'{image_path.split(".")[0]}.webp', format='WEBP')
         img.save(f'{image_path.split(".")[0]}.avif', format='AVIF', codec = 'rav1e', quality = 70) 
 
+
 @receiver(pre_delete, sender=Entry)
 def entry_deleted_images_deletion(sender, instance, **kwargs):
     former_entry = Entry.objects.get(id = instance.id)
-    former_images = re.findall('<img src="(?P<source>[^"]+)".*/>', former_entry.content_english)
+    former_images = re.findall('<img src="(?P<source>[^"]+)".*>', former_entry.content_english)
     for former_image in former_images:
         try:
             os.remove(str(Path(__file__).resolve().parent.parent)+former_image)

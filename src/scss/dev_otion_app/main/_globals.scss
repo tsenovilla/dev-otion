@@ -13,8 +13,7 @@ body {
     font-family: t.$main_font;
     font-size: 1.6rem;
     line-height: 1.8;
-    background-image: linear-gradient(to bottom, darken(c.$lightGrey,20%) 0%, lighten(c.$lightGrey,10%) 30%, c.$white 100%);
-    background-repeat: no-repeat;
+    background-color: lighten(c.$lightGrey,5%);
 }
 p {
     color: c.$black;

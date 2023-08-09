@@ -1,6 +1,6 @@
 export default function (menu)
 {
-    const button = menu.querySelector(".icon");
+    const button = menu.querySelector(".menu_icon");
     const menu_list = menu.querySelector(".menu_list");
     button.addEventListener('click', e=>
         {
