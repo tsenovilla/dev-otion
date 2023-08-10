@@ -1,0 +1,42 @@
+@use '../base/colors' as c;
+@use '../base/typography' as t;
+@use '../base/mixins' as m;
+
+.alert
+{
+    @include m.flex($justify: space-between, $align: center, $gap:2rem);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+
+    p
+    {
+        margin:0;
+        color: c.$white;
+        text-transform: uppercase;
+        font-size: 1.4rem;
+    }
+
+    button
+    {
+        border:none;
+        background-color: inherit;
+        color: c.$white;
+        font-weight: t.$black;
+        &:hover
+        {
+            cursor: pointer;
+        }
+    }
+
+    &.OK
+    {
+        background-color: c.$lightGreen;
+        border: 1px solid darken(c.$lightGreen,30%);
+    }
+
+    &.KO
+    {
+        background-color: c.$red;
+        border: 1px solid darken(c.$red,30%);
+    }
+}

@@ -3,7 +3,7 @@ from django.utils import timezone
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from PIL import Image
-from .functions import unique_image_name, delete_former_image, image_improver
+from .utils import unique_image_name, delete_former_image, image_improver
 
 class Topics(models.Model):
     name = models.CharField(max_length=250)

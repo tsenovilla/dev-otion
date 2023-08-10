@@ -2,7 +2,7 @@ from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 from .models import Topics,Entry
 import re
-from .functions import delete_former_image, image_improver
+from .utils import delete_former_image, image_improver
 
 ## Override of post_delete signal for Topics model, in order to delete images after deleting a db entry. We have to override the signal instead of the delete method in order to correctly delete images if we delete entries in bulk.
 @receiver(post_delete, sender=Topics)

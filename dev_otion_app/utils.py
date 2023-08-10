@@ -1,5 +1,6 @@
 from django.utils.translation import activate
 from django.urls import reverse
+from django import forms
 from pathlib import Path
 from uuid import uuid4
 import os
@@ -62,3 +63,10 @@ def delete_former_image(former_image):
         os.remove((str(Path(__file__).resolve().parent.parent)+former_image).split('.')[0]+'.avif')
     except:
         pass
+
+class ContactForm(forms.Form):
+    """
+    This class represent form objects submitted in the contact view.
+    """
+    e_mail = forms.EmailField(required = True)
+    message = forms.CharField(min_length = 50, required = True)

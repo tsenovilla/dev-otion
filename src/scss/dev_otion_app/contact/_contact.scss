@@ -1,0 +1,51 @@
+@use '../base/colors' as c;
+@use '../base/typography' as t;
+@use '../base/mixins' as m;
+
+.contact_form
+{
+    fieldset
+    {
+        background-color:c.$white;
+        padding: 2rem;
+        margin: 0;
+        @include m.flex($direction: column, $gap: 1rem);
+        border: 1px solid darken(c.$lightGrey, 10%);
+
+        label
+        {
+            text-transform: uppercase;
+            font-weight: t.$bold;
+            color: c.$black;
+        }
+
+        input[type="text"], textarea
+        {
+            padding: 1rem;
+            border: 1px solid darken(c.$lightGrey,10%);
+            border-radius: 1.5rem;
+
+            &.input_error
+            {
+                border: 1px solid c.$red;
+            }
+        }
+
+        textarea
+        {
+            height: 20rem;
+            resize: vertical;
+        }
+
+        button
+        {
+            @include m.button($bkg-color: c.$green, $color: c.$white, $display: block, $darken-transition:true);
+            width: 100%;
+            @include m.tablet
+            {
+                width: 15rem;
+            }
+        }
+
+    }
+}

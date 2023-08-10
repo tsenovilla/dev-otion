@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-07 18:16+0200\n"
+"POT-Creation-Date: 2023-08-10 14:29+0200\n"
 "Last-Translator: Tomás Senovilla Polo <tspscgs@gmail.com>\n"
 "Language: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,31 @@ msgstr "Contacto"
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
 
+#: dev_otion_app/templates/dev_otion_app/contact.html:9
+msgid "Contact us"
+msgstr "Contáctanos"
+
+#: dev_otion_app/templates/dev_otion_app/contact.html:11
+msgid ""
+"If you got here looking for a post that is not yet published, let us know!"
+msgstr "Si has llegado buscando un post y no lo has encontrado, ¡Cuéntanoslo!"
+
+#: dev_otion_app/templates/dev_otion_app/contact.html:25
+msgid "Write your e-mail"
+msgstr "Escribe tu e-mail"
+
+#: dev_otion_app/templates/dev_otion_app/contact.html:32
+msgid "Message"
+msgstr "Mensaje"
+
+#: dev_otion_app/templates/dev_otion_app/contact.html:36
+msgid "How can we help you?"
+msgstr "¿Cómo podemos ayudarte?"
+
+#: dev_otion_app/templates/dev_otion_app/contact.html:41
+msgid "Submit"
+msgstr "Enviar"
+
 #: dev_otion_app/templates/dev_otion_app/entry.html:11
 #: dev_otion_app/templates/dev_otion_app/entrybytopic.html:10
 msgid "Back"
@@ -51,6 +76,23 @@ msgstr "Elige tu lenguaje"
 msgid "topics"
 msgstr "temas"
 
-#: dev_otion_app/urls.py:11
+#: dev_otion_app/urls.py:10
 msgid "entry/<slug:url>"
 msgstr "entrada/<slug:url>"
+
+#: dev_otion_app/urls.py:11
+msgid "contact"
+msgstr "contacto"
+
+#: dev_otion_app/views.py:120
+msgid "Thank you for your message! We will get back to you as soon as possible"
+msgstr ""
+"¡Gracias por tu mensaje!¡Nos pondremos en contacto contigo lo antes posible!"
+
+#: dev_otion_app/views.py:124
+msgid "Something went wrong :( Please try again in a few minutes"
+msgstr "Algo ha ido mal :( Inténtalo de nuevo en unos minutos"
+
+#: dev_otion_app/views.py:134
+msgid "Message: "
+msgstr "Mensaje: "

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+    Dev-otion
+{% endblock title %}
+
+{% block content %}
+<h1>{% translate "Contact us" %}</h1>
+<section class="section container narrow">
+    <p class="text-center">{% translate "If you got here looking for a post that is not yet published, let us know!" %}</p>
+    {% if  alert %}
+        <div class="alert {{ alert_type }}">
+            <p>{{ alert }}</p>
+            <button>X</button>
+        </div>
+    {% endif %}
+    <form action="{% url 'dev_otion_app:contact' %}" method="post" class="contact_form">
+        {% csrf_token %}
+        <fieldset>
+            <label for="mail">E-mail</label>
+            <input 
+                type="text" 
+                id="e-mail"
+                placeholder="{% translate 'Write your e-mail' %}"
+                name="e_mail"
+                value="{{ e_mail }}"
+                class="{% if error == 'e_mail' %}
+                    input_error
+                {% endif %}"
+            >
+            <label for="message">{% translate "Message" %}</label>
+            <textarea 
+                name="message" 
+                id="message" 
+                placeholder="{% translate 'How can we help you?' %}" 
+                class="{% if error == 'message' %}
+                    input_error
+                {% endif %}"
+            >{{ message }}</textarea>
+            <button>{% translate "Submit" %}</button>
+        </fieldset>
+    </form>
+</section>
+{% endblock content %}

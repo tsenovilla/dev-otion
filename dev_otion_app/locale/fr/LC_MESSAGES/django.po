@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-07 18:16+0200\n"
+"POT-Creation-Date: 2023-08-10 14:29+0200\n"
 "Last-Translator: Tomás Senovilla Polo <tspscgs@gmail.com>\n"
 "Language: French\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,33 @@ msgstr "Contact"
 msgid "All rights reserved"
 msgstr "Tous droits réservés"
 
+#: dev_otion_app/templates/dev_otion_app/contact.html:9
+msgid "Contact us"
+msgstr "Contactez-nous"
+
+#: dev_otion_app/templates/dev_otion_app/contact.html:11
+msgid ""
+"If you got here looking for a post that is not yet published, let us know!"
+msgstr ""
+"Si tu es arrivé ici en cherchant un post mais il n'est pas encore "
+"publiqué, fais-nous en savoir"
+
+#: dev_otion_app/templates/dev_otion_app/contact.html:25
+msgid "Write your e-mail"
+msgstr "Écris ton e-mail"
+
+#: dev_otion_app/templates/dev_otion_app/contact.html:32
+msgid "Message"
+msgstr "Message"
+
+#: dev_otion_app/templates/dev_otion_app/contact.html:36
+msgid "How can we help you?"
+msgstr "Comment peut-on t'aider?"
+
+#: dev_otion_app/templates/dev_otion_app/contact.html:41
+msgid "Submit"
+msgstr "Envoyer"
+
 #: dev_otion_app/templates/dev_otion_app/entry.html:11
 #: dev_otion_app/templates/dev_otion_app/entrybytopic.html:10
 msgid "Back"
@@ -51,6 +78,23 @@ msgstr "Choisis ton langage"
 msgid "topics"
 msgstr "sujets"
 
-#: dev_otion_app/urls.py:11
+#: dev_otion_app/urls.py:10
 msgid "entry/<slug:url>"
 msgstr "entree/<slug:url>"
+
+#: dev_otion_app/urls.py:11
+msgid "contact"
+msgstr "contact"
+
+#: dev_otion_app/views.py:120
+msgid "Thank you for your message! We will get back to you as soon as possible"
+msgstr "Merci pour ton message! On te contactera dès que possible"
+
+#: dev_otion_app/views.py:124
+msgid "Something went wrong :( Please try again in a few minutes"
+msgstr ""
+"Quelque chose n'a pas marché :( Merci de ressayer dans quelques minutes"
+
+#: dev_otion_app/views.py:134
+msgid "Message: "
+msgstr "Message: "
