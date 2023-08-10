@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-10 14:29+0200\n"
+"POT-Creation-Date: 2023-08-10 14:38+0200\n"
 "Last-Translator: Tomás Senovilla Polo <tspscgs@gmail.com>\n"
 "Language: French\n"
 "MIME-Version: 1.0\n"
@@ -38,8 +38,8 @@ msgstr "Contacte-nous"
 msgid ""
 "If you got here looking for a post that is not yet published, let us know!"
 msgstr ""
-"Si tu es arrivé ici en cherchant un post mais il n'est pas encore "
-"publiqué, fais-nous en savoir"
+"Si tu es arrivé ici en cherchant un post mais il n'est pas encore publiqué, "
+"fais-nous en savoir"
 
 #: dev_otion_app/templates/dev_otion_app/contact.html:25
 msgid "Write your e-mail"
@@ -71,8 +71,8 @@ msgid "Last update"
 msgstr "Dernière modification"
 
 #: dev_otion_app/templates/dev_otion_app/topics.html:11
-msgid "Choose your language"
-msgstr "Choisis ton langage"
+msgid "What are you looking for?"
+msgstr "Qu'est-ce que tu cherches?"
 
 #: dev_otion_app/urls.py:9
 msgid "topics"
