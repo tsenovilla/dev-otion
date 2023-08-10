@@ -11,10 +11,8 @@ from decouple import config
 from .models import Topics,Entry
 from .utils import reverse_self_url, ContactForm
 
+# This base View contains the common data used by each class in the app. The other views must inherit from it in first instance to retrieve this data, then from the specific general view needed.
 class Dev_otion_View(View):
-    '''
-        This base View contains the common data used by each class in the app. The other views must inherit from it in first instance to retrieve this data, then from the specific general view needed.
-    '''
     def get_context_data(self):
         context = {}
         context['year'] = timezone.now().strftime('%Y')
@@ -96,7 +94,7 @@ class ContactView(Dev_otion_View, TemplateView):
 
     def get_context_data(self):
         context = super().get_context_data()
-        try:
+        try: # We will only pass OK alerts as session elements, due to if something goes wrong with the post we continue in POST request method, so it's enough with use a render_to_response. We have to remove the alert from the session as we are using it just once
             context['alert'] = self.request.session.pop('alert')
             context['alert_type'] = self.request.session.pop('alert_type')
         except KeyError:
@@ -106,11 +104,11 @@ class ContactView(Dev_otion_View, TemplateView):
     def post(self, request):
         submitted_form = ContactForm(request.POST)
         context = super().get_context_data()
-        if submitted_form.is_valid():
+        if submitted_form.is_valid(): # If the form is well filled, we try to send an e-mail to dev-otion with the requested post. We use Brevo as mail provider
             configuration = sib_api_v3_sdk.Configuration()
             configuration.api_key['api-key'] = config('BREVO_API_KEY')
             api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
-            subject = "Suggested new post"
+            subject = "New post request"
             sender = {"email":"dev-otion@hotmail.com"}
             html_content = f'<html><body><p>Sender:{submitted_form.cleaned_data["e_mail"]}</p><p>Message:{submitted_form.cleaned_data["message"]}</p></body></html>'
             to = [{"email":"dev-otion@hotmail.com"}]
@@ -123,7 +121,7 @@ class ContactView(Dev_otion_View, TemplateView):
             except ApiException:
                 context['alert'] = _('Something went wrong :( Please try again in a few minutes')
                 context['alert_type'] = 'KO'
-        else:
+        else: # We show the error provided by the Django's Form object to the user
             context['alert_type'] = 'KO'
             context['e_mail'] = request.POST['e_mail']
             context['message'] = request.POST['message']

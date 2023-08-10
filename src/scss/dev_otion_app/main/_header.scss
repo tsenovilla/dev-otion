@@ -127,6 +127,43 @@
     a
     {
         @include m.button_hover_fill(c.$green, c.$white, c.$lightGrey);
+        font-weight: t.$bold;
+    }
+}
+
+.result_container
+{
+    @include m.flex($direction: column, $align:center);
+    width:100%;
+
+    .search_result
+    {
+        background-color: c.$white;
+        color: c.$green;
+        border-bottom: 1px solid c.$green;
+        width: 100%;
+        padding: 1rem;
+        font-weight: t.$bold;
+
+        &:hover
+        {
+            background-color: c.$green;
+            color: c.$white;
+            border: 1px solid c.$white;
+            transition: background-color .3s ease-in-out;
+        }
+
+        &:first-child
+        {
+            border-top-left-radius: 1.2rem;
+            border-top-right-radius: 1.2rem;
+        }
+
+        &:last-child
+        {
+            border-bottom-left-radius: 1.2rem;
+            border-bottom-right-radius: 1.2rem;
+        }
     }
 }
 
