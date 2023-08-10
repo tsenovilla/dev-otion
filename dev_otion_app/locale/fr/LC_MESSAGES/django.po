@@ -32,7 +32,7 @@ msgstr "Tous droits réservés"
 
 #: dev_otion_app/templates/dev_otion_app/contact.html:9
 msgid "Contact us"
-msgstr "Contactez-nous"
+msgstr "Contacte-nous"
 
 #: dev_otion_app/templates/dev_otion_app/contact.html:11
 msgid ""
