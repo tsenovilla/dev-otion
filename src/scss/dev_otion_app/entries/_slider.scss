@@ -18,6 +18,14 @@
         width: 30vw;
         min-height: 15vh;
         position: relative;
+        background-color: lighten(c.$darkOrange,20%);
+        border-radius: 1rem;
+        @include m.tablet
+        {
+            background-color: transparent;
+            border-radius: unset;
+        }
+
         &::before
         {
             content:'';
@@ -32,7 +40,11 @@
             background-position: left;
             border-radius: 1rem;
             z-index:-1;
-            opacity: .7;
+            opacity: .4;
+            @include m.tablet
+            {
+                opacity: .6;
+            }
         }
     }
 

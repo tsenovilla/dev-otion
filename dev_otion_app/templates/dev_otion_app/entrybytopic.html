@@ -9,7 +9,7 @@
 <nav class="container right-align">
     <a href="{% url 'dev_otion_app:topics' %}" class="button">{% translate "Back" %}</a>
 </nav>
-<section class="section container list_of_entries">
+<section class="container list_of_entries">
     {% for entry in entries %}
         <article class="entry">
             <a href="{% url 'dev_otion_app:entry' url=entry.url %}">{{ entry.title }}</a>

@@ -145,3 +145,7 @@
         display: block;
     }
 }
+
+@mixin fluid-text($min, $max) {
+    font-size: clamp($min, -1rem + 10vw ,$max);
+}

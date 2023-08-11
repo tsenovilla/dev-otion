@@ -11,7 +11,7 @@
     <nav class="post-slider container swiper">
         <div class="swiper-wrapper"> <!-- This div is needed by Swiper library, but does not provide any other functionality-->
             {% for entry in last_entries %}
-                <a href="{% url 'dev_otion_app:entry' url=entry.url %}" class="post-slider__slide swiper-slide" data-background="{{ entry.image }}">{{ entry.title }}</a>
+                <a href="{% url 'dev_otion_app:entry' url=entry.url %}" class="post-slider__slide swiper-slide text-center" data-background="{{ entry.image }}">{{ entry.title }}</a>
             {% endfor %}            
         </div>
         <div class="swiper-button-prev"></div>
