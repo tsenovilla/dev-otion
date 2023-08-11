@@ -4,7 +4,8 @@ from django.views.generic import DetailView, ListView, TemplateView
 from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
+from django.templatetags.static import static
 import sib_api_v3_sdk
 from sib_api_v3_sdk.rest import ApiException
 from decouple import config
@@ -23,6 +24,25 @@ class Dev_otion_View(View):
 
 class IndexView(Dev_otion_View, TemplateView):
     template_name = 'dev_otion_app/index.html'
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['last_entries'] = []
+        last_entries = Entry.objects.all().order_by('-pub_date')[:8]
+        for entry in last_entries:
+            entry_topic = Topics.objects.get(id = entry.topic_id)
+            match context['lang']:
+                case 'en':
+                    title = entry.title_english
+                    url = entry.url_english
+                case 'es':
+                    title = entry.title_spanish
+                    url = entry.url_spanish
+                case 'fr':
+                    title = entry.title_french
+                    url = entry.url_french
+            context['last_entries'].append({'title':title,'url':url,'image':static('dev_otion_app/img/'+ str(entry_topic.image))})
+        return context
 
 class TopicsView(Dev_otion_View, ListView):
     model = Topics
@@ -108,11 +128,12 @@ class ContactView(Dev_otion_View, TemplateView):
             configuration = sib_api_v3_sdk.Configuration()
             configuration.api_key['api-key'] = config('BREVO_API_KEY')
             api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
-            subject = "New post request"
-            sender = {"email":"dev-otion@hotmail.com"}
+            subject = 'New post request'
+            sender = {'email':'tspscgs@gmail.com'}
+            reply_to = {'email': submitted_form.cleaned_data['e_mail']}
             html_content = f'<html><body><p>Sender:{submitted_form.cleaned_data["e_mail"]}</p><p>Message:{submitted_form.cleaned_data["message"]}</p></body></html>'
-            to = [{"email":"dev-otion@hotmail.com"}]
-            send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(to=to, html_content=html_content, sender=sender, subject=subject)
+            to = [{'email':'dev-otion@hotmail.com'}]
+            send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(to = to, html_content = html_content, sender = sender, reply_to = reply_to, subject = subject)
             try:
                 api_instance.send_transac_email(send_smtp_email)
                 request.session['alert'] = _('Thank you for your message! We will get back to you as soon as possible')

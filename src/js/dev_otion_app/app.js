@@ -3,6 +3,7 @@ import search_entry from './search_entry';
 import dark_mode from './dark_mode';
 import entry_highlighting from './entry_highlighting';
 import alert_management from './alert_management';
+import post_slider from './post_slider';
 
 const menu = document.querySelector('.menu');
 const search = document.querySelector('.search_input');
@@ -20,4 +21,10 @@ const alert = document.querySelector('.alert');
 if(alert)
 {
     alert_management(alert);
+}
+
+const slider = document.querySelector('.post-slider');
+if(slider)
+{
+    post_slider(slider);
 }

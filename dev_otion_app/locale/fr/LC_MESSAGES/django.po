@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-10 14:38+0200\n"
+"POT-Creation-Date: 2023-08-10 19:32+0200\n"
 "Last-Translator: Tomás Senovilla Polo <tspscgs@gmail.com>\n"
 "Language: French\n"
 "MIME-Version: 1.0\n"
@@ -14,19 +14,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: dev_otion_app/templates/base.html:37
-msgid "Search for an article"
-msgstr "Rechercher un article"
+#: dev_otion_app/templates/base.html:41
+msgid "Search for a post"
+msgstr "Recherche un article"
 
-#: dev_otion_app/templates/base.html:40
+#: dev_otion_app/templates/base.html:45
 msgid "Topics"
 msgstr "Sujets"
 
-#: dev_otion_app/templates/base.html:41
+#: dev_otion_app/templates/base.html:46
 msgid "Contact"
 msgstr "Contact"
 
-#: dev_otion_app/templates/base.html:71
+#: dev_otion_app/templates/base.html:76
 msgid "All rights reserved"
 msgstr "Tous droits réservés"
 
@@ -74,27 +74,27 @@ msgstr "Dernière modification"
 msgid "What are you looking for?"
 msgstr "Qu'est-ce que tu cherches?"
 
-#: dev_otion_app/urls.py:9
+#: dev_otion_app/urls.py:10
 msgid "topics"
 msgstr "sujets"
 
-#: dev_otion_app/urls.py:10
+#: dev_otion_app/urls.py:11
 msgid "entry/<slug:url>"
 msgstr "entree/<slug:url>"
 
-#: dev_otion_app/urls.py:11
+#: dev_otion_app/urls.py:12
 msgid "contact"
 msgstr "contact"
 
-#: dev_otion_app/views.py:120
+#: dev_otion_app/views.py:118
 msgid "Thank you for your message! We will get back to you as soon as possible"
 msgstr "Merci pour ton message! On te contactera dès que possible"
 
-#: dev_otion_app/views.py:124
+#: dev_otion_app/views.py:122
 msgid "Something went wrong :( Please try again in a few minutes"
 msgstr ""
 "Quelque chose n'a pas marché :( Merci de ressayer dans quelques minutes"
 
-#: dev_otion_app/views.py:134
+#: dev_otion_app/views.py:132
 msgid "Message: "
 msgstr "Message: "

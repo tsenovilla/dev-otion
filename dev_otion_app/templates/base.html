@@ -13,12 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ysabeau+Office:wght@300;400;700;900&display=swap" rel="stylesheet">
     <!-- Stylesheets -->
+    <!-- Code highlighting stylesheets -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-light.min.css" class="light_code_highlight">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-dark.min.css" class="dark_code_highlight">
+    <!-- Swiper stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <!-- Custom stylesheets -->
     <link rel="preload" href="{% static 'dev_otion_app/css/styles.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'dev_otion_app/css/styles.css' %}">
-    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-light.min.css" as="style">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-light.min.css" class="light_code_highlight">
-    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-dark.min.css" as="style">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-dark.min.css" class="dark_code_highlight">
     <title>{% block title %}{% endblock %}</title>
     <!-- To avoid CSRF issues when calling the search API, we have to inclide the app's csrf_token into our JS code. The easiest way is just to add this small script in the base template -->
     <script>
@@ -38,7 +40,7 @@
                 <a href="{% url 'dev_otion_app:index' %}"><img src="{% static 'dev_otion_app/img/homepage.svg' %}" alt="homepage icon" class="icon"></a>
                 <div class="search_bar">
                     <img src="{% static 'dev_otion_app/img/search.svg'%}" alt="Search icon" class="icon">
-                    <input type="text" placeholder="{% translate 'Search for an article' %}" class="search_input">
+                    <input type="text" placeholder="{% translate 'Search for a post' %}" class="search_input">
                 </div>
                 <div class="result_container"></div>
                 <nav class="nav_bar">
@@ -76,7 +78,11 @@
             <p>&copy; {{ year }}  Dev-otion. {% translate "All rights reserved" %}</p>
         </div>
     </footer>
+    <!-- Highlight.JS CDN -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script src="{% static 'dev_otion_app/js/bundle.js' %}"></script>
+    <!-- Swiper CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <!-- Own scripts -->
+    <script src="{% static 'dev_otion_app/js/main.js' %}"></script>
 </body>
 </html>

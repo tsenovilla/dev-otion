@@ -1,0 +1,49 @@
+@use '../base/colors' as c;
+@use '../base/typography' as t;
+@use '../base/mixins' as m;
+
+:root
+{
+    --swiper-navigation-size: 3rem; // Overwrite the navigation size variable in order to adjust swipet buttons size
+}
+
+.post-slider
+{
+    &__slide
+    {
+        padding: 2rem;
+        color: c.$black;
+        font-weight: t.$bold;
+        font-size: 1.8rem;
+        width: 30vw;
+        min-height: 15vh;
+        position: relative;
+        &::before
+        {
+            content:'';
+            position: absolute;
+            top:0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-image: var(--slide_bkg_image);
+            background-repeat: no-repeat;
+            background-size:contain;
+            background-position: left;
+            border-radius: 1rem;
+            z-index:-1;
+            opacity: .7;
+        }
+    }
+
+    .swiper-button-prev, .swiper-button-next
+    {
+        color: rgba(c.$white, .8);
+        font-weight: t.$black;
+        &:hover
+        {
+            color: c.$green;
+            transition: color .3s ease;
+        }
+    }
+}

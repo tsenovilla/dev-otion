@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}
     Dev-otion
 {% endblock title %}
 
 {% block content %}
-<p>{{current_url}}</p>
+<section class="section">
+    <h3>{% translate "Our latest posts" %}</h3>
+    <nav class="post-slider container swiper">
+        <div class="swiper-wrapper"> <!-- This div is needed by Swiper library, but does not provide any other functionality-->
+            {% for entry in last_entries %}
+                <a href="{% url 'dev_otion_app:entry' url=entry.url %}" class="post-slider__slide swiper-slide" data-background="{{ entry.image }}">{{ entry.title }}</a>
+            {% endfor %}            
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </nav>
+</section>
 {% endblock content %}
