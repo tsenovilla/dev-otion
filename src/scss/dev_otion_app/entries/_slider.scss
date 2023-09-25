@@ -4,7 +4,7 @@
 
 :root
 {
-    --swiper-navigation-size: 3rem; // Overwrite the navigation size variable in order to adjust swipet buttons size
+    --swiper-navigation-size: 3rem; // Overwrite the navigation size variable in order to adjust swiper buttons size
 }
 
 .post-slider
@@ -18,11 +18,29 @@
         width: 30vw;
         min-height: 15vh;
         position: relative;
-        background-color: lighten(c.$darkOrange,20%);
         border-radius: 1rem;
+        &:nth-child(4n)
+        {
+            background-color: lighten(c.$redCard,20%);
+        }
+        &:nth-child(4n+1)
+        {
+            background-color: lighten(c.$blueCard,20%);
+        }
+        &:nth-child(4n+2)
+        {
+            background-color: lighten(c.$greenCard,20%);
+        }
+        &:nth-child(4n+3)
+        {
+            background-color: lighten(c.$yellowCard,20%);
+        }
         @include m.tablet
         {
-            background-color: transparent;
+            &:not(:nth-child(odd)), &:not(:nth-child(even))
+            {
+                background-color: transparent;
+            }
             border-radius: unset;
         }
 
