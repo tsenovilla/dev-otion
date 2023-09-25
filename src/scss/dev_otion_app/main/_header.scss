@@ -32,36 +32,30 @@
 
 .menu
 {
-    z-index:99;
-    &>summary 
+    summary
     {
         list-style: none;
-        .menu_icon
-        {
-            width: 4.2rem;
-            fill: c.$white;
-            &:hover
-            {
-                fill: c.$green;
-                transition: fill .3s ease;
-            }
-        }
+    }
+    summary::-webkit-details-marker //Default summary marker in Safari
+    {
+        display: none;
+    }
+
+    &>summary 
+    {
+        color: c.$white;
+        font-size: 4rem;
         &:hover
         {
             cursor: pointer;
-        }
-        // In screen sizes higher than a mobile phone, the content is displayed using two horizontal grid cells. When the content is displayed, the summary logo is moved to the left in order to be aligned with the content. So we fix its position: right 2 rem is due to the header has a 2rem padding defined, so we keep that.
-        @include m.tablet
-        {
-            position: absolute;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
+            color: c.$green;
+            transition: color .3s ease;
         }
     }
 
     .menu_list
     {
+        z-index: 2;
         position: absolute;
         top:100%;
         left: 0;
@@ -71,6 +65,16 @@
         padding: 2rem;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
         animation: menu_animation_open .3s ease-out;
+        i
+        {
+            color: c.$white;
+            &:hover
+            {
+                cursor: pointer;
+                color: c.$orange;
+                transition: color .3s ease-in;
+            }
+        }
         &.menu_animation_close 
         {
             animation: menu_animation_close .3s ease-in;
@@ -81,135 +85,107 @@
             left: 50%;
         }
     }
-
-    .icon
+    .search_bar
     {
-        width: 2rem;
-        filter:invert(100%);
-        &:hover
-        {
-            cursor: pointer;
-            filter: invert(65%);
-            transition: filter .4s ease;
-        }
-    }
-}
-
-.search_bar
-{
-    @include m.flex($gap:.5rem);
-    background-color: c.$white;
-    padding: 1rem;
-    border: 1px solid c.$lightGrey;
-    border-radius: 1.2rem;
-    width: 100%;
-
-    &:focus-within
-    {
-        outline: 5px auto Highlight;
-        outline: 5px auto -webkit-focus-ring-color;
-    }
-
-    input[type="text"]
-    {
-        border:none;
-        &:focus
-        {
-            outline: none;
-        }
-    }
-}
-
-.nav_bar
-{
-    @include m.flex($direction: column, $align: center, $gap:.5rem);
-    width: 100%;
-    a
-    {
-        @include m.button_hover_fill(c.$green, c.$white, c.$lightGrey);
-        font-weight: t.$bold;
-    }
-}
-
-.result_container
-{
-    @include m.flex($direction: column, $align:center);
-    width:100%;
-
-    .search_result
-    {
+        @include m.flex($align: center, $gap:.5rem);
         background-color: c.$white;
-        color: c.$green;
-        border-bottom: 1px solid c.$green;
-        width: 100%;
         padding: 1rem;
-        font-weight: t.$bold;
-
-        &:hover
+        border: 1px solid c.$lightGrey;
+        border-radius: 1.2rem;
+        width: 100%;
+        i
         {
-            background-color: c.$green;
-            color: c.$white;
-            border: 1px solid c.$white;
-            transition: background-color .3s ease-in-out;
+            font-size: 2rem;
+            color: darken(c.$lightGrey,20%);
+            &:hover // Disable the default i tags hover appeareance
+            {
+                color: darken(c.$lightGrey,20%);
+            }
         }
-
-        &:first-child
+    
+        &:focus-within
         {
-            border-top-left-radius: 1.2rem;
-            border-top-right-radius: 1.2rem;
+            outline: 5px auto Highlight;
+            outline: 5px auto -webkit-focus-ring-color;
         }
-
-        &:last-child
+    
+        input[type="text"]
         {
-            border-bottom-left-radius: 1.2rem;
-            border-bottom-right-radius: 1.2rem;
+            border:none;
+            &:focus
+            {
+                outline: none;
+            }
         }
     }
-}
-
-
-.settings
-{
-    width: 100%;
-    @include m.reset-list();
-    @include m.flex($justify: space-evenly, $align: center, $gap:1rem);
-    .languages
+    
+    .nav_bar
     {
-        position: relative;
-        summary
+        @include m.flex($direction: column, $align: center, $gap:.5rem);
+        width: 100%;
+        a
         {
-            list-style: none;
-            color: c.$white;
-            img
+            @include m.button_hover_fill(c.$green, c.$white, c.$lightGrey);
+            font-weight: t.$bold;
+        }
+    }
+    
+    .result_container
+    {
+        @include m.flex($direction: column, $align:center);
+        width:100%;
+    
+        .search_result
+        {
+            background-color: c.$white;
+            color: c.$green;
+            border-bottom: 1px solid c.$green;
+            width: 100%;
+            padding: 1rem;
+            font-weight: t.$bold;
+    
+            &:hover
             {
-                display:inline;
+                background-color: c.$green;
+                color: c.$white;
+                border: 1px solid c.$white;
+                transition: background-color .3s ease-in-out;
             }
-            &::after
+    
+            &:first-child
             {
-                content: '\25BE';
-                padding: .3rem;
-                font-size: 2.4rem;
+                border-top-left-radius: 1.2rem;
+                border-top-right-radius: 1.2rem;
+            }
+    
+            &:last-child
+            {
+                border-bottom-left-radius: 1.2rem;
+                border-bottom-right-radius: 1.2rem;
             }
         }
-        &[open]
+    }
+
+    .settings
+    {
+        width: 100%;
+        @include m.reset-list();
+        @include m.flex($justify: space-evenly, $align: center, $gap:1rem);
+        .languages
         {
-            summary::after
+            position: relative;
+            &__list
             {
-                content:'\25B4';
-                font-size: 2.4rem;
+                @include m.flex($direction:column,$gap:.5rem);
+                position: absolute;
+                top: 120%;
+                left: 0;
+                transform: translateX(-50%);
             }
-        }
-        &__list
-        {
-            @include m.flex($direction:column,$gap:.5rem);
-            position: absolute;
-            top: 100%;
-            left: 0;
-            transform: translateX(-37%);
-        }
-        &--option
-        {
-            @include m.button_hover_fill(c.$green, c.$white, darken(c.$lightGrey,30%));
+            &--option
+            {
+                @include m.button_hover_fill(c.$green, c.$white, darken(c.$lightGrey,30%));
+            }
         }
     }
 }

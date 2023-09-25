@@ -45,20 +45,20 @@
     <script>
         const csrfToken = '{{ csrf_token }}'
     </script>
+    <!-- FontAwesome Kit CDN -->
+    <script src="https://kit.fontawesome.com/5302ad5c09.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="header">
         <img src="{% static 'dev_otion_app/img/Dev-otion_logo.svg' %}" alt="Dev-otion logo" class="logo">
         <details class="menu">
             <summary>
-                <svg width="117" height="117" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="menu_icon">
-                    <path d="M19 4a1 1 0 01-1 1H2a1 1 0 010-2h16a1 1 0 011 1zm0 6a1 1 0 01-1 1H2a1 1 0 110-2h16a1 1 0 011 1zm-1 7a1 1 0 100-2H2a1 1 0 100 2h16z"/>
-                </svg>
+                <i class="fa-solid fa-bars menu_icon"></i>
             </summary>
             <div class="menu_list">
-                <a href="{% url 'dev_otion_app:index' %}"><img src="{% static 'dev_otion_app/img/homepage.svg' %}" alt="homepage icon" class="icon"></a>
+                <a href="{% url 'dev_otion_app:index' %}"><i class="fa-solid fa-house-chimney"></i></a>
                 <div class="search_bar">
-                    <img src="{% static 'dev_otion_app/img/search.svg'%}" alt="Search icon" class="icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" placeholder="{% translate 'Search for a post' %}" class="search_input">
                 </div>
                 <div class="result_container"></div>
@@ -68,12 +68,12 @@
                 </nav>
                 <ul class="settings">
                     <li>
-                        <img src="{% static 'dev_otion_app/img/dark_mode.svg' %}" alt="dark mode button" class="dark_mode_button icon">
+                        <i class="fa-solid fa-circle-half-stroke dark_mode_button"></i>
                     </li>
                     <li>
                         <details class="languages">
                             <summary>
-                                <img src="{% static 'dev_otion_app/img/language_translation.svg' %}" alt="language translation button" class="icon">
+                                <i class="fa-solid fa-language"></i>
                             </summary>
                             <div class="languages__list">
                                 <a href="{{ reverted_urls|get_dict_item:'en' }}" class="languages--option">&#x1f1ec;&#x1f1e7; EN</a>
