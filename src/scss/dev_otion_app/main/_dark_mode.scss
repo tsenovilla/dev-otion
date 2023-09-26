@@ -17,10 +17,52 @@
         background-color: c.$darkGrey;
     }
 
+    .resume .resume_item 
+    {
+        h3,p,a
+        {
+            color: c.$white;
+        }
+    }
+
     .post-slider__slide
     {
         @include m.tablet
         {
+            color: c.$white;
+        }
+    }
+
+    .homepage_contact p
+    {
+        color: c.$white;
+    }
+
+
+    .topic_list .topic, .list_of_entries .entry
+    {
+        background-color: c.$darkGrey;
+        border-color: darken(c.$lightGrey,50%);
+        a
+        {
+            color: c.$white;
+        }
+    }
+
+    .contact_form fieldset
+    {
+        background-color: c.$darkGrey;
+        border-color: darken(c.$lightGrey,50%);
+
+        label
+        {
+            color: c.$white;
+        }
+
+        input[type="text"], textarea
+        {
+            background-color: c.$darkGrey;
+            border-color: darken(c.$lightGrey,50%);
             color: c.$white;
         }
     }

@@ -2,7 +2,7 @@
 @use '../base/typography' as t;
 @use '../base/mixins' as m;
 
-.topic-list
+.topic_list
 {
     @include m.flex($direction: column, $justify: center, $align: center, $gap: 1rem);
     @include m.tablet
