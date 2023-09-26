@@ -8,7 +8,7 @@ export default function post_slider(slider)
         slidesPerView:'auto',
         spaceBetween: 10,
         freeMode:true,
-        loop:true,
+        loop:false,
         centeredSlides:true,
     };
     if(window.innerWidth>=768) // Using breakpoints does not compleyely discard cards effect, leading into a weird performance of coverflow. Then it is better to provide two different objects depending on the screensize. We also take advantage of this conditional to destroy the navigation in small screensizes

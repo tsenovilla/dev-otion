@@ -1,0 +1,125 @@
+@use '../base/colors' as c;
+@use '../base/typography' as t;
+@use '../base/mixins' as m;
+
+.homepage_header
+{
+    @include m.flex($justify: space-evenly, $align: center, $gap: 1rem);
+    background: radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(67,253,29,1) 20%, rgba(252,69,208,1) 40%, rgba(69,183,252,1) 60%, rgba(252,69,85,1) 80%);
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 1rem;
+
+    img
+    {
+        width: 30vw;
+    }
+
+    h2
+    {
+        color: c.$white;
+    }
+}
+
+.resume
+{
+    padding: 2rem;
+
+    .resume_item
+    {
+        @include m.flex($direction: column, $align: center);
+        @include m.tablet
+        {
+            @include m.grid($areas: 'icon h3' 'icon p', $columns: 1fr 3fr, $gap: 1rem);
+        }
+        padding: 1rem;
+
+        h3,p
+        {
+            color: c.$black;
+        }
+
+        &>i
+        {
+            grid-area: icon;
+            color: c.$white;
+            background-color: c.$lightGreen;
+            width: 10rem;
+            height: 10rem;
+            padding: 4rem;
+            border-radius: 50%;
+            @include m.flex($justify: center, $align: center);
+            @include m.fluid-text(2rem, 4rem);
+            @include m.tablet
+            {
+                justify-self: center;
+            }
+        }
+
+        h3
+        {
+            grid-area: h3;
+            text-transform: uppercase;
+            position: relative;
+            &::after
+            {
+                content:'';
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                transform: translateX(-50%);
+                width: 10vw;
+                height: .1rem;
+                background-color: c.$lightGreen;
+            }
+        }
+
+        p
+        {
+            grid-area: p;
+            @include m.fluid-text(1.4rem, 1.8rem);
+            a
+            {
+                color: c.$black;
+                &:hover
+                {
+                    color: c.$green;
+                    transition: color .3s ease;
+                }
+            }
+        }
+    }
+}
+
+.homepage_contact
+{
+    position: relative;
+    &::before
+    {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-image: image-set(url(../img/contact-bkg.avif) 1x, url(../img/contact-bkg.webp) 1x, url(../img/contact-bkg.png) 1x);
+        background-size: cover;
+        background-position: center center;
+        opacity: .5;
+        z-index: -1;
+    }
+    padding: 2rem;
+    min-height: 40vh;
+    @include m.flex($direction: column, $align: center, $gap: 1rem);
+    p
+    {
+        color: c.$black;
+        @include m.fluid-text(1.8rem, 2.4rem);
+        font-weight: t.$bold;
+    }
+    a
+    {
+        @include m.button($bkg-color: c.$orange, $color: c.$white, $display: block, $darken-transition: true);
+        text-transform: uppercase;
+    }
+}

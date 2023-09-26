@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}
     Dev-otion
@@ -7,15 +8,50 @@
 
 {% block content %}
 <section class="section">
-    <h3>{% translate "Our latest posts" %}</h3>
-    <nav class="post-slider container swiper">
-        <div class="swiper-wrapper"> <!-- This div is needed by Swiper library, but does not provide any other functionality-->
-            {% for entry in last_entries %}
-                <a href="{% url 'dev_otion_app:entry' url=entry.url %}" class="post-slider__slide swiper-slide text-center" data-background="{{ entry.image }}">{{ entry.title }}</a>
-            {% endfor %}            
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-    </nav>
+    <article class="homepage_header">   
+        <img src="{% static 'dev_otion_app/img/Dev-otion_logo.svg' %}" alt="Dev-otion logo" class="logo">
+        <h2>{% translate "If you feel devotion for coding, this is your place" %} &#128540</h2>
+    </article>
+</section>
+<section class="section resume">
+    <article class="resume_item">
+        <i class="fa-solid fa-book-open"></i>
+        <h3>{% translate "Read" %}</h3>
+        <p>{% translate "Read our posts in order to discover how to solve a specific coding problem. Don't know where to start? You can dive into our site or simply pick one of our latests posts, we've left them down here for you!" %}</p>
+    </article>
+    <article class="container">
+        <nav class="post-slider container swiper">
+            <div class="swiper-wrapper"> <!-- This div is needed by Swiper library, but does not provide any other functionality-->
+                {% for entry in last_entries %}
+                    <a href="{% url 'dev_otion_app:entry' url=entry.url %}" class="post-slider__slide swiper-slide text-center" data-background="{{ entry.image }}">{{ entry.title }}</a>
+                {% endfor %}            
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </nav>
+    </article>
+    <article class="resume_item">
+        <i class="fa-solid fa-school"></i>
+        <h3>{% translate "Learn" %}</h3>
+        <p>{% translate "Some of our posts are harder than others, but all of them are written with the aim of providing the reader with a deep understanding about what is going on. Life is a continuous learning, this is not about what you already know but what you can learn, so if there's a post related to something that may interest you, enjoy it!" %}</p>
+    </article>
+    <article class="resume_item">
+        <i class="fa-solid fa-question"></i>
+        <h3>{% translate "Ask" %}</h3>
+        <p>{% translate "As humans, asking questions and communicating with others is a natural part of our lives. So whether you are looking for a specific topic on which we haven't yet written about, you have detected a mistake in one of our posts, or you just want to get in touch with us, we're here! Fill the form in the contact page and we'll be back to you as soon as possible." %}</p>
+    </article>
+    <article class="homepage_contact">
+        <p>{% translate "Do you want to tell us something?" %}</p>
+        <p>{% translate "We will let you know if we can help with it!" %}</p>
+        <a href="{% url 'dev_otion_app:contact' %}">{% translate "Contact" %}</a>
+    </article>
+    <article class="resume_item">
+        <i class="fa-solid fa-file-code"></i>
+        <h3>{% translate "Code!" %}</h3>
+        <p>
+            {% translate "We're developers! Once you've read a post, keep practicing what you have learned, it's the best way to improve your coding skills! If you have trouble with the code, the vast majority of the posts have a Github's repository containing the full example! Find them on" %}
+            <a href="https://github.com/dev-otion-app"><i class="fa-brands fa-github"></i> {% translate "Dev-otion Github page" %}</a>
+        </p>
+    </article>
 </section>
 {% endblock content %}

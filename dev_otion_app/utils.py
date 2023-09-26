@@ -20,8 +20,8 @@ def reverse_self_url(dev_otion_view, *, languages, current_language, languages_s
     - INPUTS:
         - dev_otion_view: <class 'Dev_otion_View'> The view calling this function, so in general this parameter will be valued to "self".
         - languages (kw argument): <class 'list'> A list containing the languages where the reversion is needed. Example: spanish->"es"
-        - languages_slugs (kw argument): <class 'dict'> If the url contain a slug that changes in each language, a dict containing them as values while the keys are the languages.
         - current_language (kw argument): <class 'str'> The language currently selected.
+        - languages_slugs (kw argument): <class 'dict'> If the url contain a slug that changes in each language, a dict containing them as values while the keys are the languages.
     - OUTPUT: <class 'dict'> A dictionary containing the reverted urls as values. The keys will be the related language 
     """
     reverted_urls = {}

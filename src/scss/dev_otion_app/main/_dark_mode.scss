@@ -16,4 +16,12 @@
         box-shadow: rgba(123, 123, 123, 0.751) 0px 2px 8px;
         background-color: c.$darkGrey;
     }
+
+    .post-slider__slide
+    {
+        @include m.tablet
+        {
+            color: c.$white;
+        }
+    }
 }

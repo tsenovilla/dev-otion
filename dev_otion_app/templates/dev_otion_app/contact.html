@@ -8,12 +8,12 @@
 {% block content %}
 <h1>{% translate "Contact us" %}</h1>
 <section class="section container narrow">
-    <p class="text-center">{% translate "If you got here looking for a post that is not yet published, let us know!" %}</p>
+    <p class="text-center">{% translate "If there's something that you want to share with us, let us know!" %}</p>
     {% if  alert %}
-        <div class="alert {{ alert_type }}">
+        <section class="alert {{ alert_type }}">
             <p>{{ alert }}</p>
             <button>X</button>
-        </div>
+        </section>
     {% endif %}
     <form action="{% url 'dev_otion_app:contact' %}" method="post" class="contact_form">
         {% csrf_token %}
