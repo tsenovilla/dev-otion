@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-10 19:32+0200\n"
+"POT-Creation-Date: 2023-09-26 16:14+0000\n"
 "Last-Translator: Tomás Senovilla Polo <tspscgs@gmail.com>\n"
 "Language: French\n"
 "MIME-Version: 1.0\n"
@@ -14,19 +14,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: dev_otion_app/templates/base.html:41
+#: dev_otion_app/templates/base.html:62
 msgid "Search for a post"
 msgstr "Recherche un article"
 
-#: dev_otion_app/templates/base.html:45
+#: dev_otion_app/templates/base.html:66
+#: dev_otion_app/templates/dev_otion_app/topics.html:7
 msgid "Topics"
 msgstr "Sujets"
 
-#: dev_otion_app/templates/base.html:46
+#: dev_otion_app/templates/base.html:67
+#: dev_otion_app/templates/dev_otion_app/contact.html:5
+#: dev_otion_app/templates/dev_otion_app/index.html:46
 msgid "Contact"
 msgstr "Contact"
 
-#: dev_otion_app/templates/base.html:76
+#: dev_otion_app/templates/base.html:97
 msgid "All rights reserved"
 msgstr "Tous droits réservés"
 
@@ -35,11 +38,8 @@ msgid "Contact us"
 msgstr "Contacte-nous"
 
 #: dev_otion_app/templates/dev_otion_app/contact.html:11
-msgid ""
-"If you got here looking for a post that is not yet published, let us know!"
-msgstr ""
-"Si tu es arrivé ici en cherchant un post mais il n'est pas encore publiqué, "
-"fais-nous en savoir"
+msgid "If there's something that you want to share with us, let us know!"
+msgstr "Si tu as envie de nous dire quelque chose, fais-nous en savoir"
 
 #: dev_otion_app/templates/dev_otion_app/contact.html:25
 msgid "Write your e-mail"
@@ -58,17 +58,105 @@ msgid "Submit"
 msgstr "Envoyer"
 
 #: dev_otion_app/templates/dev_otion_app/entry.html:11
-#: dev_otion_app/templates/dev_otion_app/entrybytopic.html:10
+#: dev_otion_app/templates/dev_otion_app/entrybytopic.html:11
 msgid "Back"
 msgstr "Retour"
 
-#: dev_otion_app/templates/dev_otion_app/entrybytopic.html:16
+#: dev_otion_app/templates/dev_otion_app/entrybytopic.html:17
 msgid "By"
 msgstr "Écrit par"
 
-#: dev_otion_app/templates/dev_otion_app/entrybytopic.html:17
+#: dev_otion_app/templates/dev_otion_app/entrybytopic.html:18
 msgid "Last update"
 msgstr "Dernière modification"
+
+#: dev_otion_app/templates/dev_otion_app/index.html:13
+msgid "If you feel devotion for coding, this is your place"
+msgstr ""
+"Si tu ressens de la dévotion pour la programmation, c'est ici que tu es chez "
+"toi"
+
+#: dev_otion_app/templates/dev_otion_app/index.html:19
+msgid "Read"
+msgstr "Lis"
+
+#: dev_otion_app/templates/dev_otion_app/index.html:20
+msgid ""
+"Read our posts in order to discover how to solve a specific coding problem. "
+"Don't know where to start? You can start diving into our site or simply pick "
+"one of our latests posts, we've left them down here for you!"
+msgstr ""
+"Lis nos publications pour découvrir comme résoudre des problèmes spécifiques "
+"liés à la programmation. Tu ne sais pas par où commencer? Explore notre "
+"website ou choisis l'une de nos dernières publications, on les a laissé ci-"
+"dessous pour toi!"
+
+#: dev_otion_app/templates/dev_otion_app/index.html:35
+msgid "Learn"
+msgstr "Apprendre"
+
+#: dev_otion_app/templates/dev_otion_app/index.html:36
+msgid ""
+"Some of our posts are harder than others, but all of them are written with "
+"the aim of providing the reader with a deep understanding about what is "
+"going on. Life is a continuous learning, this is not about what you already "
+"know but what you can learn. If there's a post related to something that may "
+"interest you, learn from it, but above everything else, enjoy it!"
+msgstr ""
+"Certains de nos articles sont plus compliqués que d'autres, mais tous sont "
+"rédigés dans le but d'apporter au lecteur une compréhension approfondie de "
+"ce qui se passe. La vie est un apprentissage permanent, il ne s'agit pas de "
+"ce que tu connais déjà, mais de ce que tu peux encore apprendre. Si tu "
+"tombes sur une publication qui t'intéresse, apprends-en, mais surtout, "
+"profites-en!"
+
+#: dev_otion_app/templates/dev_otion_app/index.html:40
+msgid "Ask"
+msgstr "Pose-nous des questions"
+
+#: dev_otion_app/templates/dev_otion_app/index.html:41
+msgid ""
+"As humans, asking questions and communicating with others is a natural part "
+"of our lives. So whether you are looking for a specific topic on which we "
+"haven't yet written about, you have detected a mistake in one of our posts, "
+"or you just want to get in touch with us, we're here! Fill the form in the "
+"contact page and we'll be back to you as soon as possible."
+msgstr ""
+"Comme des humains, poser des questions et discuter avec les autres font "
+"naturellement partie de nos vies. Que tu cherches un sujet sur lequel on n'a "
+"pas encore écrit, que t'aies trouvé une erreur dans une de nos publications, "
+"ou que tu veuilles simplement nous dire quelque chose, on est là ! Remplis "
+"le formulaire sur la page de contact et on t'enverra un message dès que "
+"possible."
+
+#: dev_otion_app/templates/dev_otion_app/index.html:44
+msgid "Do you want to tell us something?"
+msgstr "Est-ce que tu as envie de nous dire quelque chose?"
+
+#: dev_otion_app/templates/dev_otion_app/index.html:45
+msgid "We will let you know if we can help with it!"
+msgstr "Voyons si on peut t'aider!"
+
+#: dev_otion_app/templates/dev_otion_app/index.html:50
+msgid "Code!"
+msgstr "Programme!"
+
+#: dev_otion_app/templates/dev_otion_app/index.html:52
+msgid ""
+"We're developers! Once you've read a post, keep practicing what you have "
+"learned, it's the best way to improve your coding skills. If you have "
+"trouble with the code, some posts have a Github's repository containing the "
+"full example! Find them on the"
+msgstr ""
+"On est des développeurs! Une fois que tu aies lu une publication, il faudra "
+"mettre en pratique ce que tu as appris, c'est la meilleure façon d'améliorer "
+"tes compétences en programmation. Si tu rencontres un problème avec ton "
+"code, certains de nos articles ont un répertoire dans Github contenant "
+"l'exemple complet! Trouves-les sur "
+
+#: dev_otion_app/templates/dev_otion_app/index.html:53
+msgid "Dev-otion Github page"
+msgstr "Page de Github de Dev-otion"
 
 #: dev_otion_app/templates/dev_otion_app/topics.html:11
 msgid "What are you looking for?"
@@ -86,15 +174,15 @@ msgstr "entree/<slug:url>"
 msgid "contact"
 msgstr "contact"
 
-#: dev_otion_app/views.py:118
+#: dev_otion_app/views.py:140
 msgid "Thank you for your message! We will get back to you as soon as possible"
 msgstr "Merci pour ton message! On te contactera dès que possible"
 
-#: dev_otion_app/views.py:122
+#: dev_otion_app/views.py:144
 msgid "Something went wrong :( Please try again in a few minutes"
 msgstr ""
 "Quelque chose n'a pas marché :( Merci de ressayer dans quelques minutes"
 
-#: dev_otion_app/views.py:132
+#: dev_otion_app/views.py:154
 msgid "Message: "
 msgstr "Message: "
