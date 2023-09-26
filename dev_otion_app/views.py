@@ -63,6 +63,7 @@ class EntrybyTopicView(Dev_otion_View, ListView):
     
     def get_context_data(self):
         context = super().get_context_data()
+        context['topic'] = self.kwargs['url'].capitalize()
         context['entries'] = []
         for entry in self.object_list:
             match context['lang']:
