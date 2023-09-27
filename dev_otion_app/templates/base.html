@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang }}">
 <head>
     {% load static %}
     {% load i18n %}
@@ -39,8 +39,9 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{% static 'dev_otion_app/favicon/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
-    <!-- Title -->
+    <!-- Title and description-->
     <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="{% translate 'If you feel devotion for coding, this is your place' %}">
     <!-- To avoid CSRF issues when calling the search API, we have to inclide the app's csrf_token into our JS code. The easiest way is just to add this small script in the base template -->
     <script>
         const csrfToken = '{{ csrf_token }}'
