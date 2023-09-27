@@ -18,8 +18,7 @@ class Topics(models.Model):
         ## Override of save method in order to delete the former images. We also upload an Avif and a WebP version for those images. As we pass information from the pre_save to the post_save, it is better to override the method instead of using signals
         try:
             try: ## If we are updating, we get the paths to the former images, in order to delete them
-                before_update = Topics.objects.get(id = self.id)
-                former_image = before_update.image.url
+                former_image = Topics.objects.get(id = self.id).image.url
             except Topics.DoesNotExist:
                 pass
             super().save(*args, **kwargs)

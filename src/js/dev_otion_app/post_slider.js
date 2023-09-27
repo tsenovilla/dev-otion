@@ -48,7 +48,7 @@ export default function post_slider(slider)
     posts.forEach(post=>set_bkg_image(post)); // Set the bkg image for each post in the slider
     if(window.innerWidth<768)
     {
-        resize_cards(posts) // In small devices, the cards appear in a stack, so it's prettier if all cards have the same height
+        resize_cards(posts) // In small devices, the cards appear in a stack, so it's prettier if all cards have the same height (their heights depend on the content, so there may be contents longer than others)
     }
 }
 

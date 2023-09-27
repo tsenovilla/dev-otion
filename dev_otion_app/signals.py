@@ -2,7 +2,7 @@ from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 from .models import Topics,Entry
 import re
-from .utils import delete_former_image, image_improver
+from .utils import delete_former_image, image_improver, create_picture_tags_CKEditor
 
 ## Override of post_delete signal for Topics model, in order to delete images after deleting a db entry. We have to override the signal instead of the delete method in order to correctly delete images if we delete entries in bulk.
 @receiver(post_delete, sender=Topics)
@@ -23,20 +23,17 @@ def entry_modified_images_deletion(sender, instance, **kwargs):
         pass
     finally: ## No matters if the entry is new or not, we change the auto generated img tags for picture tags containing all the images versions. NOTE: To delete images, it's enough to look on the english content, but here we have to act over the other languages as well
         instance.content_english = re.sub('<img.*src="(?P<source>[^"]+)".*>', 
-                                lambda match: 
-                                f'<picture><source srcset="{match.group("source").split(".")[0]}.avif" type="image/avif"><source srcset="{match.group("source").split(".")[0]}.webp" type="image/webp"><img src="{match.group("source")}" alt="Blog image" loading="lazy"></picture>',
-                                instance.content_english
-                            )
+                                          lambda match: create_picture_tags_CKEditor(match.group("source"), "Blog image"), 
+                                          instance.content_english
+                                        )
         instance.content_spanish = re.sub('<img.*src="(?P<source>[^"]+)".*>', 
-                                lambda match: 
-                                f'<picture><source srcset="{match.group("source").split(".")[0]}.avif" type="image/avif"><source srcset="{match.group("source").split(".")[0]}.webp" type="image/webp"><img src="{match.group("source")}" alt="Imagen de blog" loading="lazy"></picture>',
-                                instance.content_spanish
-                            )
+                                            lambda match: create_picture_tags_CKEditor(match.group("source"), "Imagen de blog"),
+                                            instance.content_spanish
+                                        )
         instance.content_french = re.sub('<img.*src="(?P<source>[^"]+)".*>', 
-                                lambda match: 
-                                f'<picture><source srcset="{match.group("source").split(".")[0]}.avif" type="image/avif"><source srcset="{match.group("source").split(".")[0]}.webp" type="image/webp"><img src="{match.group("source")}" alt="Image de blog" loading="lazy"></picture>',
-                                instance.content_french
-                            )
+                                            lambda match: create_picture_tags_CKEditor(match.group("source"), "Image de blog"),
+                                            instance.content_french
+                                        )
 
 ## Override on post_save signal for Entry model, in order to improve the updated images getting webp and avif versions
 @receiver(post_save, sender=Entry)
