@@ -8,9 +8,9 @@ from django.utils.translation import gettext as _
 from django.templatetags.static import static
 import sib_api_v3_sdk
 from sib_api_v3_sdk.rest import ApiException
-from decouple import config
 from .models import Topics,Entry
 from .utils import reverse_self_url, ContactForm
+import os
 
 # This base View contains the common data used by each class in the app. The other views must inherit from it in first instance to retrieve this data, then from the specific general view needed.
 class Dev_otion_View(View):
@@ -41,7 +41,7 @@ class IndexView(Dev_otion_View, TemplateView):
                 case 'fr':
                     title = entry.title_french
                     url = entry.url_french
-            context['last_entries'].append({'title':title,'url':url,'image':static('dev_otion_app/img/'+ str(entry_topic.image))})
+            context['last_entries'].append({'title':title,'url':url,'image':entry_topic.image})
         return context
 
 class TopicsView(Dev_otion_View, ListView):
@@ -127,7 +127,7 @@ class ContactView(Dev_otion_View, TemplateView):
         context = super().get_context_data()
         if submitted_form.is_valid(): # If the form is well filled, we try to send an e-mail to dev-otion with the requested post. We use Brevo as mail provider
             configuration = sib_api_v3_sdk.Configuration()
-            configuration.api_key['api-key'] = config('BREVO_API_KEY')
+            configuration.api_key['api-key'] = os.environ['BREVO_API_KEY']
             api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
             subject = 'New post request'
             sender = {'email':'tspscgs@gmail.com'}
