@@ -3,6 +3,7 @@ node_modules
 __pycache__
 .env
 migrations/
+media/
 dev_otion_app/static/dev_otion_app/*
 !dev_otion_app/static/dev_otion_app/favicon/
 *.mo

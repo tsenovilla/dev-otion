@@ -94,8 +94,8 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = str(BASE_DIR) + "/static/"
-MEDIA_URL = "dev_otion_app/static/dev_otion_app/img/"
-MEDIA_ROOT = str(BASE_DIR) + "/dev_otion_app/static/dev_otion_app/img/"
+MEDIA_URL = "media/"
+MEDIA_ROOT = str(BASE_DIR) + "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
