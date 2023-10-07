@@ -1,4 +1,55 @@
 //Fonts
+@font-face {
+    font-family: 'Ysabeau Office';
+    src: url('../fonts/YsabeauOffice-Regular.eot');
+    src: url('../fonts/YsabeauOffice-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/YsabeauOffice-Regular.woff2') format('woff2'),
+        url('../fonts/YsabeauOffice-Regular.woff') format('woff'),
+        url('../fonts/YsabeauOffice-Regular.ttf') format('truetype'),
+        url('../fonts/YsabeauOffice-Regular.svg#YsabeauOffice-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ysabeau Office';
+    src: url('../fonts/YsabeauOffice-Bold.eot');
+    src: url('../fonts/YsabeauOffice-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/YsabeauOffice-Bold.woff2') format('woff2'),
+        url('../fonts/YsabeauOffice-Bold.woff') format('woff'),
+        url('../fonts/YsabeauOffice-Bold.ttf') format('truetype'),
+        url('../fonts/YsabeauOffice-Bold.svg#YsabeauOffice-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ysabeau Office';
+    src: url('../fonts/YsabeauOffice-Light.eot');
+    src: url('../fonts/YsabeauOffice-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/YsabeauOffice-Light.woff2') format('woff2'),
+        url('../fonts/YsabeauOffice-Light.woff') format('woff'),
+        url('../fonts/YsabeauOffice-Light.ttf') format('truetype'),
+        url('../fonts/YsabeauOffice-Light.svg#YsabeauOffice-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ysabeau Office';
+    src: url('../fonts/YsabeauOffice-Black.eot');
+    src: url('../fonts/YsabeauOffice-Black.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/YsabeauOffice-Black.woff2') format('woff2'),
+        url('../fonts/YsabeauOffice-Black.woff') format('woff'),
+        url('../fonts/YsabeauOffice-Black.ttf') format('truetype'),
+        url('../fonts/YsabeauOffice-Black.svg#YsabeauOffice-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
 $main_font: 'Ysabeau Office', sans-serif;
 
 // Weights
