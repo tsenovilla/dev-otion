@@ -45,6 +45,20 @@ function export_js() {
                 const entry_route = './src/js/'+appName+'/app.js';
                 webpack(
                 {
+                    module:
+                    {
+                        rules:
+                        [
+                            {
+                                test: /\.css$/i,
+                                use:
+                                [
+                                    'style-loader',
+                                    'css-loader'
+                                ]
+                            }
+                        ]
+                    },
                     mode:'production',
                     entry:entry_route
                 })

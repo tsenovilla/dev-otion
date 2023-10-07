@@ -20,7 +20,7 @@
         <p>{% translate "Read our posts in order to discover how to solve a specific coding problem. Don't know where to start? You can start diving into our site or simply pick one of our latests posts, we've left them down here for you!" %}</p>
     </article>
     <article class="container">
-        <nav class="post-slider container swiper">
+        <nav class="post-slider swiper">
             <div class="swiper-wrapper"> <!-- This div is needed by Swiper library, but does not provide any other functionality-->
                 {% for entry in last_entries %}
                     <a href="{% url 'dev_otion_app:entry' url=entry.url %}" class="post-slider__slide swiper-slide text-center" data-background="{{ entry.image.url }}">{{ entry.title }}</a>

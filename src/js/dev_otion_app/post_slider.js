@@ -1,12 +1,18 @@
+import Swiper from 'swiper';
+import { Navigation, EffectCoverflow, EffectCards } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/effect-cards';
 /**
- * This function activates the slider via Swiper
+ * This function creates the slider via Swiper
  * @param {HTMLElement} slider 
  */
 export default function post_slider(slider)
 {
     let swiper_config = {
         slidesPerView:'auto',
-        spaceBetween: 10,
+        spaceBetween: 15,
         freeMode:true,
         loop:false,
         centeredSlides:true,
@@ -43,12 +49,20 @@ export default function post_slider(slider)
         slider.querySelector('.swiper-button-prev').remove();
         slider.querySelector('.swiper-button-next').remove();
     }
-    new Swiper(slider, swiper_config);
+
+    Swiper.use([Navigation, EffectCoverflow, EffectCards]);
+    const swiper = new Swiper(slider, swiper_config);
     const posts = slider.querySelectorAll('.post-slider__slide');
     posts.forEach(post=>set_bkg_image(post)); // Set the bkg image for each post in the slider
-    if(window.innerWidth<768)
+    if(window.innerWidth>=768)
     {
-        resize_cards(posts) // In small devices, the cards appear in a stack, so it's prettier if all cards have the same height (their heights depend on the content, so there may be contents longer than others)
+        const prev_button = document.querySelector('.swiper-button-prev');
+        prev_button.setAttribute('style','display:none'); // First time the page is loaded, the prev_button should not be visible
+        swiper.on('transitionEnd', swiper_buttons_handler); // In bigger devices, Navigation is activated, then we have to handle the navigation buttons (neither show the previous one if there's not a left element, nor the last one if there's not a right element)
+    }
+    else
+    {
+        resize_cards(posts); // In small devices, the cards appear in a stack, so it's prettier if all cards have the same height (their heights depend on the content, so there may be contents longer than others)
     }
 }
 
@@ -74,4 +88,27 @@ function resize_cards(cards)
     cards.forEach(card=>heights.push(card.getBoundingClientRect().height));
     const max_height = Math.max(...heights);
     cards.forEach(card=>card.style.setProperty('height', `${max_height}px`));
+}
+
+function swiper_buttons_handler(swiper)
+{
+    const prev_button = document.querySelector('.swiper-button-prev');
+    const next_button = document.querySelector('.swiper-button-next');
+    if (swiper.activeIndex == 0)
+    {
+        prev_button.setAttribute('style','display:none');
+    }
+    else
+    {
+        prev_button.removeAttribute('style');
+    }
+
+    if(swiper.isEnd)
+    {
+        next_button.setAttribute('style','display:none');
+    }
+    else
+    {
+        next_button.removeAttribute('style');
+    }
 }

@@ -4,18 +4,18 @@
 
 :root
 {
-    --swiper-navigation-size: 3rem; // Overwrite the navigation size variable in order to adjust swiper buttons size
+    --swiper-navigation-size: 3rem !important; // Overwrite the navigation size variable in order to adjust swiper buttons size. !important is needed as otherwise Swiper styles will overwrite this one (as they are added with the JS webpack bundle. There's no other way as we cannot increase the specifity for the :root selector.
 }
 
 .post-slider
 {
-    &__slide
+    &__slide.swiper-slide
     {
         padding: 2rem;
         color: c.$black;
         font-weight: t.$bold;
         font-size: 1.8rem;
-        width: 30vw;
+        width: 35vw;
         min-height: 15vh;
         position: relative;
         border-radius: 1rem;

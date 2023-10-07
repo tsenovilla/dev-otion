@@ -11,6 +11,7 @@
   "author": "Tomás Senovilla Polo",
   "license": "MIT",
   "devDependencies": {
+    "css-loader": "^6.8.1",
     "cssnano": "^6.0.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
@@ -25,6 +26,8 @@
     "gulp-terser-js": "^5.2.2",
     "gulp-webp": "^4.0.1",
     "sass": "^1.63.6",
+    "style-loader": "^3.3.3",
+    "swiper": "^10.3.1",
     "webpack-stream": "^7.0.0"
   }
 }
