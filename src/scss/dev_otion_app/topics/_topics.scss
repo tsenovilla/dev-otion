@@ -14,21 +14,21 @@
     {
         @include m.grid($columns: repeat(3,1fr), $gap: 2rem);
     }
-}
 
-.topic
-{
-    @include m.flex($align: center, $gap:.5rem);
-    @include m.card;
-
-    &__image
+    .topic
     {
-        height: 10rem;
-        width: auto;
-    }
+        @include m.flex($align: center, $gap:.5rem);
+        @include m.card;
 
-    a
-    {
-        @include m.link;
+        &__image
+        {
+            height: 10rem;
+            width: auto;
+        }
+
+        a
+        {
+            @include m.link;
+        }
     }
 }

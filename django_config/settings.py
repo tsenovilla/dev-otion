@@ -29,7 +29,8 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware"
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_config.middleware.CKEditorMiddleware"
 ]
 
 ROOT_URLCONF = "django_config.urls"
@@ -102,6 +103,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CKEDITOR_UPLOAD_PATH = "ckeditor/"
 CKEDITOR_SLUGIFY_FILENAME = False
 CKEDITOR_FILENAME_GENERATOR = 'django_config.utils.unique_filename'
+CKEDITOR_RESTRICT_BY_DATE = False
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full'

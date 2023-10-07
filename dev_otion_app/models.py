@@ -55,3 +55,8 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.title_english
+    
+class CKEditorEntryImages(models.Model):
+    ## Helper db where CKEditor's uploaded images are linked to their related entry, or to null if they don't appear in any entry, thus if they must be erased from the server 
+    name = models.CharField(max_length = 250)
+    entry = models.ForeignKey(Entry, on_delete = models.CASCADE, null = True)

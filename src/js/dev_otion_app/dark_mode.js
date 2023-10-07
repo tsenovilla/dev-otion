@@ -27,7 +27,7 @@ export default function()
     {
         enable_light_theme();
     }
-    if(!default_light_theme.matches || sessionStorage.getItem('dark_mode')==='activated')
+    else if(!default_light_theme.matches || sessionStorage.getItem('dark_mode')==='activated')
     {
         enable_dark_theme();
     }
