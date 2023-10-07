@@ -7,4 +7,5 @@ media/
 dev_otion_app/static/dev_otion_app/*
 !dev_otion_app/static/dev_otion_app/favicon/
 !dev_otion_app/static/dev_otion_app/fonts/
+!dev_otion_app/static/dev_otion_app/icons/
 *.mo
