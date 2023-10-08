@@ -3,9 +3,13 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-5@ql9az*d^lm58m1f!2k)9e+4iy2^1(&bp6h!jv0jghpivct=8"
-
 DEBUG = True
+
+if DEBUG:
+    from dotenv import load_dotenv
+    load_dotenv()
+
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 ALLOWED_HOSTS = []
 
