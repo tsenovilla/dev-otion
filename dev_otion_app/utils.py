@@ -4,6 +4,7 @@ from django import forms
 from pathlib import Path
 from uuid import uuid4
 import os
+import re
 from PIL import Image
 import pillow_avif
 
@@ -63,14 +64,14 @@ def delete_former_image(former_image: str):
     except:
         pass
 
-def create_picture_tags_CKEditor(url: str, alt_text: str) -> str:
+def create_picture_tags_CKEditor(db_entry: str, alt_text: str) -> str:
     """
     This function is used to transform the img tags created after an image upload by CKEditor into a picture tag containing AVIF, WebP and the original image tag. 
-    :param url: The url where the image is located.
+    :param db_entry: The db_entry where the image's been loaded.
     :param alt_text: The alternative text that must be shown if the image is not found.
     :return: A string containing the obtained picture tag
     """
-    return f'<picture><source srcset="{url.split(".")[0]}.avif" type="image/avif"><source srcset="{url.split(".")[0]}.webp" type="image/webp"><img src="{url}" alt="{alt_text}" loading="lazy"></picture>'
+    return re.sub('<img.*src="(?P<source>[^"]+)".*>',lambda match: f'<picture><source srcset="{match.group("source").split(".")[0]}.avif" type="image/avif"><source srcset="{match.group("source").split(".")[0]}.webp" type="image/webp"><img src="{match.group("source")}" alt="{alt_text}" loading="lazy"></picture>', db_entry)
 
 class ContactForm(forms.Form):
     """

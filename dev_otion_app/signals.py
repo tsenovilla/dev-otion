@@ -22,18 +22,9 @@ def entry_modified_images_deletion(sender, instance, **kwargs):
     except Entry.DoesNotExist:
         pass
     finally: ## No matters if the entry is new or not, we change the auto generated img tags for picture tags containing all the images versions. NOTE: To delete images, it's enough to look on the english content, but here we have to act over the other languages as well
-        instance.content_english = re.sub('<img.*src="(?P<source>[^"]+)".*>', 
-                                          lambda match: create_picture_tags_CKEditor(match.group("source"), "Blog image"), 
-                                          instance.content_english
-                                        )
-        instance.content_spanish = re.sub('<img.*src="(?P<source>[^"]+)".*>', 
-                                            lambda match: create_picture_tags_CKEditor(match.group("source"), "Imagen de blog"),
-                                            instance.content_spanish
-                                        )
-        instance.content_french = re.sub('<img.*src="(?P<source>[^"]+)".*>', 
-                                            lambda match: create_picture_tags_CKEditor(match.group("source"), "Image de blog"),
-                                            instance.content_french
-                                        )
+        instance.content_english = create_picture_tags_CKEditor(instance.content_english, 'Blog image')
+        instance.content_spanish = create_picture_tags_CKEditor(instance.content_spanish, 'Imagen de blog')
+        instance.content_french = create_picture_tags_CKEditor(instance.content_french, 'Image de blog')
 
 ## Override on post_save signal for Entry model, in order to improve the updated images getting webp and avif versions, as well as link the images with the entry in the helper db CKEditorEntryImages. We also delete all images contained in the helper db that are not linked to any entry (db/server cleaning. These images have been loaded in an uncompleted post, so they are taking server space with no use)
 @receiver(post_save, sender=Entry)
