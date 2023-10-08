@@ -4,20 +4,30 @@
 
 .homepage_header
 {
-    @include m.flex($justify: space-evenly, $align: center, $gap: 1rem);
+    @include m.flex($direction: column, $justify: center, $align: center, $gap: 1rem);
     background: radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(67,253,29,1) 20%, rgba(252,69,208,1) 40%, rgba(69,183,252,1) 60%, rgba(252,69,85,1) 80%);
     margin-left: 1rem;
     margin-right: 1rem;
     border-radius: 1rem;
+    padding: 1rem;
 
     img
     {
-        width: 30vw;
+        width: 60vw;
     }
 
     h1
     {
         color: c.$white;
+    }
+
+    @include m.tablet
+    {
+        flex-direction: row;
+        img
+        {
+            width: 30vw;
+        }
     }
 }
 
