@@ -6,7 +6,8 @@
     "compile_css": "gulp compile_css",
     "dev": "gulp dev",
     "improve_images": "gulp improve_images",
-    "export_js": "gulp export_js"
+    "export_js": "gulp export_js",
+    "build_static":"gulp build_static"
   },
   "author": "Tomás Senovilla Polo",
   "license": "MIT",

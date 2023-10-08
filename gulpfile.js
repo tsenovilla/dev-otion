@@ -141,3 +141,4 @@ exports.compile_css = compile_css;
 exports.export_js = export_js;
 exports.dev = dev;
 exports.improve_images = parallel(images,webpversion,avifversion); 
+exports.build_static = parallel(compile_css, export_js, this.improve_images)
