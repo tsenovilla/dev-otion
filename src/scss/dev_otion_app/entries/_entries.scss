@@ -7,4 +7,9 @@
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     background-color: c.$white;
     padding: 1rem 2rem;
+
+    pre
+    {
+        max-height: 50vh;
+    }
 }

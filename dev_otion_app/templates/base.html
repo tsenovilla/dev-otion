@@ -13,9 +13,11 @@
     <link rel="stylesheet" href="{% static 'dev_otion_app/icons/css/fontawesome.css' %}">
     <link rel="stylesheet" href="{% static 'dev_otion_app/icons/css/solid.css' %}">
     <link rel="stylesheet" href="{% static 'dev_otion_app/icons/css/brands.css' %}">
-    <!-- Code highlighting stylesheets -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-light.min.css" class="light_code_highlight">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/panda-syntax-dark.min.css" class="dark_code_highlight">
+    <!-- Code highlighting stylesheets (Prism.js themes)-->
+    <link rel="preload" href="{% static 'dev_otion_app/prism.js/css/prism-default.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'dev_otion_app/prism.js/css/prism-default.css' %}" class="light_code_highlight">
+    <link rel="preload" href="{% static 'dev_otion_app/prism.js/css/prism-tomorrow-night.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'dev_otion_app/prism.js/css/prism-tomorrow-night.css' %}" class="dark_code_highlight">
     <!-- Custom stylesheets -->
     <link rel="preload" href="{% static 'dev_otion_app/css/styles.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'dev_otion_app/css/styles.css' %}">
@@ -54,10 +56,10 @@
             </summary>
             <div class="menu_list">
                 <a href="{% url 'dev_otion_app:index' %}"><i class="fa-solid fa-house-chimney"></i></a>
-                <div class="search_bar">
+                <form class="search_bar">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" placeholder="{% translate 'Search for a post' %}" class="search_input">
-                </div>
+                </form>
                 <div class="result_container"></div>
                 <nav class="nav_bar">
                     <a href="{% url 'dev_otion_app:topics' %}">{% translate "Topics" %}</a>
@@ -94,8 +96,6 @@
             <p>&copy; {{ year }}  Dev-otion. {% translate "All rights reserved" %}</p>
         </div>
     </footer>
-    <!-- Highlight.JS CDN -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="{% static 'dev_otion_app/js/main.js' %}"></script>
 </body>
 </html>

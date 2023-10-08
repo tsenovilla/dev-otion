@@ -87,7 +87,7 @@ msgstr ""
 "Lee nuestras publicaciones para descubrir como resolver problemas "
 "relacionados con el mundo de la programación. ¿No sabes por donde empezar? "
 "Puedes lanzarte a descubrir nuestra web o simplemente seleccionar una de las "
-"últimas publicaciones, ¡las hemos dejado aquí debajo para ti!"
+"últimas publicaciones, ¡te las hemos dejado aquí debajo!"
 
 #: dev_otion_app/templates/dev_otion_app/index.html:35
 msgid "Learn"

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}
     {{ title }}
@@ -13,4 +14,6 @@
 <section class="section">
     <article class="blog_entry container">{{ content|safe }}</article>
 </section>
+<!-- The script containing the code highlighting logic (Prism.js) -->
+<script src="{% static 'dev_otion_app/prism.js/js/prism.js' %}"></script>
 {% endblock content %}
