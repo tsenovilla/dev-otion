@@ -5,14 +5,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
 
-if DEBUG:
-    from dotenv import load_dotenv
-    load_dotenv()
-
-SECRET_KEY = os.environ["SECRET_KEY"]
-
-ALLOWED_HOSTS = []
-
 INSTALLED_APPS = [
     "ckeditor",
     "ckeditor_uploader",
@@ -24,6 +16,79 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles"
 ]
+
+if DEBUG:
+    from dotenv import load_dotenv
+    load_dotenv()
+
+    SECRET_KEY = "django-insecure-5@ql9az*d^lm58m1f!2k)9e+4iy2^1(&bp6h!jv0jghpivct=8"
+
+    DATABASES = {
+        "default":
+        {
+            "ENGINE":"django.db.backends.mysql",
+            "HOST":os.environ["DB_HOST"],
+            "NAME":os.environ["DB_NAME"],
+            "USER":os.environ["DB_USER"],
+            "PASSWORD":os.environ["DB_PASS"]
+        }
+    }
+
+    STATIC_URL = "static/"
+    STATIC_ROOT = os.path.join(BASE_DIR,'static')
+    MEDIA_URL = "media/"
+    MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+else:
+    import dj_database_url
+    import sys
+
+    SECRET_KEY = os.getenv("SECRET_KEY")
+    ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS","").split(",")
+
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+
+    INSTALLED_APPS.append("storages")
+
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "console": {
+                "class": "logging.StreamHandler",
+            },
+        },
+        "root": {
+            "handlers": ["console"],
+            "level": "WARNING",
+        },
+    }
+
+    if len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+        if os.getenv("DATABASE_URL", None) is None:
+            raise Exception("DATABASE_URL environment variable not defined")
+        DATABASES = {
+            "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        }
+
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = "dev-otion-files"
+    AWS_S3_ENDPOINT_URL = "https://nyc3.digitaloceanspaces.com"
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": "max-age=86400",
+    }
+    AWS_LOCATION = "static"
+    STATIC_URL = "%s/%s/" % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+    STATICFILES_STORAGE = "django_config.storages.StaticStorage"
+    MEDIA_URL = "%s/media/" % AWS_S3_ENDPOINT_URL
+    DEFAULT_FILE_STORAGE = "django_config.storages.PublicMediaStorage"
+    CKEDITOR_BASEPATH = "%s/dev-otion-files/static/ckeditor/ckeditor/" % AWS_S3_ENDPOINT_URL
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -57,17 +122,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "django_config.wsgi.application"
 
-DATABASES = {
-    "default":
-    {
-        "ENGINE":"django.db.backends.mysql",
-        "HOST":os.environ["DB_HOST"],
-        "NAME":os.environ["DB_NAME"],
-        "USER":os.environ["DB_USER"],
-        "PASSWORD":os.environ["DB_PASS"]
-    }
-}
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -96,11 +150,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
-MEDIA_URL = "media/"
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

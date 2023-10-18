@@ -69,8 +69,7 @@ export default function post_slider(slider)
 function set_bkg_image(post)
 {
     const route = post.getAttribute('data-background');
-    const image_set = 'image-set(url('+route.split('.')[0]+'.avif) 1x, url(' + route.split('.')[0]+'.webp) 1x, url(' + route +')1x)'
-    'image-set(url('+route.split('.')[0]+'.avif) 1x, url(' + route.split('.')[0]+'.webp) 1x, url(' + route +')1x)';
+    const image_set = 'image-set(url('+route.split('.').slice(0,-1).join('.')+'.avif) 1x, url(' + route.split('.').slice(0,-1).join('.')+'.webp) 1x, url(' + route +')1x)';
     
     if (window.innerWidth>=768)
     {

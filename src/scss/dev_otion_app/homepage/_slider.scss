@@ -21,19 +21,19 @@
         border-radius: 1rem;
         &:nth-child(4n)
         {
-            background-color: lighten(c.$redCard,20%);
+            background-color: lighten(c.$redCard,35%);
         }
         &:nth-child(4n+1)
         {
-            background-color: lighten(c.$blueCard,20%);
+            background-color: lighten(c.$blueCard,35%);
         }
         &:nth-child(4n+2)
         {
-            background-color: lighten(c.$greenCard,20%);
+            background-color: lighten(c.$greenCard,35%);
         }
         &:nth-child(4n+3)
         {
-            background-color: lighten(c.$yellowCard,20%);
+            background-color: lighten(c.$yellowCard,35%);
         }
         @include m.tablet
         {
@@ -58,11 +58,7 @@
             background-position: left;
             border-radius: 1rem;
             z-index:-1;
-            opacity: .4;
-            @include m.tablet
-            {
-                opacity: .6;
-            }
+            opacity: .6;
         }
     }
 

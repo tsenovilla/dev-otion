@@ -23,11 +23,20 @@ export default function()
 {
     const button = document.querySelector('.dark_mode_button');
     const default_light_theme = window.matchMedia('(prefers-color-scheme:light)');
-    if(default_light_theme.matches || sessionStorage.getItem('dark_mode')==='deactivated')
+    if(default_light_theme.matches)
     {
         enable_light_theme();
     }
-    else if(!default_light_theme.matches || sessionStorage.getItem('dark_mode')==='activated')
+    else if(!default_light_theme.matches)
+    {
+        enable_dark_theme();
+    }
+
+    if(sessionStorage.getItem('dark_mode')==='deactivated')
+    {
+        enable_light_theme();
+    }
+    else if(sessionStorage.getItem('dark_mode')==='activated')
     {
         enable_dark_theme();
     }

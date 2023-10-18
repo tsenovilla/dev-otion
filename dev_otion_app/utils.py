@@ -1,12 +1,16 @@
 from django.utils.translation import activate
 from django.urls import reverse
 from django import forms
-from pathlib import Path
 from uuid import uuid4
 import os
 import re
 from PIL import Image
+from django_config.settings import BASE_DIR, DEBUG
 import pillow_avif
+
+if not DEBUG:
+    from django.core.files.storage import default_storage as storage
+    from io import BytesIO
 
 def unique_image_name (instance, filename:str) -> str:
     """
@@ -35,32 +39,53 @@ def reverse_self_url(dev_otion_view, *, languages: list, current_language: str, 
     activate(current_language) ## We have activated several languages in order to revert urls, so we have to reactivate the original language
     return reverted_urls
 
-def image_improver(image: str):
+def image_improver(image: Image, path: str):
     """
     This function is called when a new image is uploaded to the server in order to obtain WebP and AVIF versions for this image, improving the web performance
-    :param image: The path to the uploaded image
+    :param image: The uploaded image.
+    :param path: The relative path to the image in the server where images are hosted.
     """
-    image_path = str(Path(__file__).resolve().parent.parent) + image
-    pillow_image = Image.open(image_path)
-    pillow_image.save(f'{image_path.split(".")[0]}.webp', format='WEBP')
-    pillow_image.save(f'{image_path.split(".")[0]}.avif', format='AVIF', codec = 'rav1e', quality = 70) 
-    ## Following the recommendations from pillow_avif's creator, we set codec and quality
+    if DEBUG: ## In dev mode, we can directly save the images in the localhost using PILLOW
+        image.save(f'{path.split(".")[0]}.webp', format='WEBP')
+        image.save(f'{path.split(".")[0]}.avif', format='AVIF', codec = 'rav1e', quality = 60) 
+        ## Following the recommendations from pillow_avif's creator, we set codec and quality
+    else: ## However, in prod, as the images are stored in an external server, we must save the images in bytes buffers and then save those buffers into storage. Otherwise, the image's not being saved.
+        webp_buffer = BytesIO()
+        avif_buffer = BytesIO()
+        image.save(webp_buffer, format='WEBP')
+        image.save(avif_buffer, format='AVIF', codec = 'rav1e', quality = 60) 
+        ## Following the recommendations from pillow_avif's creator, we set codec and quality
+        webp_file = storage.open(path.split('.')[0]+'.webp', 'w')
+        webp_file.write(webp_buffer.getvalue())
+        webp_file.close()
+        avif_file = storage.open(path.split('.')[0]+'.avif', 'w')
+        avif_file.write(avif_buffer.getvalue())
+        avif_file.close()
 
 def delete_former_image(former_image: str):
     """
     This function is used to delete images hosted in the server which are not longer required. It deletes all existing image's versions (jpg, png, webp, avif,...)
-    :param former_image: The path to the image whose versions must be deleted.
+    :param former_image: The image whose versions must be deleted. If working in localhost, the relative path from the root directory to the image must be provided. In production, the relative path from DEFAULT_FILE_STORAGE must be provided.
     """
     try:
-        os.remove(str(Path(__file__).resolve().parent.parent)+former_image)
+        if DEBUG:
+            os.remove(str(BASE_DIR)+former_image)
+        else:
+            storage.delete(former_image)
+    except Exception:
+        pass
+    try:
+        if DEBUG:
+            os.remove(str(BASE_DIR)+former_image.split('.')[0]+'.webp')
+        else:
+            storage.delete(former_image.split('.')[0]+'.webp')
     except:
         pass
     try:
-        os.remove((str(Path(__file__).resolve().parent.parent)+former_image).split('.')[0]+'.webp')
-    except:
-        pass
-    try:
-        os.remove((str(Path(__file__).resolve().parent.parent)+former_image).split('.')[0]+'.avif')
+        if DEBUG:
+            os.remove(str(BASE_DIR)+former_image.split('.')[0]+'.avif')
+        else:
+            storage.delete(former_image.split('.')[0]+'.avif')
     except:
         pass
 
@@ -71,7 +96,7 @@ def create_picture_tags_CKEditor(db_entry: str, alt_text: str) -> str:
     :param alt_text: The alternative text that must be shown if the image is not found.
     :return: A string containing the obtained picture tag
     """
-    return re.sub('<img.*src="(?P<source>[^"]+)".*>',lambda match: f'<picture><source srcset="{match.group("source").split(".")[0]}.avif" type="image/avif"><source srcset="{match.group("source").split(".")[0]}.webp" type="image/webp"><img src="{match.group("source")}" alt="{alt_text}" loading="lazy"></picture>', db_entry)
+    return re.sub('<img.*src="(?P<source>[^"?]+).*>',lambda match: f'<picture><source srcset="{".".join(match.group("source").split(".")[:-1:])}.avif" type="image/avif"><source srcset="{".".join(match.group("source").split(".")[:-1:])}.webp" type="image/webp"><img src="{match.group("source")}" alt="{alt_text}" loading="lazy"></picture>', db_entry)
 
 class ContactForm(forms.Form):
     """

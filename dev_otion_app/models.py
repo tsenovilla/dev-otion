@@ -4,6 +4,11 @@ from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from PIL import Image
 from .utils import unique_image_name, delete_former_image, image_improver
+from django_config.settings import DEBUG
+
+if not DEBUG:
+    from io import BytesIO
+    from django.core.files.storage import default_storage as storage
 
 class Topics(models.Model):
     name = models.CharField(max_length=250)
@@ -18,22 +23,26 @@ class Topics(models.Model):
         ## Override of save method in order to delete the former images. We also upload an Avif and a WebP version for those images. As we pass information from the pre_save to the post_save, it is better to override the method instead of using signals
         try:
             try: ## If we are updating, we get the paths to the former images, in order to delete them
-                former_image = Topics.objects.get(id = self.id).image.url
+                former_image = Topics.objects.get(id = self.id).image.name
             except Topics.DoesNotExist:
                 pass
             super().save(*args, **kwargs)
-            img = Image.open(self.image.path)
-            img2 = img.resize((200,200))
-            img2.save(self.image.path)
         except: 
             pass
         else:  ## If there's not error when saving, we try to create avif/webp versions for the images. We also try to delete the former images if they exists
             try:
-                if self.image.url != former_image: ## There's a new image
-                    delete_former_image(former_image)
-                    image_improver(self.image.url)
+                if self.image.name != former_image: ## There's a new image
+                    if DEBUG:
+                        delete_former_image('/media/'+former_image)
+                        image_improver(Image.open(self.image), 'media/'+self.image.name)
+                    else:
+                        delete_former_image(former_image)
+                        image_improver(Image.open(self.image), self.image.name)
             except NameError:
-                image_improver(self.image.url) ## No former image means new object, so we have to create the improved images, as the path will never be empty, this creates the avif/webp versions   
+                if DEBUG:
+                    image_improver(Image.open(self.image), 'media/'+self.image.name) ## No former image means new object, so we have to create the improved images, as the path will never be empty, this creates the avif/webp versions   
+                else:
+                    image_improver(Image.open(self.image), self.image.name)
 
     def __str__(self):
         return self.name
