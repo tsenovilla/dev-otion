@@ -14,7 +14,7 @@ In order to make the project work correctly in a localhost, there's a few steps 
 
 1. If you are running a local clone, create a virtual environment using `Python 3.11.3` and run `pip install -r requirements.txt` to install all the Python development dependencies. 
 
-2. Run `npm init` to install the node dependencies needed for development. Then, run `npm run build_static` to build all the static fields from the `src` folder. Now you can use the following commands when developing:
+2. Run `npm install` to install the node dependencies needed for development. Then, run `npm run build_static` to build all the static fields from the `src` folder. Now you can use the following commands when developing:
 
     - `npm run compile_css`: To compile all the **SCSS** files from the `src` folder into a single **CSS** stylesheet.
     - `npm run export_js`: To bundle all the **JS** files from the `src` folder with the imported libraries into a single script.
