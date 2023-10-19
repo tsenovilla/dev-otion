@@ -1,6 +1,6 @@
 # Description
 
-Have you ever spent many hours of your programming time trying to solve a specific problem? I'm sure you've had to put together information obtained from several fonts until you found all the tools required for your particular need. Dev-otion has born in order to help people with this kind of problems. It's a web-blog where I will be posting interesting information about programming, including all the problems I'll face in my own way, where the solution implies a few hours of research. You can find dev-otion at https://dev-otion.com and this repo contains its source code.
+Have you ever spent many hours of your programming time trying to solve a specific problem? I'm sure you've had to gather information obtained from several sources until you found all the tools required for your particular need. Dev-otion has born in order to help people with this kind of problems. It's a web-blog where I will be posting interesting information about programming, including all the problems I'll face in my own way, where the solution implies a few hours of research. You can find dev-otion at https://dev-otion.com and this repo contains its source code.
 
 The project's backend is built using **Django**, while the frontend is composed by **SCSS** and **JS**. In development environment, we use **Gulp.js** as a task runner in order to improve the performance of static images, bundle scripts and compile the **SCSS** into **CSS** stylesheets.
 
