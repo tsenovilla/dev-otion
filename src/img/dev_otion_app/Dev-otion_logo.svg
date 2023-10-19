@@ -1,25 +1,163 @@
-<svg id="ecMWmLSx73F1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="15 18 25 16.5" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><text dx="0" dy="0" font-family="&quot;ecMWmLSx73F1:::Concert One&quot;" font-size="5" font-weight="700" transform="translate(15.91436 22.406898)" fill="#03e9db" stroke-width="0"><tspan y="0" font-weight="700" stroke-width="0"><![CDATA[
- D 
-]]></tspan><tspan x="0" y="5" font-weight="700" stroke-width="0"><![CDATA[
- e 
-]]></tspan><tspan x="0" y="10" font-weight="700" stroke-width="0"><![CDATA[
- v  
-]]></tspan></text><text dx="0" dy="0" font-family="&quot;ecMWmLSx73F1:::Concert One&quot;" font-size="5" font-weight="700" transform="translate(26 32.871372)" fill="#fff508" stroke-width="0"><tspan y="0" font-weight="700" stroke-width="0"><![CDATA[
- tion
-]]></tspan></text><text dx="0" dy="0" font-family="&quot;ecMWmLSx73F1:::Roboto&quot;" font-size="3" font-weight="400" transform="translate(22.692724 22.962752)" stroke-width="0"><tspan y="0" font-weight="400" stroke-width="0"><![CDATA[
- 🖥️ 
-]]></tspan></text><text dx="0" dy="0" font-family="&quot;ecMWmLSx73F1:::Roboto&quot;" font-size="3" font-weight="400" transform="translate(27.368566 27.273438)" stroke-width="0"><tspan y="0" font-weight="400" stroke-width="0"><![CDATA[
- ⌨️  
-]]></tspan></text><text dx="0" dy="0" font-family="&quot;ecMWmLSx73F1:::Roboto&quot;" font-size="3" font-weight="400" transform="translate(27.368567 22.773137)" stroke-width="0"><tspan y="0" font-weight="400" stroke-width="0"><![CDATA[
- 🤔  
-]]></tspan></text><text dx="0" dy="0" font-family="&quot;ecMWmLSx73F1:::Roboto&quot;" font-size="3" font-weight="400" transform="translate(22.725232 27.273438)" stroke-width="0"><tspan y="0" font-family="&quot;ecMWmLSx73F1:::Roboto&quot;" font-size="3" font-weight="400" font-style="normal" stroke-width="0"><![CDATA[
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-🤯 
-
-]]></tspan></text><text dx="0" dy="0" font-family="&quot;ecMWmLSx73F1:::Roboto&quot;" font-size="3.8" font-weight="400" transform="translate(20.074496 32.882354)" stroke-width="0"><tspan y="0" font-weight="400" stroke-width="0"><![CDATA[
-🤪 
-]]></tspan></text>
-<style><![CDATA[
-@font-face {font-family: 'ecMWmLSx73F1:::Concert One';font-style: normal;font-weight: 400;src: url(data:font/ttf;charset=utf-8;base64,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) format('truetype');}@font-face {font-family: 'ecMWmLSx73F1:::Roboto';font-style: normal;font-weight: 400;src: url(data:font/ttf;charset=utf-8;base64,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) format('truetype');}
-]]></style>
+<svg
+   width="1000"
+   height="1000"
+   viewBox="0 0 264.58333 264.58333"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed, 2023-07-21)"
+   sodipodi:docname="Dev-otion_logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.50513345"
+     inkscape:cx="484.03051"
+     inkscape:cy="507.78661"
+     inkscape:window-width="1592"
+     inkscape:window-height="792"
+     inkscape:window-x="60"
+     inkscape:window-y="42"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient21"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#03c0b8;stop-opacity:1;"
+         offset="0"
+         id="stop22" />
+      <stop
+         style="stop-color:#d50019;stop-opacity:1;"
+         offset="1"
+         id="stop23" />
+    </linearGradient>
+    <rect
+       x="746.3374"
+       y="338.52441"
+       width="492.93903"
+       height="340.50409"
+       id="rect173" />
+    <rect
+       x="702.78461"
+       y="354.36179"
+       width="564.20734"
+       height="298.93091"
+       id="rect172" />
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="-22.247091 : 117.5752 : 1"
+       inkscape:vp_y="0 : 724.18973 : 0"
+       inkscape:vp_z="207.40971 : 117.5752 : 1"
+       inkscape:persp3d-origin="92.581311 : 83.085662 : 1"
+       id="perspective167" />
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="-90.615492 : 123.94016 : 1"
+       inkscape:vp_y="0 : 999.99997 : 0"
+       inkscape:vp_z="119.38451 : 123.94016 : 1"
+       inkscape:persp3d-origin="14.384509 : 74.440164 : 1"
+       id="perspective2" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21"
+       id="linearGradient23"
+       x1="40.855507"
+       y1="126.75691"
+       x2="231.5147"
+       y2="126.75691"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <ellipse
+       style="opacity:1;fill:url(#linearGradient23);fill-opacity:1;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill"
+       id="path1"
+       cx="136.1851"
+       cy="126.75691"
+       rx="95.329597"
+       ry="93.234444" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:condensed;font-size:35.2778px;font-family:Futura;-inkscape-font-specification:'Futura, Ultra-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;opacity:0.96986301;fill:#f28700;fill-opacity:0.89097703;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill"
+       x="48.188587"
+       y="136.21719"
+       id="text8"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:condensed;font-size:35.2778px;font-family:Futura;-inkscape-font-specification:'Futura, Ultra-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:3;fill:#f28700;fill-opacity:0.89097703"
+         x="48.188587"
+         y="136.21719">&lt;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:condensed;font-size:35.2778px;font-family:Futura;-inkscape-font-specification:'Futura, Ultra-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;opacity:1;fill:#f28700;fill-opacity:0.89019608;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill"
+       x="201.65875"
+       y="136.21718"
+       id="text9"><tspan
+         sodipodi:role="line"
+         id="tspan9"
+         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:condensed;font-size:35.2778px;font-family:Futura;-inkscape-font-specification:'Futura, Ultra-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:3;fill:#f28700;fill-opacity:0.89019608"
+         x="201.65875"
+         y="136.21718">&gt;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.4057px;font-family:Herculanum;-inkscape-font-specification:'Herculanum, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;opacity:1;fill:#f9fffc;fill-opacity:0.890977;stroke:#9900ec;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.972973;paint-order:markers stroke fill"
+       x="111.04308"
+       y="82.83358"
+       id="text174"
+       transform="scale(0.91574471,1.0920074)"><tspan
+         sodipodi:role="line"
+         id="tspan174"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.4057px;font-family:Herculanum;-inkscape-font-specification:'Herculanum, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#f9fffc;fill-opacity:0.890977;stroke:#9900ec;stroke-width:0;stroke-opacity:0.972973"
+         x="111.04308"
+         y="82.83358">DEV</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.4057px;font-family:Herculanum;-inkscape-font-specification:'Herculanum, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#f9fffc;fill-opacity:0.890977;stroke:#9900ec;stroke-width:0;stroke-opacity:0.972973"
+         x="111.04308"
+         y="129.59071"
+         id="tspan175" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.1535px;font-family:Herculanum;-inkscape-font-specification:'Herculanum, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;opacity:1;fill:#fef5f5;fill-opacity:0.890977;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.951128;paint-order:markers stroke fill"
+       x="117.41855"
+       y="146.81728"
+       id="text176"
+       transform="scale(0.82163234,1.2170894)"><tspan
+         sodipodi:role="line"
+         id="tspan176"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.1535px;font-family:Herculanum;-inkscape-font-specification:'Herculanum, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#fef5f5;fill-opacity:0.890977;stroke-width:0"
+         x="117.41855"
+         y="146.81728">OTION </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:condensed;font-size:13.7844px;font-family:Futura;-inkscape-font-specification:'Futura, Ultra-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;opacity:0.997275;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.415775;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       x="88.131035"
+       y="119.11871"
+       id="text16"
+       transform="scale(0.93167643,1.073334)"><tspan
+         sodipodi:role="line"
+         id="tspan16"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.415775"
+         x="88.131035"
+         y="119.11871">body class=&quot;enjoy&quot;</tspan></text>
+  </g>
 </svg>
