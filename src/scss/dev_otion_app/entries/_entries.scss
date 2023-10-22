@@ -12,4 +12,15 @@
     {
         max-height: 50vh;
     }
+
+    a
+    {
+        color: c.$black;
+        font-weight: t.$black;
+        &:hover
+        {
+            color: c.$green;
+            transition: color .3s ease;
+        }
+    }
 }

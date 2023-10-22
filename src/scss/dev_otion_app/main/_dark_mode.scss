@@ -15,6 +15,11 @@
     {
         box-shadow: rgba(123, 123, 123, 0.751) 0px 2px 8px;
         background-color: c.$darkGrey;
+
+        a
+        {
+            color: c.$white;
+        }
     }
 
     .resume .resume_item 
@@ -25,9 +30,9 @@
         }
     }
 
-    .post-slider__slide
+    .post-slider
     {
-        @include m.tablet
+        &__slide.swiper-slide
         {
             color: c.$white;
         }
