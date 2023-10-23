@@ -34,7 +34,10 @@
     {
         &__slide.swiper-slide
         {
-            color: c.$white;
+            @include m.tablet
+            {
+                color: c.$white;
+            }
         }
     }
 

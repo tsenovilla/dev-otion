@@ -58,7 +58,11 @@
             background-position: left;
             border-radius: 1rem;
             z-index:-1;
-            opacity: .6;
+            opacity: .3;
+            @include m.tablet
+            {
+                opacity: .6;
+            }
         }
     }
 
