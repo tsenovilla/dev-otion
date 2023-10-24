@@ -13,7 +13,7 @@ if not DEBUG:
 
 ## Regenerate the url with the new name
 @receiver(pre_save, sender=Topics)
-def redefine_url(sender, **kwargs):
+def redefine_topic_url(sender, **kwargs):
     kwargs['instance'].url = slugify(kwargs['instance'].name)
 
 ## Override of post_delete signal for Topics model, in order to delete images after deleting a db entry. We have to override the signal instead of the delete method in order to correctly delete images if we delete entries in bulk.
@@ -27,7 +27,7 @@ def topic_delete_images_deletion(sender, **kwargs):
 
 ## Regenerate urls with the new name
 @receiver(pre_save, sender=Entry)
-def redefine_url(sender,**kwargs):
+def redefine_entry_url(sender,**kwargs):
     instance = kwargs['instance']
     instance.url_english = slugify(instance.title_english)
     instance.url_spanish = slugify(instance.title_spanish)
