@@ -21,4 +21,14 @@ export default function (menu)
             }
         }
     );
+
+    // We close the menu if the user clicks outside
+    document.addEventListener('click', event =>
+    {
+        if(menu.hasAttribute('open') && !menu.contains(event.target))
+        {
+            menu_list.classList.add('menu_animation_close');
+        }
+    }
+)
 }
