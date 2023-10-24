@@ -23,4 +23,11 @@
             transition: color .3s ease;
         }
     }
+
+    img
+    {
+        width:90%;
+        border: 1px solid c.$black;
+        border-radius: .4rem;
+    }
 }

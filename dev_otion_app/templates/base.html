@@ -49,7 +49,9 @@
 </head>
 <body>
     <header class="header">
-        <img src="{% static 'dev_otion_app/img/Dev-otion_logo.svg' %}" alt="Dev-otion logo" class="logo">
+        <a href="{% url 'dev_otion_app:index' %}">
+            <img src="{% static 'dev_otion_app/img/Dev-otion_logo.svg' %}" alt="Dev-otion logo" class="logo">
+        </a>
         <details class="menu">
             <summary>
                 <i class="fa-solid fa-bars menu_icon"></i>
@@ -85,7 +87,7 @@
             </div>
         </details>
     </header>
-
+    
     <main>
         {% block content %}
         {% endblock %}

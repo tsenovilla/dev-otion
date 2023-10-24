@@ -12,7 +12,11 @@
     &__slide.swiper-slide
     {
         padding: 2rem;
-        color: c.$black;
+        color: c.$white;
+        @include m.tablet
+        {
+            color: c.$black;
+        }
         font-weight: t.$bold;
         font-size: 1.8rem;
         width: 35vw;
@@ -21,19 +25,19 @@
         border-radius: 1rem;
         &:nth-child(4n)
         {
-            background-color: lighten(c.$redCard,35%);
+            background-color: c.$redCard;
         }
         &:nth-child(4n+1)
         {
-            background-color: lighten(c.$blueCard,35%);
+            background-color: c.$blueCard;
         }
         &:nth-child(4n+2)
         {
-            background-color: lighten(c.$greenCard,35%);
+            background-color: c.$greenCard;
         }
         &:nth-child(4n+3)
         {
-            background-color: lighten(c.$yellowCard,35%);
+            background-color: c.$yellowCard;
         }
         @include m.tablet
         {
@@ -58,7 +62,7 @@
             background-position: left;
             border-radius: 1rem;
             z-index:-1;
-            opacity: .3;
+            opacity: .5;
             @include m.tablet
             {
                 opacity: .6;

@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 import os
 
@@ -140,6 +141,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 LANGUAGE_CODE = "en-us"
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('es', _('Spanish')),
+    ('fr', _('French'))
+]
 
 LOCALE_PATHS = [
     str(BASE_DIR)+"/dev_otion_app/locale"

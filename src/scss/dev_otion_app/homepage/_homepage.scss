@@ -37,16 +37,19 @@
 
     .resume_item
     {
+        margin-top:2rem;
+        padding: 1rem;
+
         @include m.flex($direction: column, $align: center);
         @include m.tablet
         {
-            @include m.grid($areas: 'icon h3' 'icon p', $columns: 1fr 3fr, $gap: 1rem);
+            @include m.grid($areas: 'icon h3' 'icon p', $columns: 1fr 5fr, $gap: 1rem);
         }
-        padding: 1rem;
 
         h3,p
         {
             color: c.$black;
+            text-align: left;
         }
 
         &>i
@@ -75,9 +78,8 @@
             {
                 content:'';
                 position: absolute;
-                left: 50%;
+                left: 0;
                 bottom: 0;
-                transform: translateX(-50%);
                 width: 10vw;
                 height: .1rem;
                 background-color: c.$lightGreen;
