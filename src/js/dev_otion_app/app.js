@@ -4,14 +4,12 @@ import dark_mode from './dark_mode';
 import entry_highlighting from './entry_highlighting';
 import alert_management from './alert_management';
 import post_slider from './post_slider';
-import window_reloader from './window_reloader';
 
 const menu = document.querySelector('.menu');
 const search = document.querySelector('.search_input');
 document.addEventListener('DOMContentLoaded',menu_animation(menu));
 document.addEventListener('DOMContentLoaded',dark_mode());
 document.addEventListener('DOMContentLoaded',search_entry(search));
-document.addEventListener('DOMContentLoaded', window_reloader());
 
 const article = document.querySelector('.blog_entry');
 if(article)

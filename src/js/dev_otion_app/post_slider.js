@@ -10,60 +10,88 @@ import 'swiper/css/effect-cards';
  */
 export default function post_slider(slider)
 {
-    let swiper_config = {
+    const swiper_config_global = {
         slidesPerView:'auto',
         spaceBetween: 15,
         freeMode:true,
         loop:false,
-        centeredSlides:true,
+        centeredSlides:true
     };
-    if(window.innerWidth>=768) // Using breakpoints does not compleyely discard cards effect, leading into a weird performance of coverflow. Then it is better to provide two different objects depending on the screensize. We also take advantage of this conditional to destroy the navigation in small screensizes
+
+    const swiper_config_coverflow = 
     {
-        swiper_config = 
+        ...swiper_config_global,
+        navigation:
         {
-            ...swiper_config,
-            navigation:
-            {
-                prevEl: '.swiper-button-prev',
-                nextEl: '.swiper-button-next'
-            },
-            effect:'coverflow',
-            coverflowEffect: 
-            {
-                rotate: 40,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: false
-            }
+            prevEl: '.swiper-button-prev',
+            nextEl: '.swiper-button-next'
+        },
+        effect:'coverflow',
+        coverflowEffect: 
+        {
+            rotate: 40,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: false
         }
     }
-    else
+
+    const swiper_config_cards = 
     {
-        swiper_config = 
-        {
-            ...swiper_config,
-            effect:'cards', 
-            grabCursor:true
-        }
-        slider.querySelector('.swiper-button-prev').remove();
-        slider.querySelector('.swiper-button-next').remove();
+        ...swiper_config_global,
+        effect:'cards', 
+        grabCursor:true
     }
 
     Swiper.use([Navigation, EffectCoverflow, EffectCards]);
-    const swiper = new Swiper(slider, swiper_config);
+    let swiper = new Swiper(slider, swiper_config_coverflow);
+
+    const prev_button = document.querySelector('.swiper-button-prev');
+    const next_button = document.querySelector('.swiper-button-next');
     const posts = slider.querySelectorAll('.post-slider__slide');
-    posts.forEach(post=>set_bkg_image(post)); // Set the bkg image for each post in the slider
-    if(window.innerWidth>=768)
+
+    prev_button.setAttribute('style','display:none'); // First time the page is loaded in big devices, the prev_button should not be visible. In small devices, it's never shown.
+
+    swiper.on('transitionEnd', swiper_buttons_handler); // In big devices, Navigation is activated, then we have to handle the navigation buttons (neither show the previous one if there's not a left element, nor the last one if there's not a right element)
+
+    let window_width = window.innerWidth;
+    
+    if(window_width < 768)
     {
-        const prev_button = document.querySelector('.swiper-button-prev');
-        prev_button.setAttribute('style','display:none'); // First time the page is loaded, the prev_button should not be visible
-        swiper.on('transitionEnd', swiper_buttons_handler); // In bigger devices, Navigation is activated, then we have to handle the navigation buttons (neither show the previous one if there's not a left element, nor the last one if there's not a right element)
-    }
-    else
-    {
+        swiper.destroy(true,true);
+        swiper = new Swiper(slider, swiper_config_cards);
+        next_button.setAttribute('style','display:none');
         resize_cards(posts); // In small devices, the cards appear in a stack, so it's prettier if all cards have the same height (their heights depend on the content, so there may be contents longer than others)
     }
+
+    posts.forEach(post=>set_bkg_image(post)); // Set the bkg image for each post in the slider
+
+    // Remake the swiper if the screen changes from 'small' to 'big' or the other way around
+    window.addEventListener('resize', ()=>
+        {
+            if(window_width < 768 && window.innerWidth >= 768)
+            {
+                swiper.destroy(true,true);
+                swiper = new Swiper(slider, swiper_config_coverflow);
+                next_button.removeAttribute('style'); // The previous button remains invisible since it only appears when the user moves the swiper.
+                swiper.on('transitionEnd', swiper_buttons_handler);
+                posts.forEach(post=>set_bkg_image(post)); // Destroying the swiper destroys the bkg image as well. As the styles are not the same in big and small devices, we have to rerun the function instead of destroying swiper without cleaning up the styles (swiper.destroy(true,false))
+                window_width = window.innerWidth; 
+            }
+            else if(window_width >= 768 && window.innerWidth < 768)
+            {
+                swiper.destroy(true,true);
+                swiper = new Swiper(slider, swiper_config_cards);
+                prev_button.setAttribute('style','display:none');
+                next_button.setAttribute('style','display:none');
+                posts.forEach(post=>set_bkg_image(post));
+                resize_cards(posts);
+                window_width = window.innerWidth;
+            }
+        }
+    );
+
 }
 
 function set_bkg_image(post)
@@ -73,7 +101,7 @@ function set_bkg_image(post)
     
     if (window.innerWidth>=768)
     {
-        post.style.setProperty('--slide_bkg_image',image_set +', linear-gradient(to right, rgba(245, 124, 0, .8) 0% ,rgba(245, 124, 0,.45) 70%, rgba(245, 124, 0,.1)100%)');
+        post.style.setProperty('--slide_bkg_image',image_set +', linear-gradient(to right, rgba(245, 124, 0, .8) 0% ,rgba(245, 124, 0, .45) 70%, rgba(245, 124, 0, .1)100%)');
     }
     else
     {

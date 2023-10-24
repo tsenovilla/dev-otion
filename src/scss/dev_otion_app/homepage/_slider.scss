@@ -7,6 +7,11 @@
     --swiper-navigation-size: 3rem !important; // Overwrite the navigation size variable in order to adjust swiper buttons size. !important is needed as otherwise Swiper styles will overwrite this one (as they are added with the JS webpack bundle. There's no other way as we cannot increase the specifity for the :root selector.
 }
 
+.swiper-slide-shadow // When the cards effect is loaded, a background shadow is load in our slides (for some reason, adding slideShadows:false to the cards configuration object doesn't work). So we hide them as they aren't cool with our styles
+{
+    display: none;
+}
+
 .post-slider
 {
     &__slide.swiper-slide
@@ -41,7 +46,7 @@
         }
         @include m.tablet
         {
-            &:not(:nth-child(odd)), &:not(:nth-child(even))
+            &:nth-child(odd), &:nth-child(even)
             {
                 background-color: transparent;
             }
