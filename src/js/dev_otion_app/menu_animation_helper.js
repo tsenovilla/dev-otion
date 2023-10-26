@@ -9,6 +9,10 @@ export default function (menu)
                 e.preventDefault();
                 menu_list.classList.add('menu_animation_close');
             }
+            else
+            {
+                menu_list.classList.add('menu_animation_open');
+            }
         }
     );
 
@@ -18,6 +22,10 @@ export default function (menu)
             {
                 menu_list.classList.remove('menu_animation_close');
                 menu.removeAttribute('open');
+            }
+            else
+            {
+                menu_list.classList.remove('menu_animation_open');
             }
         }
     );

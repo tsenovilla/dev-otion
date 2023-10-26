@@ -64,7 +64,6 @@
         background-color: c.$green;
         padding: 2rem;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-        animation: menu_animation_open .3s ease-out;
         i
         {
             color: c.$white;
@@ -75,16 +74,13 @@
                 transition: color .3s ease-in;
             }
         }
-        &.menu_animation_close 
-        {
-            animation: menu_animation_close .3s ease-in;
-        }
         // When the content is displayed in a big screen, it is better to have a smaller menu, so it starts in the middle of the screen.
         @include m.tablet
         {
             left: 50%;
         }
     }
+
     .search_bar
     {
         @include m.flex($align: center, $gap:.5rem);
@@ -217,4 +213,14 @@
         opacity: 0;
         transform: translateY(-30%);
     }
+}
+
+.menu_animation_open
+{
+    animation: menu_animation_open .3s ease-out;
+}
+
+.menu_animation_close 
+{
+    animation: menu_animation_close .3s ease-in;
 }
