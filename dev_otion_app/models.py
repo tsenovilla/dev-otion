@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import get_language
+from django.urls import reverse
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from PIL import Image
@@ -61,6 +63,17 @@ class Entry(models.Model):
     url_spanish = AutoSlugField(populate_from = 'title_spanish', max_length = 250)
     url_french = AutoSlugField(populate_from = 'title_french', max_length = 250)
     topic = models.ForeignKey(Topics, on_delete = models.CASCADE, default = None)
+
+    def get_absolute_url(self):
+        language = get_language()
+        match language:
+            case 'en':
+                args = [str(self.url_english)]
+            case 'es':
+                args = [str(self.url_spanish)]
+            case 'fr':
+                args = [str(self.url_french)]
+        return reverse('dev_otion_app:entry', args=args)
 
     def __str__(self):
         return self.title_english
