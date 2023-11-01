@@ -16,9 +16,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",
-    "django.contrib.sitemaps"
+    "django.contrib.sitemaps",
+    "django.contrib.sites"
 ]
+
+SITE_ID = 1
 
 if DEBUG:
     from dotenv import load_dotenv
