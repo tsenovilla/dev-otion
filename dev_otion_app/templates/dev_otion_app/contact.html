@@ -18,17 +18,6 @@
     <form action="{% url 'dev_otion_app:contact' %}" method="post" class="contact_form">
         {% csrf_token %}
         <fieldset>
-            <label for="mail">E-mail</label>
-            <input 
-                type="text" 
-                id="e-mail"
-                placeholder="{% translate 'Write your e-mail' %}"
-                name="e_mail"
-                value="{{ e_mail }}"
-                class="{% if error == 'e_mail' %}
-                    input_error
-                {% endif %}"
-            >
             <label for="message">{% translate "Message" %}</label>
             <textarea 
                 name="message" 

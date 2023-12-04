@@ -35,6 +35,12 @@ In order to make the project work correctly in a localhost, there's a few steps 
 
 If you are trying to deploy the project to a real server, the requirements change a bit, so use `prod_requirements.txt` in step 1 (DigitalOceanApps uses **PostreSQL**, so the database binding installed will be `psycopg2`. Keep this in mind if you need another one). You do not need the `src` files and the Node modules anymore (if you have run `npm run build_static`), so just delete them. The environment variables change in a real server, the only one that remains is `BREVO_API_KEY`, but you'll have to add `DATABASE_URL`,`SECRET_KEY` and `DJANGO_ALLOWED_HOSTS` (corresponding to the URL pointing to your database created by your server provider, the Django secret sey, and the hosts allowed to run the app, respectively). If you are using DigitalOcean Spaces to hold static/media files, you must set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as well, otherwise modify the script `django_config/settings.py` accordingly and add the environment variables you need.
 
+#### Note
+
+After updating my OS, I've noticed that the development configuration isn't work anymore in my computer due to a problem with the mysqlclient binding in Django. It's not harmful in production as it's deployed on DigitalOcean and there PostgreSQL is used (I've choosen MySQL at the creation time without knowing that I was going to use PostgreSQL in production, don't change it afterwards because the functionality doesn't change and I have all the tables already created in MySQL in my localhost). If you create your tables directly with PostgreSQL in your localhost it's OK, otherwise, keep reading this note. 
+
+I've found out that this problem is kind of usual with Django and mysqlclient (eg, [check this](https://stackoverflow.com/questions/46902357/error-loading-mysqldb-module-did-you-install-mysqlclient-or-mysql-python)), but I've not discovered why that's happening although it seems to be a problem with some dependencies. The solution proposed in the link involving pymysql made the thing for my localhost though I read that it doesn't work for other people. I'm leaving this note here in the case you face such a problem, you'll have at least a starting point to investigate :)
+
 Other
 =====
 

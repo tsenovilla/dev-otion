@@ -24,10 +24,11 @@
         }
     }
 
-    img
-    {
-        width:90%;
-        border: 1px solid c.$black;
+    pre, img{
         border-radius: .4rem;
+        box-shadow: 1px 1px 8px 1px c.$black;
+        @include m.tablet{
+            width: 95%;
+        }
     }
 }

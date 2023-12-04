@@ -20,6 +20,14 @@
         {
             color: c.$white;
         }
+
+        pre{
+            box-shadow: 1px 1px 7px 1px c.$lightGreen;
+        }
+
+        img{
+            box-shadow: 1px 1px 7px 1px c.$lightBlue;
+        }
     }
 
     .resume .resume_item 

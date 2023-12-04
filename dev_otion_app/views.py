@@ -131,10 +131,9 @@ class ContactView(Dev_otion_View, TemplateView):
             api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
             subject = 'New post request'
             sender = {'email':'tspscgs@gmail.com'}
-            reply_to = {'email': submitted_form.cleaned_data['e_mail']}
-            html_content = f'<html><body><p>Sender:{submitted_form.cleaned_data["e_mail"]}</p><p>Message:{submitted_form.cleaned_data["message"]}</p></body></html>'
+            html_content = f'<html><body><p>{submitted_form.cleaned_data["message"]}</p></body></html>'
             to = [{'email':'dev-otion@hotmail.com'}]
-            send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(to = to, html_content = html_content, sender = sender, reply_to = reply_to, subject = subject)
+            send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(to = to, html_content = html_content, sender = sender, subject = subject)
             try:
                 api_instance.send_transac_email(send_smtp_email)
                 request.session['alert'] = _('Thank you for your message! We will get back to you as soon as possible')
@@ -145,12 +144,8 @@ class ContactView(Dev_otion_View, TemplateView):
                 context['alert_type'] = 'KO'
         else: # We show the error provided by the Django's Form object to the user
             context['alert_type'] = 'KO'
-            context['e_mail'] = request.POST['e_mail']
             context['message'] = request.POST['message']
-            if 'e_mail' in submitted_form.errors:
-                context['alert'] = 'E_mail: ' + re.search('<li>(?P<error>.*)</li>', str(submitted_form.errors['e_mail'])).group('error')
-                context['error'] = 'e_mail'
-            elif 'message' in submitted_form.errors:
+            if 'message' in submitted_form.errors:
                 context['alert'] = _('Message: ') + re.search('<li>(?P<error>.*)</li>', str(submitted_form.errors['message'])).group('error')
                 context['error'] = 'message'
         return self.render_to_response(context)

@@ -102,5 +102,4 @@ class ContactForm(forms.Form):
     """
     This class represent form objects submitted in the contact view.
     """
-    e_mail = forms.EmailField(required = True)
     message = forms.CharField(min_length = 50, required = True)
